@@ -31,11 +31,12 @@ static sfSprite **create_tileset(void)
     return tileset;
 }
 
+// si gen_map_blabla fail elle renvoie NULL -> penser à free tout
+// (c'est un int**)
 sfSprite *create_map(sfRenderWindow *window)
 {
     maps_t *all_maps = malloc(sizeof(maps_t));
     all_maps->map1 = gen_map_tab("map.txt");
-    // si gen_map_blabla fail elle renvoie NULL -> penser à free tout (c'est un int**)
     sfSprite **tileset = create_tileset();
     sfSprite *background = sfSprite_create();
     sfTexture *new_texture = sfTexture_create(WIN_WIDTH, WIN_HEIGHT);
