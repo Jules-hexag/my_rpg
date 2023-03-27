@@ -1,4 +1,4 @@
-name: chocolatine
+name: my_rpg
 on:
   push:
   pull_request:
