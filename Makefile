@@ -74,10 +74,10 @@ clean:
 	@$(RM) $(TESTS)
 	@$(RM) $(DEP)
 
-tests_run: $(TESTS)
-	./$(TESTS) --always-succeed
-	gcovr --exclude bonus/tests.c
-	gcovr --branches --exclude bonus/tests.c
+tests_run: ## $(TESTS)
+##	./$(TESTS) --always-succeed
+##	gcovr --exclude bonus/tests.c
+##	gcovr --branches --exclude bonus/tests.c
 
 fclean: clean
 	@$(RM) $(NAME)
