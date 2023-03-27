@@ -16,9 +16,9 @@ static void resize_event(sfEvent event, sfRenderWindow *window)
         sfVector2u new_size = sfRenderWindow_getSize(window);
         sfView_setSize(view, (sfVector2f) {(float) new_size.x,
             (float) new_size.y});
-        int n_x = new_size.x = new_size.x / 2;
-        int n_y = new_size.y = new_size.y / 2;
-        sfView_setCenter(view, (sfVector2f) {n_x, n_y});
+        int size_x = new_size.x = new_size.x / 2;
+        int size_y = new_size.y = new_size.y / 2;
+        sfView_setCenter(view, (sfVector2f) {size_x, size_y});
         sfRenderWindow_setView(window, view);
     }
 }
