@@ -11,8 +11,8 @@
     #define WIN_WIDTH 800
     #define WIN_HEIGHT 800
 
-    #define FILE_WIDTH 80
-    #define FILE_HEIGHT 80
+    #define FILE_MAP_WIDTH 80
+    #define FILE_MAP_HEIGHT 80
 
     #define IMG_SIZE 10
 
@@ -23,13 +23,24 @@
     #include <SFML/Graphics/RenderWindow.h>
     #include <SFML/Graphics/View.h>
 
+typedef struct map_s {
+    int **map1;
+    sfSprite *background;
+} map_t;
+
+typedef struct instance_s {
+    map_t *map;
+    sfRenderWindow *window;
+    sfVector2f player_pos;
+} instance_t;
+
 /* sort all this in different appropriate files */
 
-int rpg(int argc, char **argv);
+int rpg(int argc, char const *const *argv);
 
-bool input_errors(int argc, char **argv, char **env);
+bool check_exec_errors(int argc, char const *const *argv, char const *const *envp);
 
-void frame_loop(char *filepath);
+void game_loop(instance_t *instance);
 
 sfRenderWindow *init_window(void);
 
@@ -43,16 +54,10 @@ void free_arrays(int **map);
 
 void free_tileset(sfSprite **tileset);
 
-int **gen_map_tab(char *filepath);
+const int *const * gen_map_tab(const char *const filepath);
 
-typedef struct object_s {
-    sfSprite    *background;
-} objects_t;
 
-objects_t *create_objects(sfRenderWindow *window);
 
-typedef struct maps_s {
-    int **map1;
-} maps_t;
+instance_t *create_instance(sfRenderWindow *window);
 
 #endif /* !RPG_H_ */

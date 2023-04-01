@@ -7,7 +7,7 @@
 
 SRC			=	src/main.c \
 				src/rpg.c \
-				src/errors/input_errors.c \
+				src/errors/check_exec_errors.c \
 				src/map/map.c \
 				src/map/objects.c \
 				src/window/create_window.c \
