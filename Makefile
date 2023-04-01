@@ -11,7 +11,8 @@ SRC			=	src/main.c \
 				src/map/map.c \
 				src/map/objects.c \
 				src/window/create_window.c \
-				src/frame_loop.c \
+				src/game_loop.c \
+				src/map/display_map.c \
 				src/events/main_evts.c \
 				src/utils/free_arrays.c \
 				src/map/gen_map_tab.c
