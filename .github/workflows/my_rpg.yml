@@ -8,7 +8,8 @@ on:
 
 env:
   MIRROR_URL: git@github.com:EpitechPromo2027/B-MUL-200-BDX-2-1-myrpg-antoine1.maurel.git
-  EXECUTABLES:
+  EXECUTABLES: my_rpg
+  ALLOWED_FUNCTIONS: malloc free memset rand srand getline stat open fopen read fread close fclose write fwrite opendir readdir closedir
 
 jobs:
   check_coding_style:
@@ -37,7 +38,6 @@ jobs:
   check_program_compilation:
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker:latest
-    needs: [check_coding_style]
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -59,6 +59,29 @@ jobs:
               exit 1
             fi
           done
+
+  check_for_banned_functions:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker:latest
+    needs: [check_program_compilation]
+    timeout-minutes : 2
+    steps:
+      - name: Install ripgrep
+        run: sudo dnf install ripgrep --assumeyes
+
+      - name: Compile in release mode
+        run: make
+
+      - name: Check if there is banned functions
+        run: |
+          error=0
+          for func in $(nm $EXECUTABLES | rg ' +U (.+)@GLIBC_.+$' --replace '$1'); do
+            if [[ ! $func == __* && ! $ALLOWED_FUNCTIONS =~ $func ]]; then
+              echo "::error title=Banned function used::$func"
+              error=1
+            fi
+          done
+          exit $error
 
   run_tests:
     runs-on: ubuntu-latest
