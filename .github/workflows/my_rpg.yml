@@ -66,6 +66,11 @@ jobs:
     needs: [check_program_compilation]
     timeout-minutes : 2
     steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          repository: ''
+
       - name: Install ripgrep
         run: sudo dnf install ripgrep --assumeyes
 
