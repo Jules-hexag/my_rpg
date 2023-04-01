@@ -5,6 +5,7 @@
 ** check_exec_errors
 */
 
+#include "rpg.h"
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,7 +16,7 @@ static bool check_display_mode(char const *const *const envp)
     int str_iterator = 0;
 
     while (envp[str_iterator] != NULL) {
-        if (strncmp(envp[str_iterator], "DISPLAY=", 8) == 0)
+        if (my_strncmp(envp[str_iterator], "DISPLAY=", 8) == 0)
             return false;
         str_iterator++;
     }
