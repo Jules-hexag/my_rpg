@@ -9,5 +9,6 @@
 
 void map_display(instance_t *instance)
 {
-    sfRenderWindow_drawSprite(instance->window, instance->map->background, NULL);
+    sfRenderWindow_drawSprite(instance->window,
+        instance->map->background, NULL);
 }

@@ -38,7 +38,8 @@ typedef struct instance_s {
 
 int rpg(int argc, char const *const *argv);
 
-bool check_exec_errors(int argc, char const *const *argv, char const *const *envp);
+bool check_exec_errors(int argc, char const *const *argv,
+    char const *const *envp);
 
 void game_loop(instance_t *instance);
 
