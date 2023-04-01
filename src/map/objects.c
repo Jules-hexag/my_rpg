@@ -8,9 +8,13 @@
 #include <stdlib.h>
 #include "rpg.h"
 
-objects_t *create_objects(sfRenderWindow *window)
+instance_t *create_instance(sfRenderWindow *window)
 {
-    objects_t *objects = malloc(sizeof(objects_t));
-    objects->background = create_map(window);
-    return objects;
+    instance_t *instance = malloc(sizeof(instance_t));
+
+    instance->window = window;
+    instance->map = malloc(sizeof(map_t));
+    instance->map->background = create_map(window);
+
+    return instance;
 }

@@ -6,15 +6,25 @@
 */
 
 #include <unistd.h>
+#include <stdlib.h>
 #include "rpg.h"
 
 /* ajouter les const comme il faut */
 
-int rpg(int argc, char **argv)
+int rpg(int const argc, char const *const *const argv)
 {
+    char *filepath = NULL;
+
     (void) argc;
     (void) argv;
-    char *filepath = NULL;
-    frame_loop(filepath);
+
+    sfRenderWindow *window = init_window();
+    instance_t *instance = create_instance(window);
+
+    game_loop(instance);
+
+    free(instance);
+    sfRenderWindow_destroy(window);
+
     return 0;
 }

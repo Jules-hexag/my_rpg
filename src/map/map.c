@@ -35,13 +35,13 @@ static sfSprite **create_tileset(void)
 // (c'est un int**)
 sfSprite *create_map(sfRenderWindow *window)
 {
-    maps_t *all_maps = malloc(sizeof(maps_t));
-    all_maps->map1 = gen_map_tab("map.txt");
+    map_t *all_maps = malloc(sizeof(map_t));
+    all_maps->map1 = (int **) gen_map_tab("map.txt");
     sfSprite **tileset = create_tileset();
     sfSprite *background = sfSprite_create();
     sfTexture *new_texture = sfTexture_create(WIN_WIDTH, WIN_HEIGHT);
-    for (int height = 0; height < FILE_HEIGHT; height++) {
-        for (int width = 0; width < FILE_WIDTH; width++) {
+    for (int height = 0; height < FILE_MAP_HEIGHT; height++) {
+        for (int width = 0; width < FILE_MAP_WIDTH; width++) {
             sfSprite_setPosition(tileset[all_maps->map1[height][width]],
             (sfVector2f) {width * IMG_SIZE, height * IMG_SIZE});
             sfRenderWindow_drawSprite(window,
