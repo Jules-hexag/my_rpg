@@ -57,7 +57,7 @@ void free_tileset(sfSprite **tileset);
 
 const int *const * gen_map_tab(const char *const filepath);
 
-
+int my_strncmp(char const *s1, char const *s2, int n);
 
 instance_t *create_instance(sfRenderWindow *window);
 
