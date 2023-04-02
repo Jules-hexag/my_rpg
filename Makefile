@@ -5,18 +5,24 @@
 ## build the project
 ##
 
-SRC			=	src/main.c \
-				src/rpg.c \
-				src/errors/check_exec_errors.c \
-				src/map/map.c \
-				src/map/objects.c \
-				src/window/create_window.c \
+SRC			=	src/rpg.c \
+				src/main.c \
 				src/game_loop.c \
+				src/my_strncmp.c \
 				src/map/display_map.c \
-				src/events/main_evts.c \
+				src/events/game_evts.c \
+				src/utils/gen_shapes.c \
 				src/utils/free_arrays.c \
-				src/map/gen_map_tab.c \
-				src/my_strncmp.c
+				src/map/push_in_struct.c \
+				src/map/generate_tileset.c \
+				src/window/create_window.c \
+				src/errors/check_exec_errors.c \
+				src/map/generate_int_tab_map.c \
+				src/start_menu/start_menu_loop.c \
+				src/events/start_menu_evts/start_evts.c \
+				src/events/start_menu_evts/mouse_moved.c \
+				src/events/start_menu_evts/hover_colorization.c \
+				src/events/start_menu_evts/check_mouse_coords.c \
 
 TESTS_SRC	=	bonus/tests.c \
 

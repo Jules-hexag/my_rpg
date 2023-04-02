@@ -36,7 +36,7 @@ static sfSprite **create_tileset(void)
 sfSprite *create_map(sfRenderWindow *window)
 {
     map_t *all_maps = malloc(sizeof(map_t));
-    all_maps->map1 = (int **) gen_map_tab("map.txt");
+    all_maps->map1 = (int **) generate_int_tab_map("map.txt");
     sfSprite **tileset = create_tileset();
     sfSprite *background = sfSprite_create();
     sfTexture *new_texture = sfTexture_create(WIN_WIDTH, WIN_HEIGHT);
