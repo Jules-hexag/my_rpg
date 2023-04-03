@@ -75,6 +75,7 @@ int start_menu_loop(sfRenderWindow *window)
             all_start_menu_instances.quit_game_button.button, NULL);
         sfRenderWindow_display(window);
     }
-    // free et destroy tout
     return 0;
 }
+// avant le return 0 de le fin :
+//   free et destroy tout

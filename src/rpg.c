@@ -21,7 +21,6 @@ int rpg(int const argc, char const *const *const argv)
     sfRenderWindow *window = init_window();
 
     if (start_menu_loop(window) == EXIT_PROGRAM) {
-        // destroy window & free
         return 0;
     }
     instance_t *instance = create_instances(window);
@@ -32,3 +31,5 @@ int rpg(int const argc, char const *const *const argv)
 
     return 0;
 }
+// l.24 :
+//  destroy window & free
