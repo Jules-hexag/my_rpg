@@ -44,7 +44,8 @@ typedef struct {
 
 int start_menu_loop(sfRenderWindow *window);
 
-int start_events_management(sfRenderWindow *window, start_menu *start_instances);
+int start_events_management(sfRenderWindow *window, start_menu
+    *start_instances);
 
 sfRectangleShape *gen_rect_shape(sfVector2f *size, sfVector2f *pos,
     sfColor color);
