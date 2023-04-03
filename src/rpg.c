@@ -24,10 +24,10 @@ int rpg(int const argc, char const *const *const argv)
         // destroy window & free
         return 0;
     }
-    // instance_t *instance = create_instances(window);
-    // game_loop(instance);
+    instance_t *instance = create_instances(window);
+    game_loop(instance);
 
-    // free(instance);
+    free(instance);
     sfRenderWindow_destroy(window);
 
     return 0;

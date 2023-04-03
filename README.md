@@ -1,6 +1,6 @@
 # my_rpg
 
-ENLEVER LE STRNCMP DANS LES INPUT_ERRORS, METTRE UN MY_STRNCMP
+PENSER A REGLER LE PROBLEME : QUAND TU BOUGES ALORS QUE CLIQUÉ CA REPASSE EN HOVER ALORS QU'IL FAUT QUE CA RESTE CLIQUÉ !
 
 Si on change un truc dans le tileset (taille &| nombre) :
     - Dans gen_map_tab.c -> retrieve_lines() :

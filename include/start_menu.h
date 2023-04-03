@@ -12,6 +12,7 @@
     #include <SFML/Graphics/Types.h>
     #include <SFML/Graphics/Color.h>
     #include <SFML/System/Vector2.h>
+    #include <SFML/Window/Event.h>
 
     #define START_GAME 0
     #define EXIT_PROGRAM 1
@@ -51,9 +52,15 @@ sfRectangleShape *gen_rect_shape(sfVector2f *size, sfVector2f *pos,
 /*  FOLLOWING FUNCTIONS MANAGE THE POSITION OF THE MOUSE FOR
     HOVER AND CLICK ; COLORIZATION AND FUNCTIONS
 */
-void mouse_moved_evt(sfRenderWindow *window, start_menu *start_instances);
 
 void hover_button(sfVector2f pos_mouse, start_menu_button *play_button);
 int check_mouse_coords(sfVector2f pos_mouse, start_menu_button *menu_button);
+
+void mouse_moved_evt(sfRenderWindow *window, start_menu *start_instances);
+void mouse_clicked_evt(sfRenderWindow *window, start_menu *start_instances);
+
+int mouse_released_evt(sfRenderWindow *window, start_menu *start_instances);
+
+void click_button(sfVector2f pos_mouse, start_menu_button *menu_button);
 
 #endif /* !START_MENU_H_ */

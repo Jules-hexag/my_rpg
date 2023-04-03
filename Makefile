@@ -20,9 +20,10 @@ SRC			=	src/rpg.c \
 				src/map/generate_int_tab_map.c \
 				src/start_menu/start_menu_loop.c \
 				src/events/start_menu_evts/start_evts.c \
-				src/events/start_menu_evts/mouse_moved.c \
+				src/events/start_menu_evts/click_management.c \
 				src/events/start_menu_evts/hover_colorization.c \
 				src/events/start_menu_evts/check_mouse_coords.c \
+				src/events/start_menu_evts/mouse_evt_management.c \
 
 TESTS_SRC	=	bonus/tests.c \
 
