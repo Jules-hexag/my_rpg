@@ -30,21 +30,28 @@ enum button_state_e {
 };
 
 typedef struct {
+
     sfRectangleShape *button;
     sfVector2f origin;
     sfVector2i size;
     enum button_state_e button_state;
     sfText *text;
-} start_menu_button;
+} menu_button;
 
 typedef struct {
-    start_menu_button play_button;
-    start_menu_button quit_game_button;
-} start_menu;
+    sfRectangleShape *background;
+    menu_button buttons[];
+} menu;
+
+typedef struct {
+    menu *start_menu;
+    menu *pause_menu;
+    menu *inventory_menu;
+} all_menus;
 
 int start_menu_loop(sfRenderWindow *window);
 
-int start_events_management(sfRenderWindow *window, start_menu
+int start_events_management(sfRenderWindow *window, menu
     *start_instances);
 
 sfRectangleShape *gen_rect_shape(sfVector2f *size, sfVector2f *pos,
@@ -54,14 +61,14 @@ sfRectangleShape *gen_rect_shape(sfVector2f *size, sfVector2f *pos,
     HOVER AND CLICK ; COLORIZATION AND FUNCTIONS
 */
 
-void hover_button(sfVector2f pos_mouse, start_menu_button *play_button);
-int check_mouse_coords(sfVector2f pos_mouse, start_menu_button *menu_button);
+void hover_button(sfVector2f pos_mouse, menu_button *play_button);
+int check_mouse_coords(sfVector2f pos_mouse, menu_button *menu_button);
 
-void mouse_moved_evt(sfRenderWindow *window, start_menu *start_instances);
-void mouse_clicked_evt(sfRenderWindow *window, start_menu *start_instances);
+void mouse_moved_evt(sfRenderWindow *window, menu *start_instances);
+void mouse_clicked_evt(sfRenderWindow *window, menu *start_instances);
 
-int mouse_released_evt(sfRenderWindow *window, start_menu *start_instances);
+int mouse_released_evt(sfRenderWindow *window, menu *start_instances);
 
-void click_button(sfVector2f pos_mouse, start_menu_button *menu_button);
+void click_button(sfVector2f pos_mouse, menu_button *menu_button);
 
 #endif /* !START_MENU_H_ */

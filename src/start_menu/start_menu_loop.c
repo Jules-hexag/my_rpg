@@ -15,9 +15,9 @@
 #include "start_menu.h"
 #include "rpg.h"
 
-start_menu_button fill_struct(sfVector2f pos, sfVector2i button_size)
+menu_button fill_struct(sfVector2f pos, sfVector2i button_size)
 {
-    start_menu_button init_button = (start_menu_button) {
+    menu_button init_button = (menu_button) {
     .button = gen_rect_shape(&(sfVector2f) {START_MENU_BUTTON_SIZE}, &pos,
         (sfColor) {107, 107, 107, 255}),
     .origin = pos,
@@ -29,7 +29,7 @@ start_menu_button fill_struct(sfVector2f pos, sfVector2i button_size)
     return init_button;
 }
 
-start_menu_button init_button(sfRenderWindow *window, int button_number)
+menu_button init_button(sfRenderWindow *window, int button_number)
 {
     sfVector2i button_size = {START_MENU_BUTTON_SIZE};
     int x_origin_button = WIN_WIDTH / 2 - button_size.x / 2;
