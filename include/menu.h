@@ -7,7 +7,7 @@
 
 #ifndef START_MENU_H_
     #define START_MENU_H_
-#include <SFML/Graphics/Types.h>
+    #include <SFML/Graphics/Types.h>
     #include <SFML/Graphics/Types.h>
     #include <SFML/Graphics/Color.h>
     #include <SFML/System/Vector2.h>
