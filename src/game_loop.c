@@ -11,8 +11,6 @@
 #include "rpg.h"
 #include "map.h"
 
-
-
 void game_update(instance_t *objects)
 {
 }
@@ -26,11 +24,10 @@ void game_render(sfRenderWindow *window, instance_t *objects)
 
 void game_loop(instance_t *instance)
 {
-    sfRenderWindow *window = instance->window;
-
-    while (sfRenderWindow_isOpen(window)) {
-        events_management(window);
+    (void) instance;
+    while (sfRenderWindow_isOpen(instance->window)) {
+        game_events_management(instance->window);
         game_update(instance);
-        game_render(window, instance);
+        game_render(instance->window, instance);
     }
 }

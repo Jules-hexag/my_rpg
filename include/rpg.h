@@ -43,11 +43,13 @@ bool check_exec_errors(int argc, char const *const *argv,
 
 void game_loop(instance_t *instance);
 
+void resize_event(sfEvent event, sfRenderWindow *window);
+
 sfRenderWindow *init_window(void);
 
 sfSprite *create_map(sfRenderWindow *window);
 
-void events_management(sfRenderWindow *window);
+void game_events_management(sfRenderWindow *window);
 
 sfSprite *create_sprite(char *filepath);
 
@@ -55,10 +57,10 @@ void free_arrays(int **map);
 
 void free_tileset(sfSprite **tileset);
 
-const int *const * gen_map_tab(const char *const filepath);
+int const *const *generate_int_tab_map(const char *const filepath);
 
 int my_strncmp(char const *s1, char const *s2, int n);
 
-instance_t *create_instance(sfRenderWindow *window);
+instance_t *create_instances(sfRenderWindow *window);
 
 #endif /* !RPG_H_ */

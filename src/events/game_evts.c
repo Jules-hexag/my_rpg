@@ -9,7 +9,7 @@
 #include <SFML/Graphics/Types.h>
 #include <SFML/Window/Event.h>
 
-static void resize_event(sfEvent event, sfRenderWindow *window)
+void resize_event(sfEvent event, sfRenderWindow *window)
 {
     if (event.type == sfEvtResized) {
         sfView *view = sfView_create();
@@ -23,7 +23,7 @@ static void resize_event(sfEvent event, sfRenderWindow *window)
     }
 }
 
-void events_management(sfRenderWindow *window)
+void game_events_management(sfRenderWindow *window)
 {
     sfEvent event;
     while (sfRenderWindow_pollEvent(window, &event)) {

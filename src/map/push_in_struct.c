@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "rpg.h"
 
-instance_t *create_instance(sfRenderWindow *window)
+instance_t *create_instances(sfRenderWindow *window)
 {
     instance_t *instance = malloc(sizeof(instance_t));
 

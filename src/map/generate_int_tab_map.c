@@ -88,7 +88,7 @@ static int *const *init_map_tab(void)
     return (int *const *) map;
 }
 
-int const *const *gen_map_tab(const char *const filepath)
+int const *const *generate_int_tab_map(const char *const filepath)
 {
     char const *file_map_buffer = read_file(filepath);
     if (file_map_buffer == NULL)
