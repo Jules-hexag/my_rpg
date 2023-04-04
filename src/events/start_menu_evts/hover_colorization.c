@@ -5,20 +5,20 @@
 ** hover_colorization
 */
 
-#include "start_menu.h"
+#include "menu.h"
 #include <SFML/System/Vector2.h>
 #include <SFML/Graphics/RectangleShape.h>
 #include <stdio.h>
 
-void hover_button(sfVector2f pos_mouse, start_menu_button *menu_button)
+void hover_button(sfVector2f pos_mouse, menu_button *button)
 {
-    if (check_mouse_coords(pos_mouse, menu_button) == MOUSE_IS_IN) {
-        menu_button->button_state = HOVER;
-        sfRectangleShape_setFillColor(menu_button->button,
+    if (check_mouse_coords(pos_mouse, button) == MOUSE_IS_IN) {
+        button->button_state = HOVER;
+        sfRectangleShape_setFillColor(button->button,
             (sfColor) {107, 0, 40, 255});
     } else  {
-        menu_button->button_state = NONE;
-        sfRectangleShape_setFillColor(menu_button->button,
+        button->button_state = NONE;
+        sfRectangleShape_setFillColor(button->button,
             (sfColor) {107, 107, 107, 255});
     }
 }

@@ -11,7 +11,6 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include "rpg.h"
-#include "map.h"
 
 void iterator(size_t *col, size_t *line, size_t *str_it)
 {
@@ -72,7 +71,8 @@ static char const *read_file(char const *const filepath)
 static int *const *init_map_tab(void)
 {
     int **map = NULL;
-    int *map_buffer = malloc(sizeof(int [FILE_MAP_WIDTH * FILE_MAP_HEIGHT]));
+    int *map_buffer = malloc(sizeof(int [(FILE_MAP_WIDTH + 1) *
+        FILE_MAP_HEIGHT]));
     if (map_buffer == NULL)
         return NULL;
 

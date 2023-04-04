@@ -5,7 +5,7 @@
 ** click_management
 */
 
-#include "start_menu.h"
+#include "menu.h"
 #include <SFML/Graphics/RectangleShape.h>
 #include <SFML/Graphics/Types.h>
 

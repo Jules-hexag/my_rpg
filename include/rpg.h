@@ -7,13 +7,10 @@
 
 #ifndef RPG_H_
     #define RPG_H_
-
-    #include "menu.h"
+#include "menu.h"
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Types.h>
 #include <SFML/System/Vector2.h>
-#define WIN_WIDTH 800
-    #define WIN_HEIGHT 800
 
     #define FILE_MAP_WIDTH 80
     #define FILE_MAP_HEIGHT 80
@@ -46,7 +43,7 @@ enum player_state {
 
 typedef struct {
     sfRenderWindow *window;
-    sfVector2i size;
+    sfVector2u size;
 } window_t;
 
 
@@ -60,7 +57,7 @@ typedef struct {
     sfClock *npc_clock;
     sfSprite *sprite;
     sfVector2f pos;
-    void (*func)(struct instance_s *);
+    // void (*func)(struct instance_s *);
 } npc_t;
 
 typedef struct {
@@ -112,15 +109,15 @@ bool check_exec_errors(int argc, char const *const *argv,
 
 void game_loop(instance_t *instance);
 
-void map_display(instance_t *instance);
+void map_display(instance_t *instances);
 
-void resize_event(sfEvent event, sfRenderWindow *window);
+void resize_event(sfEvent event, window_t *window_stats);
 
 sfRenderWindow *init_window(void);
 
-sfSprite *create_map(sfRenderWindow *window);
+sfSprite *create_map(window_t *window_stats);
 
-void game_events_management(sfRenderWindow *window);
+void game_events_management(window_t *window_stats);
 
 sfSprite *create_sprite(char *filepath);
 
@@ -132,6 +129,15 @@ int const *const *generate_int_tab_map(const char *const filepath);
 
 int my_strncmp(char const *s1, char const *s2, int n);
 
-instance_t *create_instances(sfRenderWindow *window);
+instance_t *create_instances(void);
+
+/*  MENU FUNCTION (header call recursion)*/
+
+menu generate_start_menu(window_t *window_stats);
+int start_menu_loop(window_t *window_stats, menu *start_menu);
+int start_events_management(window_t *window_stats, menu *start_menu);
+void mouse_moved_evt(window_t *window_stats, menu *start_menu);
+void mouse_clicked_evt(window_t *window_stats, menu *start_instances);
+int mouse_released_evt(window_t *window_stats, menu *start_menu);
 
 #endif /* !RPG_H_ */

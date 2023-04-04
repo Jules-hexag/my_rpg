@@ -12,8 +12,9 @@ SRC			=	src/rpg.c \
 				src/map/display_map.c \
 				src/events/game_evts.c \
 				src/utils/gen_shapes.c \
+				src/create_instances.c \
 				src/utils/free_arrays.c \
-				src/map/push_in_struct.c \
+				src/generate_start_menu.c \
 				src/map/generate_tileset.c \
 				src/window/create_window.c \
 				src/errors/check_exec_errors.c \
@@ -50,9 +51,9 @@ RM			=	rm -rvf
 
 CPPFLAGS	=	-I./include -MMD -MP
 
-CFLAGS		=	-O2 -Wall -Wextra -std=c2x
+CFLAGS		=	-Wall -Wextra -std=c2x
 
-CFLAGS_DEBUG	=	-I./include -ggdb3 -fsanitize=address
+CFLAGS_DEBUG	=	-I./include -ggdb3
 
 CFLAGS_TESTS	=	-I./include/ -ggdb3 -O0 --coverage
 

@@ -5,45 +5,44 @@
 ** start_evts
 */
 
-#include "start_menu.h"
+#include "menu.h"
 #include "rpg.h"
 #include <SFML/Graphics/Types.h>
 #include <SFML/Window/Event.h>
 #include <SFML/Graphics/RenderWindow.h>
 
-void (*start_menus_events[2])(sfRenderWindow *window,
-    start_menu *start_menus) = {
+void (*start_menus_events[2])(window_t *window_stats,
+    menu *start_menu) = {
     &mouse_moved_evt,
     &mouse_clicked_evt,
 };
 
-void start_menu_mouse_moved(sfRenderWindow *window, start_menu *start_instances)
+void start_menu_mouse_moved(window_t *window_stats, menu *start_menu)
 {
-    start_menus_events[0](window, start_instances);
+    start_menus_events[0](window_stats, start_menu);
 }
 
-void start_menu_mouse_clicked(sfRenderWindow *window,
-    start_menu *start_instances)
+void start_menu_mouse_clicked(window_t *window_stats, menu *start_menu)
 {
-    start_menus_events[1](window, start_instances);
+    start_menus_events[1](window_stats, start_menu);
 }
 
-int start_events_management(sfRenderWindow *window, start_menu *start_instances)
+int start_events_management(window_t *window_stats, menu *start_menu)
 {
     sfEvent event;
 
-    while (sfRenderWindow_pollEvent(window, &event)) {
+    while (sfRenderWindow_pollEvent(window_stats->window, &event)) {
         if (event.type == sfEvtClosed) {
-            sfRenderWindow_close(window);
+            sfRenderWindow_close(window_stats->window);
             return EXIT_PROGRAM;
         }
-        event.type == sfEvtResized ? resize_event(event, window) : 0;
-        event.type == sfEvtMouseMoved ? start_menu_mouse_moved(window,
-            start_instances) : 0;
+        event.type == sfEvtResized ? resize_event(event, window_stats) : 0;
+        event.type == sfEvtMouseMoved ? start_menu_mouse_moved(window_stats,
+            start_menu) : 0;
         event.type == sfEvtMouseButtonPressed ? start_menu_mouse_clicked(
-            window, start_instances) : 0;
+            window_stats, start_menu) : 0;
         if (event.type == sfEvtMouseButtonReleased) {
-            return mouse_released_evt(window, start_instances);
+            return mouse_released_evt(window_stats, start_menu);
         }
     }
     return NORMAL_RETURN;

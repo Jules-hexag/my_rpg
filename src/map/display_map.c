@@ -7,8 +7,8 @@
 
 #include "rpg.h"
 
-void map_display(instance_t *instance)
+void map_display(instance_t *instances)
 {
-    sfRenderWindow_drawSprite(instance->window,
-        instance->map->background, NULL);
+    sfRenderWindow_drawSprite(instances->window_stats->window,
+        instances->map->background, NULL);
 }
