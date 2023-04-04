@@ -7,10 +7,10 @@
 
 #ifndef RPG_H_
     #define RPG_H_
-#include "menu.h"
-#include <SFML/Graphics/Types.h>
-#include <SFML/System/Types.h>
-#include <SFML/System/Vector2.h>
+    #include "menu.h"
+    #include <SFML/Graphics/Types.h>
+    #include <SFML/System/Types.h>
+    #include <SFML/System/Vector2.h>
 
     #define FILE_MAP_WIDTH 80
     #define FILE_MAP_HEIGHT 80
@@ -47,8 +47,7 @@ typedef struct {
 } window_t;
 
 
-typedef struct
-{
+typedef struct {
     int current;
     int max;
 } barector;
