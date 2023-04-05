@@ -9,10 +9,10 @@
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/RenderWindow.h>
 #include "rpg.h"
-#include "map.h"
 
 void game_update(instance_t *objects)
 {
+    (void) objects;
 }
 
 void game_render(sfRenderWindow *window, instance_t *objects)
@@ -25,9 +25,9 @@ void game_render(sfRenderWindow *window, instance_t *objects)
 void game_loop(instance_t *instance)
 {
     (void) instance;
-    while (sfRenderWindow_isOpen(instance->window)) {
-        game_events_management(instance->window);
+    while (sfRenderWindow_isOpen(instance->window_stats->window)) {
+        game_events_management(instance->window_stats);
         game_update(instance);
-        game_render(instance->window, instance);
+        game_render(instance->window_stats->window, instance);
     }
 }

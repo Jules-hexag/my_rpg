@@ -5,11 +5,11 @@
 ** click_management
 */
 
-#include "start_menu.h"
+#include "menu.h"
 #include <SFML/Graphics/RectangleShape.h>
 #include <SFML/Graphics/Types.h>
 
-void click_button(sfVector2f pos_mouse, start_menu_button *menu_button)
+void click_button(sfVector2f pos_mouse, menu_button *menu_button)
 {
     if (check_mouse_coords(pos_mouse, menu_button) == MOUSE_IS_IN &&
         menu_button->button_state == HOVER) {

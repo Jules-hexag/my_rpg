@@ -15,16 +15,16 @@
 sfRenderWindow *init_window(void)
 {
     const char title[] = "RPG NAME";
-    sfVideoMode mode = {WIN_WIDTH, WIN_HEIGHT, 32};
+    sfVideoMode mode = {800, 800, 32};
     sfRenderWindow *window;
 
     window = sfRenderWindow_create(mode, title, sfResize | sfClose, NULL);
     sfRenderWindow_setFramerateLimit(window, 60);
 
     sfView *view = sfView_create();
-    sfView_setSize(view, (sfVector2f) {WIN_WIDTH, WIN_HEIGHT});
-    int width_center = WIN_WIDTH / 2;
-    int height_center = WIN_HEIGHT / 2;
+    sfView_setSize(view, (sfVector2f) {800, 800});
+    int width_center = 800 / 2;
+    int height_center = 800 / 2;
     sfView_setCenter(view, (sfVector2f) {width_center, height_center});
     sfRenderWindow_setView(window, view);
 

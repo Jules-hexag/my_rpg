@@ -1,0 +1,53 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-std=c2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/rpg.o",
+      "src/rpg.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/rpg.c",
+    "output": "/home/jules/Epitech/my_rpg/src/rpg.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-std=c2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/main.o",
+      "src/main.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/main.c",
+    "output": "/home/jules/Epitech/my_rpg/src/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-std=c2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/game_loop.o",
+      "src/game_loop.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/game_loop.c",
+    "output": "/home/jules/Epitech/my_rpg/src/game_loop.o"
+  }
+]
