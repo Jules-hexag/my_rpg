@@ -63,7 +63,7 @@ jobs:
   check_for_banned_functions:
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker:latest
-    needs: [check_program_compilation, check_coding_style]
+    needs: [check_program_compilation]
     timeout-minutes : 2
     steps:
       - name: checkout
@@ -105,7 +105,7 @@ jobs:
   push_to_mirror:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: [run_tests, check_for_banned_functions]
+    needs: [run_tests, check_for_banned_functions, check_coding_style]
     steps:
       - name: checkout
         if: github.event_name == 'push'
