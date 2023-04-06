@@ -63,7 +63,7 @@ jobs:
   check_for_banned_functions:
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker:latest
-    needs: [check_program_compilation]
+    needs: [check_program_compilation, check_coding_style]
     timeout-minutes : 2
     steps:
       - name: checkout
