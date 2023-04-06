@@ -26,7 +26,7 @@
     #include <SFML/System/Clock.h>
 
 typedef struct map_s {
-    int **map1;
+    int *const *map1;
     sfSprite *background;
 } map_t;
 
@@ -114,7 +114,7 @@ void resize_event(sfEvent event, window_t *window_stats);
 
 sfRenderWindow *init_window(void);
 
-sfSprite *create_map(window_t *window_stats);
+map_t *create_map(window_t *window_stats);
 
 void game_events_management(window_t *window_stats);
 
@@ -124,7 +124,7 @@ void free_arrays(int **map);
 
 void free_tileset(sfSprite **tileset);
 
-int const *const *generate_int_tab_map(const char *const filepath);
+int generate_int_tab_map(const char *const filepath, map_t *map_s);
 
 int my_strncmp(char const *s1, char const *s2, int n);
 

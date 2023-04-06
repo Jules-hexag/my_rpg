@@ -32,12 +32,17 @@ static sfSprite **create_tileset(void)
     return tileset;
 }
 
-// si gen_map_blabla fail elle renvoie NULL -> penser à free tout
-// (c'est un int**)
-sfSprite *create_map(window_t *window_stats)
+/**
+ * @brief call the int** map function and generate the tileset calling
+ * appropriate functions
+ *
+ * @param window_stats to generate the texture
+ * @return map_t* structure filled with int** map & graphic background
+ */
+map_t *create_map(window_t *window_stats)
 {
     map_t *all_maps = malloc(sizeof(map_t));
-    all_maps->map1 = (int **) generate_int_tab_map("map.txt");
+    generate_int_tab_map("map.txt", all_maps);
     sfSprite **tileset = create_tileset();
     sfSprite *background = sfSprite_create();
     sfTexture *new_texture = sfTexture_create(window_stats->size.x,
@@ -52,9 +57,8 @@ sfSprite *create_map(window_t *window_stats)
     }
     sfTexture_updateFromRenderWindow(new_texture, window_stats->window, 0, 0);
     sfSprite_setTexture(background, new_texture, sfTrue);
+    all_maps->background = background;
+    free_tileset(tileset);
 
-    return background;
+    return all_maps;
 }
-// l. avant return
-    // free_arrays(all_maps->map1);
-    // free_tileset(tileset);

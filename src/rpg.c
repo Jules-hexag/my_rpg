@@ -13,6 +13,13 @@
 #include "rpg.h"
 #include "menu.h"
 
+/**
+ * @brief manage all the game: game loops and destroying instances
+ *
+ * @param argc
+ * @param argv
+ * @return int, the main function's return: RPG_SUCCESS / RPG_FAILURE
+ */
 int rpg(int const argc, char const *const *const argv)
 {
     (void) argc;

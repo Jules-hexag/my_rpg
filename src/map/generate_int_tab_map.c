@@ -88,19 +88,28 @@ static int *const *init_map_tab(void)
     return (int *const *) map;
 }
 
-int const *const *generate_int_tab_map(const char *const filepath)
+/**
+ * @brief main function in the int** map generation
+ *
+ * @param filepath of the map[x].txt that will be converted
+ * @param map_s struct in which will be stored the int** map
+ * @return int RPG_SUCCESS / RPG_FAILURE
+ */
+int generate_int_tab_map(const char *const filepath, map_t *map_s)
 {
     char const *file_map_buffer = read_file(filepath);
     if (file_map_buffer == NULL)
-        return NULL;
+        return RPG_FAILURE;
 
     int *const *map = init_map_tab();
     if (map == NULL || *map == NULL) {
         free((void *) file_map_buffer);
-        return NULL;
+        return RPG_FAILURE;
     }
 
-    if (retrieve_lines_from_buffer(file_map_buffer, map)) return NULL;
+    if (retrieve_lines_from_buffer(file_map_buffer, map))
+        return RPG_FAILURE;
 
-    return (int const *const *)map;
+    map_s->map1 = map;
+    return RPG_SUCCESS;
 }
