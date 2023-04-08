@@ -14,6 +14,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <SFML/Graphics/RenderTexture.h>
+#include <SFML/Graphics/Sprite.h>
 #include "rpg.h"
 
 
@@ -24,15 +26,15 @@ void get_quad_vertex(sfVertex *quad[4], sfVertexArray *array, sfVector2i pos,
         quad[i] = sfVertexArray_getVertex(array, (pos.y * size + pos.x) * 4 + i);
 }
 
-void init_tilemap_vertex(tilemap_t *tilemap, sfVector2i size, uint8_t **map)
+void gen_array_vertex(map_t *map)
 {
-    for (int y = 0; y < size.y; y++)
-        for (int x = 0; x < size.x; x++) {
-            enum tile_type tile_nb = map[y][x];
+    for (int y = 0; y < map->size.y; y++)
+        for (int x = 0; x < map->size.x; x++) {
+            enum tile_type tile_nb = map->map[y][x];
             uint8_t tx = tile_nb % 10;
             uint8_t ty = tile_nb / 10;
             sfVertex *quad[4] = {0};
-            get_quad_vertex(quad, tilemap->array, (sfVector2i) {x, y}, size.x);
+            get_quad_vertex(quad, map->array, (sfVector2i) {x, y}, map->size.x);
             quad[0]->position = (sfVector2f) {x * 16, y * 16};
             quad[1]->position = (sfVector2f) {((x + 1) * 16), y * 16};
             quad[2]->position = (sfVector2f) {(x + 1) * 16, (y + 1) * 16};
@@ -44,19 +46,28 @@ void init_tilemap_vertex(tilemap_t *tilemap, sfVector2i size, uint8_t **map)
         }
 }
 
-tilemap_t *init_tilemap(sfVector2i size, uint8_t **map, char tileset[])
+sfSprite *gen_tilemap_sprite(map_t *map)
 {
-    static tilemap_t tilemap = {0};
-    tilemap.tileset = sfTexture_createFromFile(tileset, NULL);
-    tilemap.array = sfVertexArray_create();
-    tilemap.states.transform = sfTransform_Identity;
-    tilemap.states.shader = NULL;
-    tilemap.states.texture = tilemap.tileset;
-    tilemap.states.blendMode = sfBlendAdd;
-    sfVertexArray_setPrimitiveType(tilemap.array, sfQuads);
-    sfVertexArray_resize(tilemap.array, size.x * size.y  * 4);
-    init_tilemap_vertex(&tilemap, size, map);
-    return &tilemap;
+    map->render = sfRenderTexture_create(map->size.x * 16,
+        map->size.y * 16, sfFalse);
+    sfSprite *sprite = sfSprite_create();
+    sfRenderStates states = {sfBlendAdd, sfTransform_Identity,map->tileset,
+        NULL};
+    sfRenderTexture_drawVertexArray(map->render, map->array, &states);
+    sfRenderTexture_display(map->render);
+    sfSprite_setTexture(sprite, sfRenderTexture_getTexture(map->render),
+        sfTrue);
+
+    return sprite;
+}
+
+sfVertexArray *init_array(map_t *map)
+{
+    sfVertexArray *array = sfVertexArray_create();
+    sfVertexArray_setPrimitiveType(array, sfQuads);
+    sfVertexArray_resize(array, map->size.x * map->size.y  * 4);
+
+    return array;
 }
 
 map_t init_map_from_file(char file[])
@@ -78,12 +89,15 @@ map_t init_map_from_file(char file[])
  * appropriate functions
  *
  * @param window_params to generate the texture
- * @return map_t* structure filled with int** map & graphic background
+ * @return map_t* structure filled with int** map & graphic tilemap
  */
 map_t init_map(void)
 {
-    map_t map = init_map_from_file("res/maps/map");
-    map.background = init_tilemap(map.size, map.map, "res/tileset.png");
+    map_t map = init_map_from_file("res/maps/map1");
+    map.tileset = sfTexture_createFromFile("res/tileset.png", NULL);
+    map.array = init_array(&map);
+    gen_array_vertex(&map);
+    map.sprite = gen_tilemap_sprite(&map);
 
     return map;
 }

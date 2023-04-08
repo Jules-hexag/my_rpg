@@ -25,12 +25,12 @@ static window_params_t init_window_params(void)
  */
 instance_t init_instance(void)
 {
-    instance_t instances = {0};
+    instance_t instance = {0};
 
-    instances.menu_state = IN_GAME;
-    instances.window_params = init_window_params();
-    instances.map[0] = init_map();
-    instances.menus[START_MENU] = init_start_menu(&instances.window_params);
-
-    return instances;
+    instance.menu_state = IN_GAME;
+    instance.window_params = init_window_params();
+    instance.map[0] = init_map();
+    instance.menus[START_MENU] = init_start_menu(&instance.window_params);
+    instance.player = init_player();
+    return instance;
 }

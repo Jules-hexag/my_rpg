@@ -11,19 +11,17 @@
 #include "rpg.h"
 
 
-static void (*const update_functions[]) (instance_t *instance) = {
+static void (*const update_functions[]) (instance_t *) = {
     [IN_GAME] = &update_game,
     [IN_START_MENU] = &update_start_menu,
 };
 
-static void (*const render_functions[]) (instance_t *instance) = {
+static void (*const render_functions[]) (instance_t *) = {
     [IN_GAME] = &render_game,
     [IN_START_MENU] = &render_start_menu,
 };
 
-static void (*const manage_events_functions[])
-    (instance_t *instance, sfEvent event) =
-    {
+static void (*const events_functions[]) (instance_t *, sfEvent) = {
     [IN_GAME] = &manage_game_events,
     [IN_START_MENU] = &manage_start_menu_events,
 };
@@ -37,10 +35,10 @@ static void manage_rpg_events(instance_t *instance)
             case sfEvtClosed:
                 return sfRenderWindow_close(window);
             case sfEvtResized:
-                resize_event(event, &instance->window_params);
+                resize_event(instance);
                 break;
             default:
-                manage_events_functions[instance->menu_state](instance, event);
+                events_functions[instance->menu_state](instance, event);
                 break;
         }
     }

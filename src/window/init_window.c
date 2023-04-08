@@ -15,10 +15,11 @@
 sfView *init_view(void)
 {
     sfView *view = sfView_create();
-    sfVector2f center = {800.f / 2, 800.f / 2};
+    sfVector2f center = {200, 200};
 
     sfView_setCenter(view, center);
-    sfView_setSize(view, (sfVector2f) {160, 160});
+    sfView_setSize(view, (sfVector2f) {800, 800});
+    sfView_zoom(view, 0.5f);
     return view;
 }
 

@@ -26,15 +26,13 @@
 #include <SFML/Graphics/View.h>
 #include <SFML/System/Clock.h>
 
-typedef struct {
-    sfRenderStates states;
-    sfTexture *tileset;
-    sfVertexArray *array;
-} tilemap_t;
 
 typedef struct map_s {
     sfVector2i size;
-    tilemap_t *background;
+    sfTexture *tileset;
+    sfVertexArray *array;
+    sfRenderTexture *render;
+    sfSprite *sprite;
     uint8_t **map;
 } map_t;
 
@@ -133,20 +131,10 @@ typedef struct instance_s{
 /* sort all this in different appropriate files */
 
 int rpg(int argc, char const *const *argv);
+void rpg_loop(instance_t *instance);
 
 bool is_exec_errors(int argc, char const *const *argv,
     char const *const *envp);
-
-void rpg_loop(instance_t *instance);
-
-void render_map(instance_t *instances);
-
-void resize_event(sfEvent event, window_params_t *window_params);
-
-sfRenderWindow *init_window(void);
-map_t init_map(void);
-
-void game_events_management(window_params_t *window_params);
 
 sfSprite *create_sprite(char *filepath);
 
@@ -154,24 +142,15 @@ void free_arrays(int **map);
 
 void free_tileset(sfSprite **tileset);
 
-int generate_int_tab_map(const char *const filepath, map_t *map_s);
-
 int my_strncmp(char const *s1, char const *s2, int n);
 
+map_t init_map(void);
+player_t init_player(void);
 instance_t init_instance(void);
-
-/*  MENU FUNCTION (header call recursion)*/
-
-
-int start_menu_loop(window_params_t *window_stats, menu_t *start_menu);
-int start_events_management(window_params_t *window_stats, menu_t *start_menu);
-void mouse_moved_evt(window_params_t *window_stats, menu_t *start_menu);
-void mouse_clicked_evt(window_params_t *window_stats, menu_t *start_instances);
-void mouse_released_evt(window_params_t *window_stats, menu_t *start_menu);
-
-instance_t init_instance(void);
+sfRenderWindow *init_window(void);
 menu_t init_start_menu(window_params_t *window_params);
 
+void render_map(instance_t *instances);
 void render_game(instance_t *instance);
 void render_start_menu(instance_t *instance);
 
@@ -180,5 +159,10 @@ void update_start_menu(instance_t *instance);
 
 void manage_game_events(instance_t *instance, sfEvent event);
 void manage_start_menu_events(instance_t *instance, sfEvent event);
+void resize_event(instance_t *instance);
+void mouse_moved_evt(window_params_t *window_stats, menu_t *start_menu);
+void mouse_clicked_evt(window_params_t *window_stats, menu_t *start_instances);
+void mouse_released_evt(window_params_t *window_stats, menu_t *start_menu);
 
 void destroy_map(map_t *map);
+void destroy_instance(instance_t *instance);

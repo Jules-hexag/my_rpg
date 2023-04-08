@@ -5,17 +5,11 @@
 ** display_map.c
 */
 
+#include <SFML/Graphics/RenderTexture.h>
 #include "rpg.h"
-
-void render_tilemap(instance_t *instance, tilemap_t *tilemap)
-{
-    sfRenderWindow *window = instance->window_params.window;
-    sfRenderStates *states = &tilemap->states;
-    sfRenderWindow_drawVertexArray(window, tilemap->array, states);
-}
 
 void render_map(instance_t *instances)
 {
-    tilemap_t *tilemap = instances->map->background;
-    render_tilemap(instances, tilemap);
+    sfRenderWindow *window = instances->window_params.window;
+    sfRenderWindow_drawSprite(window, instances->map[0].sprite, NULL);
 }
