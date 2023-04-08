@@ -22,19 +22,15 @@
  */
 int rpg(int const argc, char const *const *const argv)
 {
+    instance_t instance = init_instance();
     (void) argc;
     (void) argv;
 
-    instance_t *instances = create_instances();
-    if (start_menu_loop(instances->window_stats,
-        &instances->all_menus->start_menu) == EXIT_PROGRAM) {
-        return RPG_SUCCESS;
-    }
-    game_loop(instances);
+    rpg_loop(&instance);
 
-    sfRenderWindow_destroy(instances->window_stats->window);
-    free(instances);
+    sfRenderWindow_destroy(instance.window_params.window);
 
+    destroy_instance(&instance);
     return RPG_SUCCESS;
 }
 // l.24 :

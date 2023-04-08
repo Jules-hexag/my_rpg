@@ -26,35 +26,39 @@ enum button_state_e {
     PRESSED,
 };
 
+enum start_menu_button {
+    SMB_PLAY,
+    SMB_QUIT,
+    SMB_COUNT};
+
 typedef struct {
     sfRectangleShape *button;
     sfVector2f origin;
     sfVector2i size;
     enum button_state_e button_state;
     sfText *text;
-} menu_button;
+} menu_button_t;
 
 typedef struct {
-    int memory;
-    menu_button *buttons;
-} menu;
+    menu_button_t *buttons;
+} menu_t;
 
 typedef struct {
-    menu start_menu;
-    menu pause_menu;
-    menu inventory_menu;
-} all_menus;
+    menu_t start_menu;
+    menu_t pause_menu;
+    menu_t inventory_menu;
+} menu_group_t;
 
-sfRectangleShape *gen_rect_shape(sfVector2f *size, sfVector2f *pos,
+sfRectangleShape *gen_rect_shape(sfVector2f size, sfVector2f pos,
     sfColor color);
 
 /*  FOLLOWING FUNCTIONS MANAGE THE POSITION OF THE MOUSE FOR
     HOVER AND CLICK ; COLORIZATION AND FUNCTIONS
 */
 
-void hover_button(sfVector2f pos_mouse, menu_button *play_button);
-int check_mouse_coords(sfVector2f pos_mouse, menu_button *menu_button);
+void hover_button(sfVector2f pos_mouse, menu_button_t *play_button);
+int check_mouse_coords(sfVector2f pos_mouse, menu_button_t *menu_button);
 
-void click_button(sfVector2f pos_mouse, menu_button *menu_button);
+void click_button(sfVector2f pos_mouse, menu_button_t *menu_button);
 
 #endif /* !START_MENU_H_ */

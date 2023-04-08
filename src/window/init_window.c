@@ -12,21 +12,27 @@
 #include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Window.h>
 
+sfView *init_view(void)
+{
+    sfView *view = sfView_create();
+    sfVector2f center = {800.f / 2, 800.f / 2};
+
+    sfView_setCenter(view, center);
+    sfView_setSize(view, (sfVector2f) {160, 160});
+    return view;
+}
+
 sfRenderWindow *init_window(void)
 {
     const char title[] = "RPG NAME";
     sfVideoMode mode = {800, 800, 32};
-    sfRenderWindow *window;
-
-    window = sfRenderWindow_create(mode, title, sfResize | sfClose, NULL);
+    sfRenderWindow *window =
+        sfRenderWindow_create(mode, title, sfDefaultStyle, NULL);
     sfRenderWindow_setFramerateLimit(window, 60);
 
-    sfView *view = sfView_create();
-    sfView_setSize(view, (sfVector2f) {800, 800});
-    int width_center = 800 / 2;
-    int height_center = 800 / 2;
-    sfView_setCenter(view, (sfVector2f) {width_center, height_center});
+    sfView *view = init_view();
     sfRenderWindow_setView(window, view);
+    sfView_destroy(view);
 
     return window;
 }

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2023
 ** my_rpg
 ** File description:
-** check_exec_errors
+** is_exec_errors
 */
 
 #include "rpg.h"
@@ -11,7 +11,7 @@
 #include <string.h>
 
 /* mettre les const comme il faut */
-static bool check_display_mode(char const *const *const envp)
+static bool is_invalid_display_mode(char const *const *const envp)
 {
     int str_iterator = 0;
 
@@ -25,13 +25,13 @@ static bool check_display_mode(char const *const *const envp)
 }
 
 /* ajouter les const comme il faut */
-bool check_exec_errors(int const argc, char const *const *const argv,
+bool is_exec_errors(int const argc, char const *const *const argv,
     char const *const *const envp)
 {
     (void) argc;
     (void) argv;
 
-    if (check_display_mode(envp))
+    if (is_invalid_display_mode(envp))
         return true;
 
     return false;

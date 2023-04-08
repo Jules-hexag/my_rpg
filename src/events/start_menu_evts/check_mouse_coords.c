@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include "menu.h"
 
-int check_mouse_coords(sfVector2f pos_mouse, menu_button *button)
+int check_mouse_coords(sfVector2f pos_mouse, menu_button_t *button)
 {
     if (pos_mouse.x > button->origin.x && pos_mouse.x <
         (button->origin.x + button->size.x) && pos_mouse.y > button->origin.y &&

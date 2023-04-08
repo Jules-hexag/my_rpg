@@ -9,7 +9,7 @@
 #include "rpg.h"
 #include <SFML/Graphics/Types.h>
 
-void mouse_moved_evt(window_t *window_stats, menu *start_menu)
+void mouse_moved_evt(window_params_t *window_stats, menu_t *start_menu)
 {
     sfVector2i pos_mouse_pix = sfMouse_getPositionRenderWindow(
         window_stats->window);
@@ -19,7 +19,7 @@ void mouse_moved_evt(window_t *window_stats, menu *start_menu)
     hover_button(pos_mouse, &start_menu->buttons[1]);
 }
 
-void mouse_clicked_evt(window_t *window_stats, menu *start_menu)
+void mouse_clicked_evt(window_params_t *window_stats, menu_t *start_menu)
 {
     sfVector2i pos_mouse_pix = sfMouse_getPositionRenderWindow(
         window_stats->window);
@@ -29,7 +29,7 @@ void mouse_clicked_evt(window_t *window_stats, menu *start_menu)
     click_button(pos_mouse, &start_menu->buttons[1]);
 }
 
-int mouse_released_evt(window_t *window_stats, menu *start_menu)
+void mouse_released_evt(window_params_t *window_stats, menu_t *start_menu)
 {
     sfVector2i pos_mouse_pix = sfMouse_getPositionRenderWindow(
         window_stats->window);
@@ -37,13 +37,13 @@ int mouse_released_evt(window_t *window_stats, menu *start_menu)
         pos_mouse_pix, NULL);
     if (check_mouse_coords(pos_mouse,
         &start_menu->buttons[0]) == MOUSE_IS_IN) {
-        return START_GAME;
+        return;
     }
     if (check_mouse_coords(pos_mouse,
         &start_menu->buttons[1]) == MOUSE_IS_IN) {
-        return EXIT_PROGRAM;
+        return;
     }
     hover_button(pos_mouse, &start_menu->buttons[0]);
     hover_button(pos_mouse, &start_menu->buttons[1]);
-    return NORMAL_RETURN;
+    return;
 }

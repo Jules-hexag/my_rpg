@@ -10,7 +10,7 @@
 // Ajouter les const comme il faut
 int main(int argc, char **argv, char **envp)
 {
-    if (check_exec_errors(argc, (char const *const *) argv,
+    if (is_exec_errors(argc, (char const *const *) argv,
         (char const *const *) envp)) {
         return 84;
     }
