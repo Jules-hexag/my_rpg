@@ -49,7 +49,6 @@ static void update_rpg(instance_t *instance)
     update_functions[instance->menu_state](instance);
 }
 
-
 static void render_rpg(instance_t *instance)
 {
     sfRenderWindow *window = instance->window_params.window;

@@ -7,18 +7,24 @@
 
 SRC			=	src/rpg.c \
 				src/main.c \
-				src/game_loop.c \
-				src/my_strncmp.c \
-				src/map/display_map.c \
-				src/events/game_evts.c \
-				src/utils/gen_shapes.c \
-				src/create_instances.c \
+				src/rpg_loop.c \
+				src/game/manage_game_events.c \
+				src/game/render_game.c \
+				src/game/update_game.c \
+				src/instance/init_instance.c \
+				src/instance/destroy_instance.c \
+				src/map/init_map.c \
+				src/map/render_map.c \
 				src/utils/free_arrays.c \
-				src/generate_start_menu.c \
-				src/map/generate_tileset.c \
-				src/window/create_window.c \
+				src/utils/gen_shapes.c \
+				src/map/vertex_operations.c \
+				src/utils/my_strncmp.c \
+				src/events/game_evts.c \
+				src/player/init_player.c \
+				src/map/destroy_map.c \
+				src/window/init_window.c \
 				src/errors/check_exec_errors.c \
-				src/map/generate_int_tab_map.c \
+				src/start_menu/init_start_menu.c \
 				src/start_menu/start_menu_loop.c \
 				src/events/start_menu_evts/start_evts.c \
 				src/events/start_menu_evts/click_management.c \

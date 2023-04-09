@@ -149,6 +149,7 @@ player_t init_player(void);
 instance_t init_instance(void);
 sfRenderWindow *init_window(void);
 menu_t init_start_menu(window_params_t *window_params);
+void gen_array_vertex(map_t *map);
 
 void render_map(instance_t *instances);
 void render_game(instance_t *instance);
