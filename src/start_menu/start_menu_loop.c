@@ -15,12 +15,26 @@
 #include "menu.h"
 #include "rpg.h"
 
-int start_menu_loop(window_t *window_stats, menu *start_menu)
+void render_start_menu(instance_t *instance)
+{
+    sfRenderWindow *window = instance->window_params.window;
+    sfRenderWindow_drawRectangleShape(window,
+        instance->menus[START_MENU].buttons[0].button, NULL);
+    sfRenderWindow_drawRectangleShape(window,
+        instance->menus[START_MENU].buttons[1].button, NULL);
+}
+
+void update_start_menu(instance_t *instance)
+{
+    sfRenderWindow *window = instance->window_params.window;
+    sfRenderWindow_clear(window, sfBlack);
+}
+
+int start_menu_loop(window_params_t *window_stats, menu_t *start_menu)
 {
     int event_return = 0;
     while (sfRenderWindow_isOpen(window_stats->window)) {
-        event_return = start_events_management(window_stats,
-            start_menu);
+        event_return = 1;
         if (event_return == EXIT_PROGRAM) return EXIT_PROGRAM;
         if (event_return == START_GAME) return START_GAME;
         sfRenderWindow_clear(window_stats->window, sfBlack);

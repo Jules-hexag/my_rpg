@@ -17,12 +17,3 @@ void free_arrays(int **map)
     }
     free(map);
 }
-
-void free_tileset(sfSprite **tileset)
-{
-    for (int i = 0; i < 3; i++) {
-        sfTexture_destroy(sfSprite_getTexture(tileset[i]));
-        sfSprite_destroy(tileset[i]);
-    }
-    free(tileset);
-}
