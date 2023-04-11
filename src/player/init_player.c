@@ -28,8 +28,8 @@ player_t init_player(void)
 {
     player_t player = {0};
     player.pos = (sfVector2f) {48, 48};
-    player.mana = (barector) {4, 6};
-    player.health = (barector) {4, 6};
+    player.health = (barector) {6, 8};
+    player.mana = (barector) {6, 8};
     player.state = STRAIGHT;
     player.player_clock = sfClock_create();
     create_player_sprite(&player);

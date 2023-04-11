@@ -109,6 +109,12 @@ enum game_state {
     IN_SPEECH,
 };
 
+enum bars {
+    B_HEALTH,
+    B_MANA,
+    B_COUNT
+};
+
 typedef struct {
     sfSprite *background;
     sfSprite *current;
@@ -131,7 +137,7 @@ typedef struct instance_s{
     menu_t menus[MENU_COUNT];
     player_t player;
     speeches_t speeches;
-    bars_t bars[2];
+    bars_t bars[B_COUNT];
 
 } instance_t;
 
@@ -165,6 +171,8 @@ void render_start_menu(instance_t *instance);
 void render_player(instance_t *instances);
 void render_bars(instance_t *instances);
 
+void update_bars(instance_t *instance);
+void update_player(instance_t *instance);
 void update_game(instance_t *instance);
 void update_start_menu(instance_t *instance);
 

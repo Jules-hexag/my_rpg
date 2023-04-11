@@ -34,6 +34,8 @@ SRC			=	src/rpg.c \
 				src/events/start_menu_evts/hover_colorization.c \
 				src/events/start_menu_evts/check_mouse_coords.c \
 				src/events/start_menu_evts/mouse_evt_management.c \
+				src/bars/update_bars.c \
+				src/player/update_player.c \
 
 TESTS_SRC	=	bonus/tests.c \
 

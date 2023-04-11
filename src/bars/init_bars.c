@@ -6,53 +6,46 @@
 */
 
 #include <SFML/Graphics/Rect.h>
+#include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics/Sprite.h>
 #include <SFML/Graphics/Texture.h>
+#include <SFML/Graphics/Types.h>
 #include <SFML/System/Vector2.h>
 #include "rpg.h"
 
-static sfSprite *create_health_bar_sprite(instance_t *instance,
-    int gauge_number)
+static bars_t create_health_bar_sprite(void)
 {
-    sfSprite *gauge = sfSprite_create();
-    sfIntRect rect = gauge_number ? (sfIntRect) {8, 0, 8, 8} :
-        (sfIntRect){0, 0, 8, 8};
-    sfTexture *texture = sfTexture_createFromFile("res/bars.png", &rect);
+    bars_t bar = {0};
+    bar.background = sfSprite_create();
+    sfIntRect bgrect = {0, 0, 8, 8};
+    sfTexture *bgtexture = sfTexture_createFromFile("res/bars.png", &bgrect);
+    sfSprite_setTexture(bar.background, bgtexture, sfTrue);
+    bar.current = sfSprite_create();
+    sfIntRect curect = {8, 0, 8, 8};
+    sfTexture *cutexture = sfTexture_createFromFile("res/bars.png", &curect);
+    sfSprite_setTexture(bar.current, cutexture, sfTrue);
 
-    sfSprite_setTexture(gauge, texture, sfTrue);
-    sfSprite_setPosition(gauge, (sfVector2f) {0, 0});
-
-    int bar_max = instance->player.health.max;
-    int bar_current = instance->player.health.current;
-    gauge_number ? sfSprite_setScale(gauge, (sfVector2f) {bar_current, 1}) :
-        sfSprite_setScale(gauge, (sfVector2f) {bar_max, 1});
-
-    return gauge;
+    return bar;
 }
 
-static sfSprite *create_mana_bar_sprite(instance_t *instance, int gauge_number)
+static bars_t create_mana_bar_sprite(void)
 {
-    sfSprite *gauge = sfSprite_create();
-    sfIntRect rect = gauge_number ? (sfIntRect) {8, 8, 8, 8} :
-        (sfIntRect){0, 8, 8, 8};
-    sfTexture *texture = sfTexture_createFromFile("res/bars.png", &rect);
+    bars_t bar = {0};
+    bar.background = sfSprite_create();
+    sfIntRect bgrect = {0, 8, 8, 8};
+    sfTexture *bgtexture = sfTexture_createFromFile("res/bars.png", &bgrect);
+    sfSprite_setTexture(bar.background, bgtexture, sfTrue);
+    bar.current = sfSprite_create();
+    sfIntRect curect = {8, 8, 8, 8};
+    sfTexture *cutexture = sfTexture_createFromFile("res/bars.png", &curect);
+    sfSprite_setTexture(bar.current, cutexture, sfTrue);
 
-    sfSprite_setTexture(gauge, texture, sfTrue);
-    sfSprite_setPosition(gauge, (sfVector2f) {0, 10});
-
-    int bar_max = instance->player.mana.max;
-    int bar_current = instance->player.mana.current;
-    gauge_number ? sfSprite_setScale(gauge, (sfVector2f) {bar_current, 1}) :
-        sfSprite_setScale(gauge, (sfVector2f) {bar_max, 1});
-
-    return gauge;
+    return bar;
 }
 
 void init_bars(instance_t *instance)
 {
-    instance->bars[0].background = create_health_bar_sprite(instance, 0);
-    instance->bars[0].current = create_health_bar_sprite(instance, 1);
+    instance->bars[B_HEALTH] = create_health_bar_sprite();
 
-    instance->bars[1].background = create_mana_bar_sprite(instance, 0);
-    instance->bars[1].current = create_mana_bar_sprite(instance, 1);
+    instance->bars[B_MANA] = create_mana_bar_sprite();
 }
