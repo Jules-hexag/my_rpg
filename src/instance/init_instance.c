@@ -32,5 +32,6 @@ instance_t init_instance(void)
     instance.map[0] = init_map();
     instance.menus[START_MENU] = init_start_menu(&instance.window_params);
     instance.player = init_player();
+    init_bars(&instance);
     return instance;
 }

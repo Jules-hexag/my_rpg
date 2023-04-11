@@ -109,6 +109,11 @@ enum game_state {
     IN_SPEECH,
 };
 
+typedef struct {
+    sfSprite *background;
+    sfSprite *current;
+} bars_t;
+
 enum menus {
     START_MENU,
     INVENTORY,
@@ -126,6 +131,8 @@ typedef struct instance_s{
     menu_t menus[MENU_COUNT];
     player_t player;
     speeches_t speeches;
+    bars_t bars[2];
+
 } instance_t;
 
 /* sort all this in different appropriate files */
@@ -150,10 +157,13 @@ instance_t init_instance(void);
 sfRenderWindow *init_window(void);
 menu_t init_start_menu(window_params_t *window_params);
 void gen_array_vertex(map_t *map);
+void init_bars(instance_t *instance);
 
 void render_map(instance_t *instances);
 void render_game(instance_t *instance);
 void render_start_menu(instance_t *instance);
+void render_player(instance_t *instances);
+void render_bars(instance_t *instances);
 
 void update_game(instance_t *instance);
 void update_start_menu(instance_t *instance);
@@ -164,6 +174,8 @@ void resize_event(instance_t *instance);
 void mouse_moved_evt(window_params_t *window_stats, menu_t *start_menu);
 void mouse_clicked_evt(window_params_t *window_stats, menu_t *start_instances);
 void mouse_released_evt(window_params_t *window_stats, menu_t *start_menu);
+
+
 
 void destroy_map(map_t *map);
 void destroy_instance(instance_t *instance);
