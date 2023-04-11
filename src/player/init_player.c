@@ -22,6 +22,7 @@ static void create_player_sprite(player_t *player)
     sfSprite_setTexture(p_sprite, texture, sfTrue);
     sfSprite_setPosition(p_sprite, (sfVector2f) {player->pos.x, player->pos.y});
     player->sprite = p_sprite;
+    sfSprite_setOrigin(p_sprite, (sfVector2f) {8, 28});
 }
 
 player_t init_player(void)
@@ -31,7 +32,8 @@ player_t init_player(void)
     player.health = (barector) {6, 8};
     player.mana = (barector) {6, 8};
     player.state = STRAIGHT;
-    player.player_clock = sfClock_create();
+    player.update_clock = sfClock_create();
+    player.sprite_clock = sfClock_create();
     create_player_sprite(&player);
     return player;
 }

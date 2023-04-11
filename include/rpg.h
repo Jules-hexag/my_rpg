@@ -21,6 +21,9 @@
 #define RPG_SUCCESS 0
 #define RPG_FAILURE 84
 
+#define PLAYER_WIDTH 16
+#define PLAYER_HEIGHT 32
+
 #include <stdbool.h>
 #include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics/View.h>
@@ -79,7 +82,8 @@ typedef struct {
 } ennemy_t;
 
 typedef struct {
-    sfClock *player_clock;
+    sfClock *update_clock;
+    sfClock *sprite_clock;
     sfSprite *sprite;
     sfVector2f pos;
     enum player_state state;
@@ -98,7 +102,6 @@ typedef struct {
     sfText *text_sprite;
     char *Title;
     char *Text;
-    sfClock *clock;
 } speeches_t;
 
 enum game_state {
@@ -178,12 +181,11 @@ void update_start_menu(instance_t *instance);
 
 void manage_game_events(instance_t *instance, sfEvent event);
 void manage_start_menu_events(instance_t *instance, sfEvent event);
-void resize_event(instance_t *instance);
 void mouse_moved_evt(window_params_t *window_stats, menu_t *start_menu);
 void mouse_clicked_evt(window_params_t *window_stats, menu_t *start_instances);
 void mouse_released_evt(window_params_t *window_stats, menu_t *start_menu);
 
-
+void player_move(sfEvent event, instance_t *instance);
 
 void destroy_map(map_t *map);
 void destroy_instance(instance_t *instance);

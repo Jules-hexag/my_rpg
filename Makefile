@@ -17,11 +17,11 @@ SRC			=	src/rpg.c \
 				src/game/update_game.c \
 				src/utils/gen_shapes.c \
 				src/utils/my_strncmp.c \
-				src/events/game_evts.c \
 				src/utils/free_arrays.c \
 				src/player/init_player.c \
 				src/window/init_window.c \
 				src/player/render_player.c \
+				src/player/move_player.c \
 				src/map/vertex_operations.c \
 				src/instance/init_instance.c \
 				src/game/manage_game_events.c \

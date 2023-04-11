@@ -13,7 +13,6 @@ static void manage_key_pressed(instance_t *instance, sfEvent event)
         case sfKeyEscape:
             instance->menu_state = IN_PAUSE_MENU;
             break;
-
         default:
             break;
     }
