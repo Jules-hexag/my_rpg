@@ -10,7 +10,6 @@
 #include <SFML/Graphics/RenderWindow.h>
 #include "rpg.h"
 
-
 static void (*const update_functions[]) (instance_t *) = {
     [IN_GAME] = &update_game,
     [IN_START_MENU] = &update_start_menu,
@@ -25,6 +24,18 @@ static void (*const events_functions[]) (instance_t *, sfEvent) = {
     [IN_GAME] = &manage_game_events,
     [IN_START_MENU] = &manage_start_menu_events,
 };
+
+void resize_event(instance_t *instance)
+{
+    window_params_t *window_params = &instance->window_params;
+    sfVector2u new_size = sfRenderWindow_getSize(window_params->window);
+    sfView *view = sfView_create();
+    sfView_setSize(view, (sfVector2f) {(float) new_size.x,
+        (float) new_size.y});
+    sfView_zoom(view, 0.25f);
+    sfRenderWindow_setView(window_params->window, view);
+    sfView_destroy(view);
+}
 
 static void manage_rpg_events(instance_t *instance)
 {

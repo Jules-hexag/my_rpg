@@ -8,22 +8,25 @@
 SRC			=	src/rpg.c \
 				src/main.c \
 				src/rpg_loop.c \
-				src/game/manage_game_events.c \
-				src/game/render_game.c \
-				src/game/update_game.c \
-				src/instance/init_instance.c \
-				src/instance/destroy_instance.c \
 				src/map/init_map.c \
 				src/map/render_map.c \
-				src/utils/free_arrays.c \
-				src/utils/gen_shapes.c \
-				src/map/vertex_operations.c \
-				src/utils/my_strncmp.c \
-				src/events/game_evts.c \
-				src/player/init_player.c \
+				src/bars/init_bars.c \
 				src/map/destroy_map.c \
+				src/game/render_game.c \
+				src/bars/render_bars.c \
+				src/game/update_game.c \
+				src/utils/gen_shapes.c \
+				src/utils/my_strncmp.c \
+				src/utils/free_arrays.c \
+				src/player/init_player.c \
 				src/window/init_window.c \
+				src/player/render_player.c \
+				src/player/move_player.c \
+				src/map/vertex_operations.c \
+				src/instance/init_instance.c \
+				src/game/manage_game_events.c \
 				src/errors/check_exec_errors.c \
+				src/instance/destroy_instance.c \
 				src/start_menu/init_start_menu.c \
 				src/start_menu/start_menu_loop.c \
 				src/events/start_menu_evts/start_evts.c \
@@ -31,6 +34,8 @@ SRC			=	src/rpg.c \
 				src/events/start_menu_evts/hover_colorization.c \
 				src/events/start_menu_evts/check_mouse_coords.c \
 				src/events/start_menu_evts/mouse_evt_management.c \
+				src/bars/update_bars.c \
+				src/player/update_player.c \
 
 TESTS_SRC	=	bonus/tests.c \
 

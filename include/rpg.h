@@ -21,6 +21,9 @@
 #define RPG_SUCCESS 0
 #define RPG_FAILURE 84
 
+#define PLAYER_WIDTH 16
+#define PLAYER_HEIGHT 32
+
 #include <stdbool.h>
 #include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics/View.h>
@@ -79,7 +82,8 @@ typedef struct {
 } ennemy_t;
 
 typedef struct {
-    sfClock *player_clock;
+    sfClock *update_clock;
+    sfClock *sprite_clock;
     sfSprite *sprite;
     sfVector2f pos;
     enum player_state state;
@@ -98,7 +102,6 @@ typedef struct {
     sfText *text_sprite;
     char *Title;
     char *Text;
-    sfClock *clock;
 } speeches_t;
 
 enum game_state {
@@ -108,6 +111,17 @@ enum game_state {
     IN_INVENTORY,
     IN_SPEECH,
 };
+
+enum bars {
+    B_HEALTH,
+    B_MANA,
+    B_COUNT
+};
+
+typedef struct {
+    sfSprite *background;
+    sfSprite *current;
+} bars_t;
 
 enum menus {
     START_MENU,
@@ -126,6 +140,8 @@ typedef struct instance_s{
     menu_t menus[MENU_COUNT];
     player_t player;
     speeches_t speeches;
+    bars_t bars[B_COUNT];
+
 } instance_t;
 
 /* sort all this in different appropriate files */
@@ -150,20 +166,26 @@ instance_t init_instance(void);
 sfRenderWindow *init_window(void);
 menu_t init_start_menu(window_params_t *window_params);
 void gen_array_vertex(map_t *map);
+void init_bars(instance_t *instance);
 
 void render_map(instance_t *instances);
 void render_game(instance_t *instance);
 void render_start_menu(instance_t *instance);
+void render_player(instance_t *instances);
+void render_bars(instance_t *instances);
 
+void update_bars(instance_t *instance);
+void update_player(instance_t *instance);
 void update_game(instance_t *instance);
 void update_start_menu(instance_t *instance);
 
 void manage_game_events(instance_t *instance, sfEvent event);
 void manage_start_menu_events(instance_t *instance, sfEvent event);
-void resize_event(instance_t *instance);
 void mouse_moved_evt(window_params_t *window_stats, menu_t *start_menu);
 void mouse_clicked_evt(window_params_t *window_stats, menu_t *start_instances);
 void mouse_released_evt(window_params_t *window_stats, menu_t *start_menu);
+
+void player_move(sfEvent event, instance_t *instance);
 
 void destroy_map(map_t *map);
 void destroy_instance(instance_t *instance);

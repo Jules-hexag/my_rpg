@@ -9,6 +9,7 @@
 
 void render_game(instance_t *instance)
 {
-    sfRenderWindow *window = instance->window_params.window;
     render_map(instance);
+    render_player(instance);
+    render_bars(instance);
 }
