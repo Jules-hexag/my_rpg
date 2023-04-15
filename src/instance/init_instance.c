@@ -27,7 +27,7 @@ instance_t init_instance(void)
 {
     instance_t instance = {0};
 
-    instance.menu_state = IN_GAME;
+    instance.menu_state = IN_START_MENU;
     instance.window_params = init_window_params();
     instance.map[0] = init_map();
     instance.menus[START_MENU] = init_start_menu(&instance.window_params);

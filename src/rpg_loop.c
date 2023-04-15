@@ -5,7 +5,6 @@
 ** rpg_loop
 */
 
-#include <stdlib.h>
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/RenderWindow.h>
 #include "rpg.h"
@@ -32,7 +31,6 @@ void resize_event(instance_t *instance)
     sfView *view = sfView_create();
     sfView_setSize(view, (sfVector2f) {(float) new_size.x,
         (float) new_size.y});
-    sfView_zoom(view, 0.25f);
     sfRenderWindow_setView(window_params->window, view);
     sfView_destroy(view);
 }
@@ -57,6 +55,7 @@ static void manage_rpg_events(instance_t *instance)
 
 static void update_rpg(instance_t *instance)
 {
+    update_instance(instance);
     update_functions[instance->menu_state](instance);
 }
 

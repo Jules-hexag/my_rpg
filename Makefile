@@ -5,37 +5,37 @@
 ## build the project
 ##
 
-SRC			=	src/rpg.c \
-				src/main.c \
+SRC			=	src/main.c \
+				src/rpg.c \
 				src/rpg_loop.c \
+				src/bars/init_bars.c \
+				src/bars/render_bars.c \
+				src/bars/update_bars.c \
+				src/errors/check_exec_errors.c \
+				src/events/start_menu_evts/hover_colorization.c \
+				src/game/manage_game_events.c \
+				src/game/render_game.c \
+				src/game/update_game.c \
+				src/instance/destroy_instance.c \
+				src/instance/init_instance.c \
+				src/instance/update_instance.c \
+				src/inventory/init_inventory.c \
+				src/map/destroy_map.c \
 				src/map/init_map.c \
 				src/map/render_map.c \
-				src/bars/init_bars.c \
-				src/map/destroy_map.c \
-				src/game/render_game.c \
-				src/bars/render_bars.c \
-				src/game/update_game.c \
+				src/map/vertex_operations.c \
+				src/player/init_player.c \
+				src/player/move_player.c \
+				src/player/render_player.c \
+				src/player/update_player.c \
+				src/start_menu/init_start_menu.c \
+				src/start_menu/manage_start_menu_events.c \
+				src/start_menu/render_start_menu.c \
+				src/start_menu/update_start_menu.c \
+				src/utils/free_arrays.c \
 				src/utils/gen_shapes.c \
 				src/utils/my_strncmp.c \
-				src/utils/free_arrays.c \
-				src/player/init_player.c \
 				src/window/init_window.c \
-				src/player/render_player.c \
-				src/player/move_player.c \
-				src/map/vertex_operations.c \
-				src/instance/init_instance.c \
-				src/game/manage_game_events.c \
-				src/errors/check_exec_errors.c \
-				src/instance/destroy_instance.c \
-				src/start_menu/init_start_menu.c \
-				src/start_menu/start_menu_loop.c \
-				src/events/start_menu_evts/start_evts.c \
-				src/events/start_menu_evts/click_management.c \
-				src/events/start_menu_evts/hover_colorization.c \
-				src/events/start_menu_evts/check_mouse_coords.c \
-				src/events/start_menu_evts/mouse_evt_management.c \
-				src/bars/update_bars.c \
-				src/player/update_player.c \
 
 TESTS_SRC	=	bonus/tests.c \
 

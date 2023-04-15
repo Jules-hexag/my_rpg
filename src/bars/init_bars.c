@@ -24,6 +24,7 @@ static bars_t create_health_bar_sprite(void)
     sfIntRect curect = {8, 0, 8, 8};
     sfTexture *cutexture = sfTexture_createFromFile("res/bars.png", &curect);
     sfSprite_setTexture(bar.current, cutexture, sfTrue);
+    sfSprite_setScale(bar.current, (sfVector2f) {4, 4});
 
     return bar;
 }
@@ -39,6 +40,7 @@ static bars_t create_mana_bar_sprite(void)
     sfIntRect curect = {8, 8, 8, 8};
     sfTexture *cutexture = sfTexture_createFromFile("res/bars.png", &curect);
     sfSprite_setTexture(bar.current, cutexture, sfTrue);
+    sfSprite_setScale(bar.current, (sfVector2f) {4, 4});
 
     return bar;
 }
