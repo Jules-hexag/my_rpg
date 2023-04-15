@@ -29,6 +29,32 @@
 #include <SFML/Graphics/View.h>
 #include <SFML/System/Clock.h>
 
+enum button_state_e {
+    NONE,
+    HOVER,
+    PRESSED,
+};
+
+enum start_menu_button {
+    SMB_PLAY,
+    SMB_QUIT,
+    SMB_COUNT};
+
+typedef struct instance_s instance_t;
+
+typedef struct {
+    sfRectangleShape *button;
+    sfFloatRect rect;
+    sfVector2f origin;
+    sfVector2f size;
+    enum button_state_e button_state;
+    sfText *text;
+    void (*button_func) (instance_t *instance);
+} menu_button_t;
+
+typedef struct {
+    menu_button_t *buttons;
+} menu_t;
 
 typedef struct map_s {
     sfVector2i size;
@@ -58,6 +84,7 @@ enum player_state {
 
 typedef struct {
     sfRenderWindow *window;
+    sfView *view;
     sfVector2u size;
 } window_params_t;
 
@@ -75,7 +102,7 @@ typedef struct {
 } npc_t;
 
 typedef struct {
-    sfClock *entity_clock;
+    sfClock *sprite_clock;
     sfSprite *sprite;
     sfVector2f pos;
     barector health;
@@ -85,17 +112,13 @@ typedef struct {
     sfClock *update_clock;
     sfClock *sprite_clock;
     sfSprite *sprite;
+    sfVector2f map_pos;
     sfVector2f pos;
     enum player_state state;
     barector health;
     barector mana;
+    int nb_mana_pills;
 } player_t;
-
-typedef struct {
-    int nb_mana;
-    int garbage_item;
-    int item[9];
-} inventory_t;
 
 typedef struct {
     sfSprite *background;
@@ -131,7 +154,7 @@ enum menus {
     MENU_COUNT
 };
 
-typedef struct instance_s{
+struct instance_s {
     enum game_state menu_state;
     map_t map[1];
     window_params_t window_params;
@@ -141,8 +164,7 @@ typedef struct instance_s{
     player_t player;
     speeches_t speeches;
     bars_t bars[B_COUNT];
-
-} instance_t;
+};
 
 /* sort all this in different appropriate files */
 
@@ -151,12 +173,6 @@ void rpg_loop(instance_t *instance);
 
 bool is_exec_errors(int argc, char const *const *argv,
     char const *const *envp);
-
-sfSprite *create_sprite(char *filepath);
-
-void free_arrays(int **map);
-
-void free_tileset(sfSprite **tileset);
 
 int my_strncmp(char const *s1, char const *s2, int n);
 
@@ -174,6 +190,7 @@ void render_start_menu(instance_t *instance);
 void render_player(instance_t *instances);
 void render_bars(instance_t *instances);
 
+void update_instance(instance_t *instance);
 void update_bars(instance_t *instance);
 void update_player(instance_t *instance);
 void update_game(instance_t *instance);
@@ -181,9 +198,6 @@ void update_start_menu(instance_t *instance);
 
 void manage_game_events(instance_t *instance, sfEvent event);
 void manage_start_menu_events(instance_t *instance, sfEvent event);
-void mouse_moved_evt(window_params_t *window_stats, menu_t *start_menu);
-void mouse_clicked_evt(window_params_t *window_stats, menu_t *start_instances);
-void mouse_released_evt(window_params_t *window_stats, menu_t *start_menu);
 
 void player_move(sfEvent event, instance_t *instance);
 

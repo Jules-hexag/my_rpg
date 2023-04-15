@@ -29,7 +29,7 @@ sfSprite *gen_tilemap_sprite(map_t *map)
     sfRenderTexture_display(map->render);
     sfSprite_setTexture(sprite, sfRenderTexture_getTexture(map->render),
         sfTrue);
-
+    sfSprite_setScale(sprite, (sfVector2f) {4, 4});
     return sprite;
 }
 

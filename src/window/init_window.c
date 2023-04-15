@@ -19,7 +19,6 @@ sfView *init_view(void)
 
     sfView_setCenter(view, center);
     sfView_setSize(view, (sfVector2f) {800, 800});
-    sfView_zoom(view, 0.5f);
     return view;
 }
 
@@ -29,7 +28,7 @@ sfRenderWindow *init_window(void)
     sfVideoMode mode = {800, 800, 32};
     sfRenderWindow *window =
         sfRenderWindow_create(mode, title, sfDefaultStyle, NULL);
-    sfRenderWindow_setFramerateLimit(window, 60);
+    sfRenderWindow_setFramerateLimit(window, 240);
 
     sfView *view = init_view();
     sfRenderWindow_setView(window, view);

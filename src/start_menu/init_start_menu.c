@@ -5,31 +5,29 @@
 ** generate_menu
 */
 
-#include <stdlib.h>
 #include <SFML/Graphics/RectangleShape.h>
 #include "menu.h"
 #include "rpg.h"
 
+const sfColor inactive_color = {107, 107, 107, 255};
 
-//static init_button_rect(void)
-//{
-//    sfRectangleShape *rectangle = sfRectangleShape_create();
-//    sfRectangleShape_setPosition(rectangle, pos);
-//    sfRectangleShape_setSize(rectangle, size);
-//    sfRectangleShape_setOutlineThickness(rectangle, (float) 2);
-//    sfRectangleShape_setFillColor(rectangle, color);
-//}
-
-static menu_button_t init_button(sfVector2u win_size, int button_number)
+void quit_game(instance_t *instance)
 {
-    sfVector2i button_size = {win_size.x / 3, win_size.y / 8};
-    int x_origin_button = win_size.x / 2 - button_size.x / 2;
-    sfVector2f pos = {x_origin_button, 0};
-    menu_button_t button = (menu_button_t) {
-    .button = gen_rect_shape((sfVector2f) {button_size.x, button_size.y}, pos,
-        (sfColor) {107, 107, 107, 255}),
-    .origin = pos,
-    .size = button_size,
+    sfRenderWindow_close(instance->window_params.window);
+}
+
+void play_game(instance_t *instance)
+{
+    instance->menu_state = IN_GAME;
+}
+
+static menu_button_t init_button(window_params_t *window_params, int nb)
+{
+    sfRectangleShape *rectangle = sfRectangleShape_create();
+    sfRectangleShape_setOutlineThickness(rectangle, (float) 2);
+    sfRectangleShape_setOutlineColor(rectangle, sfWhite);
+    menu_button_t button = {
+    .button = rectangle,
     .button_state = NONE,
     .text = NULL,
     };
@@ -41,8 +39,10 @@ menu_t init_start_menu(window_params_t *window_params)
 {
     static menu_button_t buttons[SMB_COUNT];
 
-    buttons[SMB_PLAY] = init_button(window_params->size, 1);
-    buttons[SMB_QUIT] = init_button(window_params->size, 2);
+    buttons[SMB_PLAY] = init_button(window_params, 1);
+    buttons[SMB_PLAY].button_func = &play_game;
+    buttons[SMB_QUIT] = init_button(window_params, 2);
+    buttons[SMB_QUIT].button_func = &quit_game;
 
     static menu_t menu = {.buttons = buttons};
     return menu;
