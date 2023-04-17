@@ -13,9 +13,6 @@
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Vector2.h>
 
-
-
-
 static const sfColor smb_colors[3] = {
     [NONE] = {107, 107, 107, 200},
     [HOVER] = {107, 0, 40, 200},
@@ -46,7 +43,7 @@ static void update_button_pos(menu_button_t *button, window_params_t *params,
 static void update_button_text(menu_button_t *button, window_params_t *params)
 {
     sfVector2f pos = sfRectangleShape_getPosition(button[0].button);
-    pos.x = pos.x + button->size.x / 3;
+    pos.x = pos.x + button->size.x / 4;
     pos.y += 10;
     sfSprite_setPosition(params->menu_background, (sfVector2f)
         sfRenderWindow_mapPixelToCoords(params->window,

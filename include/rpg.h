@@ -37,8 +37,12 @@ enum button_state_e {
 
 enum start_menu_button {
     SMB_PLAY,
+    SMB_RESUME,
+    SMB_TUTORIAL,
+    SMB_SETTINGS,
     SMB_QUIT,
-    SMB_COUNT};
+    SMB_COUNT
+};
 
 typedef struct instance_s instance_t;
 
