@@ -33,6 +33,8 @@ static menu_button_t init_button(window_params_t *window_params, int nb)
     .button_state = NONE,
     .text = init_text(text),
     };
+    window_params->menu_background = gen_sprite_shape("res/start_menu.jpg",
+        (sfVector2f) {0, 0});
 
     return button;
 }

@@ -8,6 +8,7 @@
 #include "rpg.h"
 #include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics/RectangleShape.h>
+#include <SFML/Graphics/Sprite.h>
 #include <SFML/Graphics/Text.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Vector2.h>
@@ -48,6 +49,9 @@ static void update_button_text(menu_button_t *button, window_params_t *params)
     sfVector2f pos = sfRectangleShape_getPosition(button[0].button);
     pos.x = pos.x + button->size.x / 3;
     pos.y += 10;
+    sfSprite_setPosition(params->menu_background, (sfVector2f)
+        sfRenderWindow_mapPixelToCoords(params->window,
+        (sfVector2i) {0, 0}, NULL));
 
     sfVector2u window_size = sfRenderWindow_getSize(params->window);
 

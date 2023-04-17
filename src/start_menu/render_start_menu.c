@@ -12,6 +12,8 @@
 void render_start_menu(instance_t *instance)
 {
     sfRenderWindow *window = instance->window_params.window;
+    sfRenderWindow_drawSprite(window, instance->window_params.menu_background,
+        NULL);
     sfRenderWindow_drawRectangleShape(window,
         instance->menus[START_MENU].buttons[0].button, NULL);
     sfRenderWindow_drawRectangleShape(window,
