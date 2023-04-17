@@ -6,6 +6,7 @@
 */
 
 #include <SFML/Graphics/Color.h>
+#include <SFML/Graphics/Sprite.h>
 #include <SFML/Graphics/RenderWindow.h>
 #include "rpg.h"
 

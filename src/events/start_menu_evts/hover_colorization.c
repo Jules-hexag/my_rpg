@@ -11,7 +11,6 @@
 #include <stdio.h>
 
 extern sfColor inactive_color;
-static const sfColor hover_color = {107, 0, 40, 255};
 
 void hover_button(sfVector2f pos_mouse, menu_button_t *button)
 {

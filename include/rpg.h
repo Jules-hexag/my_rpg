@@ -86,6 +86,7 @@ typedef struct {
     sfRenderWindow *window;
     sfView *view;
     sfVector2u size;
+    sfSprite *menu_background;
 } window_params_t;
 
 
@@ -175,6 +176,7 @@ bool is_exec_errors(int argc, char const *const *argv,
     char const *const *envp);
 
 int my_strncmp(char const *s1, char const *s2, int n);
+sfSprite *gen_sprite_shape(char *texture_path, sfVector2f pos);
 
 map_t init_map(void);
 player_t init_player(void);
@@ -183,6 +185,7 @@ sfRenderWindow *init_window(void);
 menu_t init_start_menu(window_params_t *window_params);
 void gen_array_vertex(map_t *map);
 void init_bars(instance_t *instance);
+sfText *init_text(char *str_text);
 
 void render_map(instance_t *instances);
 void render_game(instance_t *instance);

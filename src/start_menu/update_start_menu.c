@@ -8,15 +8,18 @@
 #include "rpg.h"
 #include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics/RectangleShape.h>
+#include <SFML/Graphics/Sprite.h>
+#include <SFML/Graphics/Text.h>
+#include <SFML/Graphics/Types.h>
+#include <SFML/System/Vector2.h>
 
 
-static const int nmax = 3;
 
 
 static const sfColor smb_colors[3] = {
-    [NONE] = {107, 107, 107, 255},
-    [HOVER] = {107, 0, 40, 255},
-    [PRESSED] = {107, 107, 107, 255},
+    [NONE] = {107, 107, 107, 200},
+    [HOVER] = {107, 0, 40, 200},
+    [PRESSED] = {66, 1, 9, 200},
 };
 
 static void update_button_size(menu_button_t *button, window_params_t *params)
@@ -40,6 +43,22 @@ static void update_button_pos(menu_button_t *button, window_params_t *params,
     sfRectangleShape_setPosition(button->button, pos);
 }
 
+static void update_button_text(menu_button_t *button, window_params_t *params)
+{
+    sfVector2f pos = sfRectangleShape_getPosition(button[0].button);
+    pos.x = pos.x + button->size.x / 3;
+    pos.y += 10;
+    sfSprite_setPosition(params->menu_background, (sfVector2f)
+        sfRenderWindow_mapPixelToCoords(params->window,
+        (sfVector2i) {0, 0}, NULL));
+
+    sfVector2u window_size = sfRenderWindow_getSize(params->window);
+
+    sfText_setCharacterSize(button->text, window_size.x * 30 / 800);
+
+    sfText_setPosition(button->text, (sfVector2f) {pos.x, pos.y});
+}
+
 static void update_button_color(menu_button_t *button)
 {
     if (button->button_state == HOVER && sfMouse_isButtonPressed(sfMouseLeft))
@@ -57,5 +76,6 @@ void update_start_menu(instance_t *instance)
         menu->buttons[i].rect = sfRectangleShape_getGlobalBounds(
             menu->buttons[i].button);
         update_button_color(&menu->buttons[i]);
+        update_button_text(&menu->buttons[i], &instance->window_params);
     }
 }

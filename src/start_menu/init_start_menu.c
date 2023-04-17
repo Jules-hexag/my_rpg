@@ -6,9 +6,11 @@
 */
 
 #include <SFML/Graphics/RectangleShape.h>
+#include <SFML/System/Vector2.h>
 #include "menu.h"
 #include "rpg.h"
 
+// Is this line useful ? (same line in update_start_menu.c)
 const sfColor inactive_color = {107, 107, 107, 255};
 
 void quit_game(instance_t *instance)
@@ -23,14 +25,17 @@ void play_game(instance_t *instance)
 
 static menu_button_t init_button(window_params_t *window_params, int nb)
 {
+    char *text = nb == 1 ? "Play" : "Quit";
     sfRectangleShape *rectangle = sfRectangleShape_create();
     sfRectangleShape_setOutlineThickness(rectangle, (float) 2);
     sfRectangleShape_setOutlineColor(rectangle, sfWhite);
     menu_button_t button = {
     .button = rectangle,
     .button_state = NONE,
-    .text = NULL,
+    .text = init_text(text),
     };
+    window_params->menu_background = gen_sprite_shape("res/start_menu.jpg",
+        (sfVector2f) {0, 0});
 
     return button;
 }
