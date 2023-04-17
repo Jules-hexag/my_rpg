@@ -7,7 +7,6 @@
 
 #include <SFML/Graphics/RectangleShape.h>
 #include <SFML/System/Vector2.h>
-#include "menu.h"
 #include "rpg.h"
 
 void (*buttons_func[5])(instance_t *instance) = {

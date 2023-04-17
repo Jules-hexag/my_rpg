@@ -10,17 +10,17 @@
 void render_back_enemy(instance_t *instance)
 {
     sfRenderWindow *window = instance->window_params.window;
-    for (int i = 0; i < ENEMY_COUNT; ++i) {
-        if (instance->enemies[i].state != DEAD && instance->enemies[i].layer == BACK)
-            sfRenderWindow_drawSprite(window, instance->enemies[i].sprite, NULL);
+    for (int i = 0; i < instance->enemy_behind; ++i) {
+        enemy_t *enemy = bh_pop(instance->enemy_heap);
+        sfRenderWindow_drawSprite(window, enemy->sprite, NULL);
     }
 }
 
 void render_front_enemy(instance_t *instance)
 {
     sfRenderWindow *window = instance->window_params.window;
-    for (int i = 0; i < ENEMY_COUNT; ++i) {
-        if (instance->enemies[i].state != DEAD && instance->enemies[i].layer == FRONT)
-            sfRenderWindow_drawSprite(window, instance->enemies[i].sprite, NULL);
+    for (int i = instance->enemy_behind; i < ENEMY_COUNT; ++i) {
+        enemy_t *enemy = bh_pop(instance->enemy_heap);
+        sfRenderWindow_drawSprite(window, enemy->sprite, NULL);
     }
 }
