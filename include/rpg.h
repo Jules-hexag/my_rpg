@@ -69,6 +69,13 @@ typedef struct map_s {
     uint8_t **map;
 } map_t;
 
+enum map_e {
+    MAP_TUTORIAL,
+    MAP_GAME,
+
+    MAP_COUNTER,
+};
+
 enum tile_type {
     TILE_ALPHA,
     TILE_GRASS,
@@ -163,7 +170,7 @@ enum menus {
 
 struct instance_s {
     enum game_state menu_state;
-    map_t map[1];
+    map_t map[2];
     window_params_t window_params;
     npc_t npc[2];
     ennemy_t ennemies[10];
@@ -191,7 +198,7 @@ void tutorial(instance_t *instance);
 void settings(instance_t *instance);
 void quit_game(instance_t *instance);
 
-map_t init_map(void);
+map_t init_map(char *struct_path);
 player_t init_player(void);
 instance_t init_instance(void);
 sfRenderWindow *init_window(void);
@@ -200,20 +207,25 @@ void gen_array_vertex(map_t *map);
 void init_bars(instance_t *instance);
 sfText *init_text(char *str_text);
 
-void render_map(instance_t *instances);
+void render_game_map(instance_t *instance);
+void render_tutorial_map(instance_t *instance);
 void render_game(instance_t *instance);
 void render_start_menu(instance_t *instance);
 void render_player(instance_t *instances);
 void render_bars(instance_t *instances);
+void render_tutorial(instance_t *instance);
 
 void update_instance(instance_t *instance);
 void update_bars(instance_t *instance);
 void update_player(instance_t *instance);
 void update_game(instance_t *instance);
 void update_start_menu(instance_t *instance);
+void update_tutorial(instance_t *instance);
 
 void manage_game_events(instance_t *instance, sfEvent event);
 void manage_start_menu_events(instance_t *instance, sfEvent event);
+void manage_tutorial_events(instance_t *instance, sfEvent event);
+void manage_key_pressed(instance_t *instance, sfEvent event);
 
 void player_move(sfEvent event, instance_t *instance);
 

@@ -10,19 +10,22 @@
 #include <SFML/Graphics/RenderWindow.h>
 #include "rpg.h"
 
+static void (*const events_functions[]) (instance_t *, sfEvent) = {
+    [IN_GAME] = &manage_game_events,
+    [IN_START_MENU] = &manage_start_menu_events,
+    [IN_TUTORIAL] = &manage_tutorial_events,
+};
+
 static void (*const update_functions[]) (instance_t *) = {
     [IN_GAME] = &update_game,
     [IN_START_MENU] = &update_start_menu,
+    [IN_TUTORIAL] = &update_tutorial,
 };
 
 static void (*const render_functions[]) (instance_t *) = {
     [IN_GAME] = &render_game,
     [IN_START_MENU] = &render_start_menu,
-};
-
-static void (*const events_functions[]) (instance_t *, sfEvent) = {
-    [IN_GAME] = &manage_game_events,
-    [IN_START_MENU] = &manage_start_menu_events,
+    [IN_TUTORIAL] = &render_tutorial,
 };
 
 void resize_event(instance_t *instance)

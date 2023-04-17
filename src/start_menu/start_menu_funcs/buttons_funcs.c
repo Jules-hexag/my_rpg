@@ -14,13 +14,12 @@ void play_game(instance_t *instance)
 
 void resume_game(instance_t *instance)
 {
-    return;
+    sfRenderWindow_close(instance->window_params.window);
 }
 
 void tutorial(instance_t *instance)
 {
-    sfRenderWindow_close(instance->window_params.window);
-    // instance->menu_state = IN_TUTORIAL;
+    instance->menu_state = IN_TUTORIAL;
 }
 
 void settings(instance_t *instance)

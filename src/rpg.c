@@ -33,6 +33,3 @@ int rpg(int const argc, char const *const *const argv)
     destroy_instance(&instance);
     return RPG_SUCCESS;
 }
-// l.24 :
-//  destroy window & free
-//  + bien frire instances

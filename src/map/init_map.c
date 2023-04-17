@@ -63,9 +63,9 @@ map_t init_map_from_file(char file[])
  * @param window_params to generate the texture
  * @return map_t* structure filled with int** map & graphic tilemap
  */
-map_t init_map(void)
+map_t init_map(char *struct_path)
 {
-    map_t map = init_map_from_file("res/maps/map1");
+    map_t map = init_map_from_file(struct_path);
     map.tileset = sfTexture_createFromFile("res/tileset.png", NULL);
     map.array = init_array(&map);
     gen_array_vertex(&map);
