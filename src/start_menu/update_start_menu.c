@@ -14,13 +14,12 @@
 #include <SFML/System/Vector2.h>
 
 
-static const int nmax = 3;
 
 
 static const sfColor smb_colors[3] = {
-    [NONE] = {107, 107, 107, 255},
-    [HOVER] = {107, 0, 40, 255},
-    [PRESSED] = {107, 107, 107, 255},
+    [NONE] = {107, 107, 107, 200},
+    [HOVER] = {107, 0, 40, 200},
+    [PRESSED] = {66, 1, 9, 200},
 };
 
 static void update_button_size(menu_button_t *button, window_params_t *params)

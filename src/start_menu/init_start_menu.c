@@ -10,6 +10,7 @@
 #include "menu.h"
 #include "rpg.h"
 
+// Is this line useful ? (same line in update_start_menu.c)
 const sfColor inactive_color = {107, 107, 107, 255};
 
 void quit_game(instance_t *instance)
