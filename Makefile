@@ -34,6 +34,7 @@ SRC			=	src/main.c \
 				src/start_menu/update_start_menu.c \
 				src/utils/free_arrays.c \
 				src/utils/gen_shapes.c \
+				src/utils/init_text.c \
 				src/utils/my_strncmp.c \
 				src/window/init_window.c \
 

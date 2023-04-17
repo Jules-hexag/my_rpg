@@ -6,6 +6,7 @@
 */
 
 #include <SFML/Graphics/RectangleShape.h>
+#include <SFML/System/Vector2.h>
 #include "menu.h"
 #include "rpg.h"
 
@@ -23,13 +24,14 @@ void play_game(instance_t *instance)
 
 static menu_button_t init_button(window_params_t *window_params, int nb)
 {
+    char *text = nb == 1 ? "Play" : "Quit";
     sfRectangleShape *rectangle = sfRectangleShape_create();
     sfRectangleShape_setOutlineThickness(rectangle, (float) 2);
     sfRectangleShape_setOutlineColor(rectangle, sfWhite);
     menu_button_t button = {
     .button = rectangle,
     .button_state = NONE,
-    .text = NULL,
+    .text = init_text(text),
     };
 
     return button;

@@ -183,6 +183,7 @@ sfRenderWindow *init_window(void);
 menu_t init_start_menu(window_params_t *window_params);
 void gen_array_vertex(map_t *map);
 void init_bars(instance_t *instance);
+sfText *init_text(char *str_text);
 
 void render_map(instance_t *instances);
 void render_game(instance_t *instance);
