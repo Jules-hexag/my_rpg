@@ -28,10 +28,14 @@ SRC			=	src/main.c \
 				src/player/move_player.c \
 				src/player/render_player.c \
 				src/player/update_player.c \
+				src/start_menu/start_menu_funcs/buttons_funcs.c \
 				src/start_menu/init_start_menu.c \
 				src/start_menu/manage_start_menu_events.c \
 				src/start_menu/render_start_menu.c \
 				src/start_menu/update_start_menu.c \
+				src/tutorial/manage_tutorial_events.c \
+				src/tutorial/render_tutorial.c \
+				src/tutorial/update_tutorial.c \
 				src/utils/free_arrays.c \
 				src/utils/gen_shapes.c \
 				src/utils/init_text.c \

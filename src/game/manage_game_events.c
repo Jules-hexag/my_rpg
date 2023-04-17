@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-static void manage_key_pressed(instance_t *instance, sfEvent event)
+void manage_key_pressed(instance_t *instance, sfEvent event)
 {
     switch (event.key.code) {
         case sfKeyEscape:

@@ -2,14 +2,14 @@
 ** EPITECH PROJECT, 2023
 ** my_rpg
 ** File description:
-** render_game.c
+** render_tutorial
 */
 
 #include "rpg.h"
 
-void render_game(instance_t *instance)
+void render_tutorial(instance_t *instance)
 {
-    render_game_map(instance);
+    render_tutorial_map(instance);
     render_player(instance);
     render_bars(instance);
 }

@@ -37,8 +37,12 @@ enum button_state_e {
 
 enum start_menu_button {
     SMB_PLAY,
+    SMB_RESUME,
+    SMB_TUTORIAL,
+    SMB_SETTINGS,
     SMB_QUIT,
-    SMB_COUNT};
+    SMB_COUNT
+};
 
 typedef struct instance_s instance_t;
 
@@ -64,6 +68,13 @@ typedef struct map_s {
     sfSprite *sprite;
     uint8_t **map;
 } map_t;
+
+enum map_e {
+    MAP_TUTORIAL,
+    MAP_GAME,
+
+    MAP_COUNTER,
+};
 
 enum tile_type {
     TILE_ALPHA,
@@ -131,6 +142,8 @@ typedef struct {
 enum game_state {
     IN_GAME,
     IN_START_MENU,
+    IN_SETTINGS,
+    IN_TUTORIAL,
     IN_PAUSE_MENU,
     IN_INVENTORY,
     IN_SPEECH,
@@ -157,7 +170,7 @@ enum menus {
 
 struct instance_s {
     enum game_state menu_state;
-    map_t map[1];
+    map_t map[2];
     window_params_t window_params;
     npc_t npc[2];
     ennemy_t ennemies[10];
@@ -178,7 +191,14 @@ bool is_exec_errors(int argc, char const *const *argv,
 int my_strncmp(char const *s1, char const *s2, int n);
 sfSprite *gen_sprite_shape(char *texture_path, sfVector2f pos);
 
-map_t init_map(void);
+/*  BUTTONS FUNCTIONS   (start menu)    */
+void play_game(instance_t *instance);
+void resume_game(instance_t *instance);
+void tutorial(instance_t *instance);
+void settings(instance_t *instance);
+void quit_game(instance_t *instance);
+
+map_t init_map(char *struct_path);
 player_t init_player(void);
 instance_t init_instance(void);
 sfRenderWindow *init_window(void);
@@ -187,20 +207,25 @@ void gen_array_vertex(map_t *map);
 void init_bars(instance_t *instance);
 sfText *init_text(char *str_text);
 
-void render_map(instance_t *instances);
+void render_game_map(instance_t *instance);
+void render_tutorial_map(instance_t *instance);
 void render_game(instance_t *instance);
 void render_start_menu(instance_t *instance);
 void render_player(instance_t *instances);
 void render_bars(instance_t *instances);
+void render_tutorial(instance_t *instance);
 
 void update_instance(instance_t *instance);
 void update_bars(instance_t *instance);
 void update_player(instance_t *instance);
 void update_game(instance_t *instance);
 void update_start_menu(instance_t *instance);
+void update_tutorial(instance_t *instance);
 
 void manage_game_events(instance_t *instance, sfEvent event);
 void manage_start_menu_events(instance_t *instance, sfEvent event);
+void manage_tutorial_events(instance_t *instance, sfEvent event);
+void manage_key_pressed(instance_t *instance, sfEvent event);
 
 void player_move(sfEvent event, instance_t *instance);
 

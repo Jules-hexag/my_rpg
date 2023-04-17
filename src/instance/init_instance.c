@@ -29,7 +29,8 @@ instance_t init_instance(void)
 
     instance.menu_state = IN_START_MENU;
     instance.window_params = init_window_params();
-    instance.map[0] = init_map();
+    instance.map[MAP_GAME] = init_map("res/maps/map1");
+    instance.map[MAP_TUTORIAL] = init_map("res/maps/map1");
     instance.menus[START_MENU] = init_start_menu(&instance.window_params);
     instance.player = init_player();
     init_bars(&instance);
