@@ -10,18 +10,13 @@
 #include "menu.h"
 #include "rpg.h"
 
-// Is this line useful ? (same line in update_start_menu.c)
-const sfColor inactive_color = {107, 107, 107, 255};
-
-void quit_game(instance_t *instance)
-{
-    sfRenderWindow_close(instance->window_params.window);
-}
-
-void play_game(instance_t *instance)
-{
-    instance->menu_state = IN_GAME;
-}
+void (*buttons_func[5])(instance_t *instance) = {
+    &play_game,
+    &resume_game,
+    &tutorial,
+    &settings,
+    &quit_game,
+};
 
 static menu_button_t init_button(window_params_t *window_params, int nb)
 {
@@ -44,16 +39,10 @@ menu_t init_start_menu(window_params_t *window_params)
 {
     static menu_button_t buttons[SMB_COUNT];
 
-    buttons[SMB_PLAY] = init_button(window_params, SMB_PLAY);
-    buttons[SMB_PLAY].button_func = &play_game;
-    buttons[SMB_RESUME] = init_button(window_params, SMB_RESUME);
-    //buttons[SMB_RESUME].button_func = &resume_game;
-    buttons[SMB_TUTORIAL] = init_button(window_params, SMB_TUTORIAL);
-    //buttons[SMB_TUTORIAL].button_func = &tutorial;
-    buttons[SMB_SETTINGS] = init_button(window_params, SMB_SETTINGS);
-    //buttons[SMB_SETTINGS].button_func = &settings;
-    buttons[SMB_QUIT] = init_button(window_params, SMB_QUIT);
-    buttons[SMB_QUIT].button_func = &quit_game;
+    for (int smb_init = 0; smb_init < SMB_COUNT; smb_init++) {
+        buttons[smb_init] = init_button(window_params, smb_init);
+        buttons[smb_init].button_func = buttons_func[smb_init];
+    }
 
     static menu_t menu = {.buttons = buttons};
     return menu;

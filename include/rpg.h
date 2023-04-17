@@ -135,6 +135,8 @@ typedef struct {
 enum game_state {
     IN_GAME,
     IN_START_MENU,
+    IN_SETTINGS,
+    IN_TUTORIAL,
     IN_PAUSE_MENU,
     IN_INVENTORY,
     IN_SPEECH,
@@ -181,6 +183,13 @@ bool is_exec_errors(int argc, char const *const *argv,
 
 int my_strncmp(char const *s1, char const *s2, int n);
 sfSprite *gen_sprite_shape(char *texture_path, sfVector2f pos);
+
+/*  BUTTONS FUNCTIONS   (start menu)    */
+void play_game(instance_t *instance);
+void resume_game(instance_t *instance);
+void tutorial(instance_t *instance);
+void settings(instance_t *instance);
+void quit_game(instance_t *instance);
 
 map_t init_map(void);
 player_t init_player(void);
