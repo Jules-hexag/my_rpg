@@ -25,9 +25,9 @@ void tutorial(instance_t *instance)
 void settings(instance_t *instance)
 {
     sfRenderWindow_close(instance->window_params.window);
-    // instance->menu_state = IN_SETTINGS;
 }
 
+// instance->menu_state = IN_SETTINGS;
 void quit_game(instance_t *instance)
 {
     sfRenderWindow_close(instance->window_params.window);
