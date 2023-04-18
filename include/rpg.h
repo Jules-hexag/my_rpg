@@ -67,6 +67,7 @@ enum start_menu_button {
 enum settings_items {
     STT_WINDOWED,
     STT_FULLSCREEN,
+    STT_BACK,
 
     STT_BUTTON_COUNT,
 };
@@ -252,9 +253,10 @@ void tutorial(instance_t *instance);
 void settings(instance_t *instance);
 void quit_game(instance_t *instance);
 
-/*  BUTTONS FUNCTIONS   (start menu)    */
+/*  BUTTONS FUNCTIONS   (settings)    */
 void set_windowed(instance_t *instance);
 void set_fullscreen(instance_t *instance);
+void settings_back(instance_t *instance);
 
 map_t init_map(char *struct_path, instance_t *instance);
 player_t init_player(instance_t *instance);

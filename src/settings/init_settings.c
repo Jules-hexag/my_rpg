@@ -8,14 +8,15 @@
 #include <SFML/Graphics/RectangleShape.h>
 #include "rpg.h"
 
-static void (*buttons_func[2])(instance_t *instance) = {
-    set_windowed,
-    set_fullscreen,
+static void (*buttons_func[3])(instance_t *instance) = {
+    &set_windowed,
+    &set_fullscreen,
+    &settings_back,
 };
 
-static menu_button_t init_STTbutton(window_params_t *window_params, int nb)
+static menu_button_t init_stt_button(window_params_t *window_params, int nb)
 {
-    char *text[2] = {"Windowed", "Full Screen"};
+    char *text[3] = {"Windowed", "Full Screen", "Back"};
     sfRectangleShape *rectangle = sfRectangleShape_create();
     sfRectangleShape_setOutlineThickness(rectangle, (float) 2);
     sfRectangleShape_setOutlineColor(rectangle, sfWhite);
@@ -35,10 +36,9 @@ menu_t init_settings(window_params_t *window_params)
     static menu_button_t buttons[STT_BUTTON_COUNT];
 
     for (int stt_init = 0; stt_init < STT_BUTTON_COUNT; stt_init++) {
-        buttons[stt_init] = init_STTbutton(window_params, stt_init);
+        buttons[stt_init] = init_stt_button(window_params, stt_init);
         buttons[stt_init].button_func = buttons_func[stt_init];
     }
-
     static menu_t menu = {.buttons = buttons};
     return menu;
 }

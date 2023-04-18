@@ -17,7 +17,7 @@ static void (*buttons_func[5])(instance_t *instance) = {
     &quit_game,
 };
 
-static menu_button_t init_SMbutton(window_params_t *window_params, int nb)
+static menu_button_t init_sm_button(window_params_t *window_params, int nb)
 {
     char *text[5] = {"Play", "Resume", "Tutorial", "Settings", "Quit"};
     sfRectangleShape *rectangle = sfRectangleShape_create();
@@ -39,7 +39,7 @@ menu_t init_start_menu(window_params_t *window_params)
     static menu_button_t buttons[SMB_COUNT];
 
     for (int smb_init = 0; smb_init < SMB_COUNT; smb_init++) {
-        buttons[smb_init] = init_SMbutton(window_params, smb_init);
+        buttons[smb_init] = init_sm_button(window_params, smb_init);
         buttons[smb_init].button_func = buttons_func[smb_init];
     }
 

@@ -22,3 +22,8 @@ void set_fullscreen(instance_t *instance)
     instance->window_params.size.x = 1920;
     instance->window_params.size.y = 1080;
 }
+
+void settings_back(instance_t *instance)
+{
+    instance->menu_state = IN_START_MENU;
+}
