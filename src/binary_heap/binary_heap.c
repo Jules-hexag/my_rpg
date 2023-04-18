@@ -47,7 +47,7 @@ static void percolate_down(binary_heap *tree, size_t i)
     size_t r = i * 2 + 2;
     size_t s = i;
     if (l < tree->heap_size && ((tree->type == BH_MIN
-        && tree->value(tree->arr[l]) < tree->value(tree->arr[i])) ||(tree->type
+        && tree->value(tree->arr[l]) < tree->value(tree->arr[i])) || (tree->type
         == BH_MAX && tree->value(tree->arr[l]) > tree->value(tree->arr[i]))))
         s = l;
     if (r < tree->heap_size && ((tree->type == BH_MIN

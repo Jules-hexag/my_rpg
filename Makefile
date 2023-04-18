@@ -11,6 +11,11 @@ SRC			=	src/main.c \
 				src/bars/init_bars.c \
 				src/bars/render_bars.c \
 				src/bars/update_bars.c \
+				src/binary_heap/binary_heap.c \
+				src/binary_heap/binary_heap2.c \
+				src/enemies/init_enemy.c \
+				src/enemies/render_enemy.c \
+				src/enemies/update_enemy.c \
 				src/errors/check_exec_errors.c \
 				src/events/start_menu_evts/hover_colorization.c \
 				src/game/manage_game_events.c \
@@ -25,7 +30,6 @@ SRC			=	src/main.c \
 				src/map/render_map.c \
 				src/map/vertex_operations.c \
 				src/player/init_player.c \
-				src/player/move_player.c \
 				src/player/render_player.c \
 				src/player/update_player.c \
 				src/start_menu/start_menu_funcs/buttons_funcs.c \
@@ -58,7 +62,7 @@ TESTS		=	unit_tests
 
 ## LDFLAGS = 	-L./lib
 
-LDLIBS		=	-lcriterion -lcsfml-graphics -lcsfml-window -lcsfml-system
+LDLIBS		=	-lcriterion -lcsfml-graphics -lcsfml-window -lcsfml-system -lm
 ## -lmy
 
 CC			=	gcc

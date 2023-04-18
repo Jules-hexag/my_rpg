@@ -48,7 +48,8 @@ static void move_player(player_t *player, sfVector2i map_size,
     sfVector2f move = {d_pos.x / dist * speed, d_pos.y / dist * speed};
     player_pos->x += move.x;
     player_pos->y += move.y;
-    player->bbox = (sfFloatRect) {player_pos->x - 32, player_pos->y - 32, 64, 64};
+    player->bbox = (sfFloatRect) {player_pos->x - 32, player_pos->y - 32,
+        64, 64};
 }
 
 void update_player(instance_t *instance)
