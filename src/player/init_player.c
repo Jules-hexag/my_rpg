@@ -28,17 +28,28 @@ static void create_player_sprite(instance_t *instance, player_t *player)
     player->sprite = p_sprite;
 }
 
+void init_stats(player_t *player)
+{
+    player->stats[STAT_STRENGTH] = 1;
+    player->stats[STAT_DEFENSE] = 1;
+    player->stats[STAT_SPEED] = 240;
+    player->stats[STAT_REGEN] = 0.5f;
+    player->stats[STAT_REGEN_TIME] = 3;
+}
+
 player_t init_player(instance_t *instance)
 {
     player_t player = {0};
     player.map_pos = (sfVector2f) {48, 48};
-    player.health = (barector) {6, 8};
-    player.mana = (barector) {6, 8};
+    player.health = (barector) {8, 8};
+    player.mana = (barector) {1, 1};
     player.state = STRAIGHT;
     player.bbox = (sfFloatRect) {player.map_pos.x - 32, player.map_pos.y - 32,
         64, 64};
-    player.update_clock = sfClock_create();
-    player.sprite_clock = sfClock_create();
+    player.clock = sfClock_create();
+    player.time[TIME_REGEN] = 0;
+    player.time[MANA_TIME] = player.mana.max;
+    init_stats(&player);
     create_player_sprite(instance, &player);
     return player;
 }

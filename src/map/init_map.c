@@ -69,6 +69,7 @@ map_t init_map(char *struct_path, instance_t *instance)
     map.tileset = instance->texture[TEXTURE_TILESET];
     map.array = init_array(&map);
     gen_array_vertex(&map);
+
     map.sprite = gen_tilemap_sprite(&map);
 
     return map;

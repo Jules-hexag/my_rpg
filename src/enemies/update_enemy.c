@@ -30,12 +30,13 @@ static void update_enemy_to_player_dist(instance_t *instance, enemy_t *enemy)
         bh_append(instance->enemy_heap, enemy);
 }
 
-static void move_enemy(instance_t *instance, enemy_t *enemy, int dtime, struct queue *queue)
+static void move_enemy(instance_t *instance, enemy_t *enemy, float dtime, struct queue *queue)
 {
-    float speed = ENEMY_SPEED * dtime / (1000.f / 60.f);
+    float speed = ENEMY_SPEED * dtime;
     player_t *player = &instance->player;
-    if (sfFloatRect_intersects(&enemy->bbox, &player->bbox, NULL)) {
-        player->health.current-= 0.01;
+    if (enemy->player_dist < 64) {
+        player->health.current-= (1 / player->stats[STAT_DEFENSE]) * dtime;
+        player->time[TIME_REGEN] = 0;
         return;
     }
     for (int i = 0; i < queue->last; ++i)
@@ -62,7 +63,7 @@ void update_enemy(instance_t *instance)
     for (int i = 0; i < ENEMY_COUNT; ++i)
         update_enemy_to_player_dist(instance, &instance->enemies[i]);
     while ((enemy = bh_pop(instance->enemy_heap))) {
-        int dtime = sfTime_asMilliseconds(sfClock_getElapsedTime(enemy->sprite_clock));
+        float dtime = sfTime_asSeconds(sfClock_getElapsedTime(enemy->sprite_clock));
         move_enemy(instance, enemy, dtime, &queue);
     }
     instance->enemy_heap->value = &enemy_pos;

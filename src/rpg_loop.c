@@ -65,6 +65,8 @@ static void update_rpg(instance_t *instance)
 
 static void render_rpg(instance_t *instance)
 {
+    if (!sfRenderWindow_hasFocus(instance->window_params.window))
+        return;
     sfRenderWindow *window = instance->window_params.window;
     sfRenderWindow_clear(window, sfBlack);
     render_functions[instance->menu_state](instance);

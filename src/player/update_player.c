@@ -15,11 +15,24 @@
 #include <math.h>
 #include "rpg.h"
 
+void update_times(player_t *player, float dtime)
+{
+    player->time[TIME_REGEN] += dtime;
+    if (player->time[TIME_REGEN] > player->stats[STAT_REGEN_TIME]
+        && player->health.current < player->health.max)
+        player->health.current += player->stats[STAT_REGEN] * dtime;
+
+    player->time[MANA_TIME] -= dtime / 60;
+    if (player->time[MANA_TIME] < 0)
+        player->time[MANA_TIME] = 0;
+    player->mana.current = player->time[MANA_TIME];
+}
+
 static void move_player(player_t *player, sfVector2i map_size,
-    int dtime)
+    float dtime)
 {
     sfVector2f *player_pos = &player->map_pos;
-    float speed = PLAYER_SPEED * dtime / (1000.f / 60.f);
+    float speed = player->stats[STAT_SPEED] * dtime;
     sfVector2f d_pos = {0, 0};
     if (sfKeyboard_isKeyPressed(sfKeyQ) && player_pos->x - 32 > 0)
         d_pos.x--;
@@ -40,9 +53,16 @@ static void move_player(player_t *player, sfVector2i map_size,
 
 void update_player(instance_t *instance)
 {
-    int dtime = sfTime_asMilliseconds(sfClock_getElapsedTime(
-        instance->player.update_clock));
-    sfClock_restart(instance->player.update_clock);
+    player_t *player = &instance->player;
+    float dtime = sfTime_asSeconds(sfClock_getElapsedTime(player->clock));
+    sfClock_restart(player->clock);
+    if (!sfRenderWindow_hasFocus(instance->window_params.window))
+        return;
+    update_times(player, dtime);
+    if (player->time[TIME_REGEN] > player->stats[STAT_REGEN_TIME]
+        && player->health.current < player->health.max) {
+        player->health.current += player->stats[STAT_REGEN] * dtime;
+    }
     move_player(&instance->player, instance->map->size, dtime);
     sfView *view =
         (sfView *) sfRenderWindow_getView(instance->window_params.window);

@@ -25,7 +25,7 @@
 #define PLAYER_HEIGHT 32
 
 #define PLAYER_SPEED 4
-#define ENEMY_SPEED 2
+#define ENEMY_SPEED 180
 
 #define ENEMY_COUNT 3
 
@@ -123,7 +123,7 @@ typedef struct {
 
 typedef struct {
     float current;
-    int max;
+    float max;
 } barector;
 
 typedef struct {
@@ -144,10 +144,27 @@ typedef struct {
     sfRectangleShape *bbox_shape;
 } enemy_t;
 
+enum time_values {
+    TIME_REGEN,
+    MANA_TIME,
+
+    TIME_COUNT
+};
+
+enum stats_value {
+    STAT_DEFENSE,
+    STAT_SPEED,
+    STAT_STRENGTH,
+    STAT_REGEN,
+    STAT_REGEN_TIME,
+    STAT_COUNT
+};
+
 typedef struct {
-    sfClock *update_clock;
-    sfClock *sprite_clock;
+    sfClock *clock;
     sfSprite *sprite;
+    float time[TIME_COUNT];
+    float stats[STAT_COUNT];
     sfVector2f map_pos;
     sfFloatRect bbox;
     sfVector2f pos;
