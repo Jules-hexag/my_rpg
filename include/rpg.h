@@ -24,10 +24,30 @@
 #define PLAYER_WIDTH 16
 #define PLAYER_HEIGHT 32
 
+#define PLAYER_SPEED 4
+#define ENEMY_SPEED 180
+
+#define ENEMY_COUNT 3
+
 #include <stdbool.h>
 #include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics/View.h>
 #include <SFML/System/Clock.h>
+#include "binary_heap.h"
+
+struct queue {
+    void *queue[ENEMY_COUNT];
+    int last;
+    int head;
+};
+
+enum texture_type {
+    TEXTURE_PLAYER,
+    TEXTURE_NPC,
+    TEXTURE_TILESET,
+    TEXTURE_ENEMY,
+    TEXTURE_COUNT
+};
 
 enum button_state_e {
     NONE,
@@ -102,8 +122,8 @@ typedef struct {
 
 
 typedef struct {
-    int current;
-    int max;
+    float current;
+    float max;
 } barector;
 
 typedef struct {
@@ -116,15 +136,37 @@ typedef struct {
 typedef struct {
     sfClock *sprite_clock;
     sfSprite *sprite;
+    enum enemy_state {ALIVE, DEAD} state;
+    float player_dist;
     sfVector2f pos;
     barector health;
-} ennemy_t;
+    sfFloatRect bbox;
+    sfRectangleShape *bbox_shape;
+} enemy_t;
+
+enum time_values {
+    TIME_REGEN,
+    MANA_TIME,
+
+    TIME_COUNT
+};
+
+enum stats_value {
+    STAT_DEFENSE,
+    STAT_SPEED,
+    STAT_STRENGTH,
+    STAT_REGEN,
+    STAT_REGEN_TIME,
+    STAT_COUNT
+};
 
 typedef struct {
-    sfClock *update_clock;
-    sfClock *sprite_clock;
+    sfClock *clock;
     sfSprite *sprite;
+    float time[TIME_COUNT];
+    float stats[STAT_COUNT];
     sfVector2f map_pos;
+    sfFloatRect bbox;
     sfVector2f pos;
     enum player_state state;
     barector health;
@@ -170,10 +212,13 @@ enum menus {
 
 struct instance_s {
     enum game_state menu_state;
-    map_t map[2];
+    sfTexture *texture[TEXTURE_COUNT];
+    int enemy_behind;
+    map_t map[MAP_COUNTER];
     window_params_t window_params;
     npc_t npc[2];
-    ennemy_t ennemies[10];
+    enemy_t enemies[ENEMY_COUNT];
+    binary_heap *enemy_heap;
     menu_t menus[MENU_COUNT];
     player_t player;
     speeches_t speeches;
@@ -187,7 +232,8 @@ void rpg_loop(instance_t *instance);
 
 bool is_exec_errors(int argc, char const *const *argv,
     char const *const *envp);
-
+int enemy_pos(void *enemy);
+int enemy_value(void *enemy);
 int my_strncmp(char const *s1, char const *s2, int n);
 sfSprite *gen_sprite_shape(char *texture_path, sfVector2f pos);
 
@@ -198,13 +244,14 @@ void tutorial(instance_t *instance);
 void settings(instance_t *instance);
 void quit_game(instance_t *instance);
 
-map_t init_map(char *struct_path);
-player_t init_player(void);
+map_t init_map(char *struct_path, instance_t *instance);
+player_t init_player(instance_t *instance);
 instance_t init_instance(void);
+void gen_array_vertex(map_t *map);
 sfRenderWindow *init_window(void);
 menu_t init_start_menu(window_params_t *window_params);
-void gen_array_vertex(map_t *map);
 void init_bars(instance_t *instance);
+void init_enemies(instance_t *instance);
 sfText *init_text(char *str_text);
 
 void render_game_map(instance_t *instance);
@@ -213,6 +260,8 @@ void render_game(instance_t *instance);
 void render_start_menu(instance_t *instance);
 void render_player(instance_t *instances);
 void render_bars(instance_t *instances);
+void render_front_enemy(instance_t *instance);
+void render_back_enemy(instance_t *instance);
 void render_tutorial(instance_t *instance);
 
 void update_instance(instance_t *instance);
@@ -220,6 +269,7 @@ void update_bars(instance_t *instance);
 void update_player(instance_t *instance);
 void update_game(instance_t *instance);
 void update_start_menu(instance_t *instance);
+void update_enemy(instance_t *instance);
 void update_tutorial(instance_t *instance);
 
 void manage_game_events(instance_t *instance, sfEvent event);
