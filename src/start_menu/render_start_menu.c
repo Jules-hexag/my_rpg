@@ -12,7 +12,7 @@
 void render_start_menu(instance_t *instance)
 {
     sfRenderWindow *window = instance->window_params.window;
-    menu_button_t *buttons = instance->menus->buttons;
+    menu_button_t *buttons = instance->menus[START_MENU].buttons;
     sfRenderWindow_drawSprite(window, instance->window_params.menu_background,
         NULL);
     for (int smb_rect = 0; smb_rect < SMB_COUNT; smb_rect++)

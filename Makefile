@@ -32,6 +32,11 @@ SRC			=	src/main.c \
 				src/player/init_player.c \
 				src/player/render_player.c \
 				src/player/update_player.c \
+				src/settings/init_settings.c \
+				src/settings/manage_settings_events.c \
+				src/settings/render_settings.c \
+				src/settings/settings_functions/buttons_funcs.c \
+				src/settings/update_settings.c \
 				src/start_menu/start_menu_funcs/buttons_funcs.c \
 				src/start_menu/init_start_menu.c \
 				src/start_menu/manage_start_menu_events.c \

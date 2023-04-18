@@ -2,24 +2,20 @@
 ** EPITECH PROJECT, 2023
 ** my_rpg
 ** File description:
-** generate_menu
+** init_settings
 */
 
 #include <SFML/Graphics/RectangleShape.h>
-#include <SFML/System/Vector2.h>
 #include "rpg.h"
 
-static void (*buttons_func[5])(instance_t *instance) = {
-    &play_game,
-    &resume_game,
-    &tutorial,
-    &settings,
-    &quit_game,
+static void (*buttons_func[2])(instance_t *instance) = {
+    set_windowed,
+    set_fullscreen,
 };
 
-static menu_button_t init_SMbutton(window_params_t *window_params, int nb)
+static menu_button_t init_STTbutton(window_params_t *window_params, int nb)
 {
-    char *text[5] = {"Play", "Resume", "Tutorial", "Settings", "Quit"};
+    char *text[2] = {"Windowed", "Full Screen"};
     sfRectangleShape *rectangle = sfRectangleShape_create();
     sfRectangleShape_setOutlineThickness(rectangle, (float) 2);
     sfRectangleShape_setOutlineColor(rectangle, sfWhite);
@@ -34,13 +30,13 @@ static menu_button_t init_SMbutton(window_params_t *window_params, int nb)
     return button;
 }
 
-menu_t init_start_menu(window_params_t *window_params)
+menu_t init_settings(window_params_t *window_params)
 {
-    static menu_button_t buttons[SMB_COUNT];
+    static menu_button_t buttons[STT_BUTTON_COUNT];
 
-    for (int smb_init = 0; smb_init < SMB_COUNT; smb_init++) {
-        buttons[smb_init] = init_SMbutton(window_params, smb_init);
-        buttons[smb_init].button_func = buttons_func[smb_init];
+    for (int stt_init = 0; stt_init < STT_BUTTON_COUNT; stt_init++) {
+        buttons[stt_init] = init_STTbutton(window_params, stt_init);
+        buttons[stt_init].button_func = buttons_func[stt_init];
     }
 
     static menu_t menu = {.buttons = buttons};

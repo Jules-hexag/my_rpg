@@ -19,7 +19,7 @@ static const sfColor smb_colors[3] = {
     [PRESSED] = {66, 1, 9, 200},
 };
 
-static void update_button_size(menu_button_t *button, window_params_t *params)
+static void update_SMbutton_size(menu_button_t *button, window_params_t *params)
 {
     sfVector2u const win_size = params->size;
     sfVector2f size = {win_size.x / 3, win_size.y / 10};
@@ -27,7 +27,7 @@ static void update_button_size(menu_button_t *button, window_params_t *params)
     sfRectangleShape_setSize(button->button, size);
 }
 
-static void update_button_pos(menu_button_t *button, window_params_t *params,
+static void update_SMbutton_pos(menu_button_t *button, window_params_t *params,
     int nb)
 {
     sfVector2u const win_size = params->size;
@@ -40,7 +40,7 @@ static void update_button_pos(menu_button_t *button, window_params_t *params,
     sfRectangleShape_setPosition(button->button, pos);
 }
 
-static void update_button_text(menu_button_t *button, window_params_t *params)
+static void update_SMbutton_text(menu_button_t *button, window_params_t *params)
 {
     sfVector2f pos = sfRectangleShape_getPosition(button[0].button);
     pos.x = pos.x + button->size.x / 4;
@@ -56,7 +56,7 @@ static void update_button_text(menu_button_t *button, window_params_t *params)
     sfText_setPosition(button->text, (sfVector2f) {pos.x, pos.y});
 }
 
-static void update_button_color(menu_button_t *button)
+void update_button_color(menu_button_t *button)
 {
     if (button->button_state == HOVER && sfMouse_isButtonPressed(sfMouseLeft))
         button->button_state = PRESSED;
@@ -68,11 +68,11 @@ void update_start_menu(instance_t *instance)
 {
     menu_t *menu = &instance->menus[START_MENU];
     for (int i = 0; i < SMB_COUNT; i++) {
-        update_button_size(&menu->buttons[i], &instance->window_params);
-        update_button_pos(&menu->buttons[i], &instance->window_params, i);
+        update_SMbutton_size(&menu->buttons[i], &instance->window_params);
+        update_SMbutton_pos(&menu->buttons[i], &instance->window_params, i);
         menu->buttons[i].rect = sfRectangleShape_getGlobalBounds(
             menu->buttons[i].button);
         update_button_color(&menu->buttons[i]);
-        update_button_text(&menu->buttons[i], &instance->window_params);
+        update_SMbutton_text(&menu->buttons[i], &instance->window_params);
     }
 }
