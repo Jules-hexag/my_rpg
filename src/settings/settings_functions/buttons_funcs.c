@@ -25,5 +25,5 @@ void set_fullscreen(instance_t *instance)
 
 void settings_back(instance_t *instance)
 {
-    instance->menu_state = IN_START_MENU;
+    instance->menu_state = instance->previous_state;
 }

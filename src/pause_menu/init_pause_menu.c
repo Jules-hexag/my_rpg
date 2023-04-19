@@ -12,7 +12,7 @@ static void (*buttons_func[5])(instance_t *instance) = {
     &depause_game,
     &save_game,
     &load_game,
-    &settings,
+    &pause_to_settings,
     &quit_game,
 };
 

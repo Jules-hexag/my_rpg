@@ -10,6 +10,7 @@
 
 void depause_game(instance_t *instance)
 {
+    instance->previous_state = IN_PAUSE_MENU;
     instance->menu_state = IN_GAME;
 }
 
@@ -21,4 +22,10 @@ void save_game(instance_t *instance)
 void load_game(instance_t *instance)
 {
     sfRenderWindow_close(instance->window_params.window);
+}
+
+void pause_to_settings(instance_t *instance)
+{
+    instance->previous_state = IN_PAUSE_MENU;
+    instance->menu_state = IN_SETTINGS;
 }

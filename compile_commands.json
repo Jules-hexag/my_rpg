@@ -2,27 +2,9 @@
   {
     "arguments": [
       "/usr/bin/gcc",
-      "-O2",
       "-Wall",
       "-Wextra",
-      "-std=c2x",
-      "-I./include",
-      "-c",
-      "-o",
-      "src/rpg.o",
-      "src/rpg.c"
-    ],
-    "directory": "/home/jules/Epitech/my_rpg",
-    "file": "/home/jules/Epitech/my_rpg/src/rpg.c",
-    "output": "/home/jules/Epitech/my_rpg/src/rpg.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/gcc",
-      "-O2",
-      "-Wall",
-      "-Wextra",
-      "-std=c2x",
+      "-std=gnu2x",
       "-I./include",
       "-c",
       "-o",
@@ -36,18 +18,657 @@
   {
     "arguments": [
       "/usr/bin/gcc",
-      "-O2",
       "-Wall",
       "-Wextra",
-      "-std=c2x",
+      "-std=gnu2x",
       "-I./include",
       "-c",
       "-o",
-      "src/game_loop.o",
-      "src/game_loop.c"
+      "src/rpg.o",
+      "src/rpg.c"
     ],
     "directory": "/home/jules/Epitech/my_rpg",
-    "file": "/home/jules/Epitech/my_rpg/src/game_loop.c",
-    "output": "/home/jules/Epitech/my_rpg/src/game_loop.o"
+    "file": "/home/jules/Epitech/my_rpg/src/rpg.c",
+    "output": "/home/jules/Epitech/my_rpg/src/rpg.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/rpg_loop.o",
+      "src/rpg_loop.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/rpg_loop.c",
+    "output": "/home/jules/Epitech/my_rpg/src/rpg_loop.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/bars/init_bars.o",
+      "src/bars/init_bars.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/bars/init_bars.c",
+    "output": "/home/jules/Epitech/my_rpg/src/bars/init_bars.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/bars/render_bars.o",
+      "src/bars/render_bars.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/bars/render_bars.c",
+    "output": "/home/jules/Epitech/my_rpg/src/bars/render_bars.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/bars/update_bars.o",
+      "src/bars/update_bars.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/bars/update_bars.c",
+    "output": "/home/jules/Epitech/my_rpg/src/bars/update_bars.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/binary_heap/binary_heap.o",
+      "src/binary_heap/binary_heap.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/binary_heap/binary_heap.c",
+    "output": "/home/jules/Epitech/my_rpg/src/binary_heap/binary_heap.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/binary_heap/binary_heap2.o",
+      "src/binary_heap/binary_heap2.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/binary_heap/binary_heap2.c",
+    "output": "/home/jules/Epitech/my_rpg/src/binary_heap/binary_heap2.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/enemies/init_enemy.o",
+      "src/enemies/init_enemy.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/enemies/init_enemy.c",
+    "output": "/home/jules/Epitech/my_rpg/src/enemies/init_enemy.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/enemies/render_enemy.o",
+      "src/enemies/render_enemy.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/enemies/render_enemy.c",
+    "output": "/home/jules/Epitech/my_rpg/src/enemies/render_enemy.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/enemies/update_enemy.o",
+      "src/enemies/update_enemy.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/enemies/update_enemy.c",
+    "output": "/home/jules/Epitech/my_rpg/src/enemies/update_enemy.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/errors/check_exec_errors.o",
+      "src/errors/check_exec_errors.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/errors/check_exec_errors.c",
+    "output": "/home/jules/Epitech/my_rpg/src/errors/check_exec_errors.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/events/start_menu_evts/hover_colorization.o",
+      "src/events/start_menu_evts/hover_colorization.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/events/start_menu_evts/hover_colorization.c",
+    "output": "/home/jules/Epitech/my_rpg/src/events/start_menu_evts/hover_colorization.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/game/manage_game_events.o",
+      "src/game/manage_game_events.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/game/manage_game_events.c",
+    "output": "/home/jules/Epitech/my_rpg/src/game/manage_game_events.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/game/render_game.o",
+      "src/game/render_game.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/game/render_game.c",
+    "output": "/home/jules/Epitech/my_rpg/src/game/render_game.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/game/update_game.o",
+      "src/game/update_game.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/game/update_game.c",
+    "output": "/home/jules/Epitech/my_rpg/src/game/update_game.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/instance/destroy_instance.o",
+      "src/instance/destroy_instance.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/instance/destroy_instance.c",
+    "output": "/home/jules/Epitech/my_rpg/src/instance/destroy_instance.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/instance/init_instance.o",
+      "src/instance/init_instance.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/instance/init_instance.c",
+    "output": "/home/jules/Epitech/my_rpg/src/instance/init_instance.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/instance/update_instance.o",
+      "src/instance/update_instance.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/instance/update_instance.c",
+    "output": "/home/jules/Epitech/my_rpg/src/instance/update_instance.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/inventory/init_inventory.o",
+      "src/inventory/init_inventory.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/inventory/init_inventory.c",
+    "output": "/home/jules/Epitech/my_rpg/src/inventory/init_inventory.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/map/destroy_map.o",
+      "src/map/destroy_map.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/map/destroy_map.c",
+    "output": "/home/jules/Epitech/my_rpg/src/map/destroy_map.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/map/init_map.o",
+      "src/map/init_map.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/map/init_map.c",
+    "output": "/home/jules/Epitech/my_rpg/src/map/init_map.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/map/render_map.o",
+      "src/map/render_map.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/map/render_map.c",
+    "output": "/home/jules/Epitech/my_rpg/src/map/render_map.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/map/vertex_operations.o",
+      "src/map/vertex_operations.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/map/vertex_operations.c",
+    "output": "/home/jules/Epitech/my_rpg/src/map/vertex_operations.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/pause_menu/pause_menu_funcs/buttons_funcs.o",
+      "src/pause_menu/pause_menu_funcs/buttons_funcs.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/pause_menu/pause_menu_funcs/buttons_funcs.c",
+    "output": "/home/jules/Epitech/my_rpg/src/pause_menu/pause_menu_funcs/buttons_funcs.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/pause_menu/init_pause_menu.o",
+      "src/pause_menu/init_pause_menu.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/pause_menu/init_pause_menu.c",
+    "output": "/home/jules/Epitech/my_rpg/src/pause_menu/init_pause_menu.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/pause_menu/manage_pause_menu_events.o",
+      "src/pause_menu/manage_pause_menu_events.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/pause_menu/manage_pause_menu_events.c",
+    "output": "/home/jules/Epitech/my_rpg/src/pause_menu/manage_pause_menu_events.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/pause_menu/render_pause_menu.o",
+      "src/pause_menu/render_pause_menu.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/pause_menu/render_pause_menu.c",
+    "output": "/home/jules/Epitech/my_rpg/src/pause_menu/render_pause_menu.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/pause_menu/update_pause_menu.o",
+      "src/pause_menu/update_pause_menu.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/pause_menu/update_pause_menu.c",
+    "output": "/home/jules/Epitech/my_rpg/src/pause_menu/update_pause_menu.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/player/attack_zombies.o",
+      "src/player/attack_zombies.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/player/attack_zombies.c",
+    "output": "/home/jules/Epitech/my_rpg/src/player/attack_zombies.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/player/init_player.o",
+      "src/player/init_player.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/player/init_player.c",
+    "output": "/home/jules/Epitech/my_rpg/src/player/init_player.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/player/render_player.o",
+      "src/player/render_player.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/player/render_player.c",
+    "output": "/home/jules/Epitech/my_rpg/src/player/render_player.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/player/update_player.o",
+      "src/player/update_player.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/player/update_player.c",
+    "output": "/home/jules/Epitech/my_rpg/src/player/update_player.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/settings/init_settings.o",
+      "src/settings/init_settings.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/settings/init_settings.c",
+    "output": "/home/jules/Epitech/my_rpg/src/settings/init_settings.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/settings/manage_settings_events.o",
+      "src/settings/manage_settings_events.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/settings/manage_settings_events.c",
+    "output": "/home/jules/Epitech/my_rpg/src/settings/manage_settings_events.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/settings/render_settings.o",
+      "src/settings/render_settings.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/settings/render_settings.c",
+    "output": "/home/jules/Epitech/my_rpg/src/settings/render_settings.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/settings/settings_functions/buttons_funcs.o",
+      "src/settings/settings_functions/buttons_funcs.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/settings/settings_functions/buttons_funcs.c",
+    "output": "/home/jules/Epitech/my_rpg/src/settings/settings_functions/buttons_funcs.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/settings/settings_functions/volume/init_volume.o",
+      "src/settings/settings_functions/volume/init_volume.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/settings/settings_functions/volume/init_volume.c",
+    "output": "/home/jules/Epitech/my_rpg/src/settings/settings_functions/volume/init_volume.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/settings/settings_functions/volume/render_volume.o",
+      "src/settings/settings_functions/volume/render_volume.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/settings/settings_functions/volume/render_volume.c",
+    "output": "/home/jules/Epitech/my_rpg/src/settings/settings_functions/volume/render_volume.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/settings/settings_functions/volume/update_volume.o",
+      "src/settings/settings_functions/volume/update_volume.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/settings/settings_functions/volume/update_volume.c",
+    "output": "/home/jules/Epitech/my_rpg/src/settings/settings_functions/volume/update_volume.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/settings/update_settings.o",
+      "src/settings/update_settings.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/settings/update_settings.c",
+    "output": "/home/jules/Epitech/my_rpg/src/settings/update_settings.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Wall",
+      "-Wextra",
+      "-std=gnu2x",
+      "-I./include",
+      "-c",
+      "-o",
+      "src/start_menu/start_menu_funcs/buttons_funcs.o",
+      "src/start_menu/start_menu_funcs/buttons_funcs.c"
+    ],
+    "directory": "/home/jules/Epitech/my_rpg",
+    "file": "/home/jules/Epitech/my_rpg/src/start_menu/start_menu_funcs/buttons_funcs.c",
+    "output": "/home/jules/Epitech/my_rpg/src/start_menu/start_menu_funcs/buttons_funcs.o"
   }
 ]

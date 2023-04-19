@@ -140,6 +140,7 @@ enum SPRITE_DIR {
 
 typedef struct instance_s {
     binary_heap *enemy_heap;
+    enum game_state previous_state;
     sfTexture *texture[TEXTURE_COUNT];
     map_t map[MAP_COUNTER];
     enemy_t enemy[MAP_COUNTER][MAX_ENEMIES];
@@ -172,6 +173,7 @@ void attack_zombies(instance_t *instance);
 char *my_itoa(unsigned int nbr);
 char *my_strcat(char *dest, const char *src);
 void change_volume(instance_t *instance);
+void pause_to_settings(instance_t *instance);
 
 /*  BUTTONS FUNCTIONS   (start menu)    */
 void play_game(void *instance);
