@@ -33,7 +33,8 @@ static void update_sm_button_pos(menu_button_t *button, window_params *params,
 {
     sfVector2u const win_size = params->size;
     sfVector2f const button_size = button->size;
-    const int di = (win_size.y - (SMB_COUNT) * button_size.y) / (SMB_COUNT + 1);
+    const int di = (win_size.y - (SMB_BUTTON_COUNT) * button_size.y) /
+        (SMB_BUTTON_COUNT + 1);
     sfVector2i posi = {win_size.x / 2 - button_size.x / 2,
         di + nb * (di + button_size.y)};
     sfVector2f pos = sfRenderWindow_mapPixelToCoords(params->window, posi,
@@ -69,7 +70,7 @@ void update_button_color(menu_button_t *button)
 void update_start_menu(instance_t *instance)
 {
     menu_t *menu = &instance->menus[START_MENU];
-    for (int i = 0; i < SMB_COUNT; i++) {
+    for (int i = 0; i < SMB_BUTTON_COUNT; i++) {
         update_sm_button_size(&menu->buttons[i], &instance->window_params);
         update_sm_button_pos(&menu->buttons[i], &instance->window_params, i);
         menu->buttons[i].rect = sfRectangleShape_getGlobalBounds(

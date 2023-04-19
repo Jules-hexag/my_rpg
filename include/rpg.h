@@ -58,8 +58,7 @@ enum start_menu_button {
     SMB_TUTORIAL,
     SMB_SETTINGS,
     SMB_QUIT,
-
-    SMB_COUNT
+    SMB_BUTTON_COUNT
 };
 
 enum settings_items {
@@ -68,6 +67,16 @@ enum settings_items {
     STT_BACK,
 
     STT_BUTTON_COUNT,
+};
+
+enum pause_items {
+    PMB_RESUME,
+    PMB_SAVE,
+    PMB_LOAD,
+    PMB_SETTINGS,
+    PMB_QUIT,
+
+    PMB_BUTTON_COUNT,
 };
 
 typedef struct {
@@ -170,6 +179,11 @@ void resume_game(void *instance);
 void tutorial(void *instance);
 void settings(void *instance);
 void quit_game(void *instance);
+/*  BUTTONS FUNCTIONS   (start menu & pause menu)    */
+void depause_game(instance_t *instance);
+void save_game(instance_t *instance);
+void load_game(instance_t *instance);
+
 
 /*  BUTTONS FUNCTIONS   (settings)    */
 void set_windowed(instance_t *instance);
@@ -182,6 +196,7 @@ instance_t init_instance(void);
 void gen_array_vertex(map_t *map);
 sfRenderWindow *init_window(void);
 menu_t init_start_menu(void);
+menu_t init_pause_menu(void);
 menu_t init_settings(void);
 void init_bars(instance_t *instance);
 void init_enemies(instance_t *instance);
@@ -195,6 +210,7 @@ void render_game_map(instance_t *instance);
 void render_tutorial_map(instance_t *instance);
 void render_game(instance_t *instance);
 void render_start_menu(instance_t *instance);
+void render_pause_menu(instance_t *instance);
 void render_player(instance_t *instances);
 void render_bars(instance_t *instances);
 void render_front_enemy(instance_t *instance);
@@ -208,6 +224,7 @@ void update_bars(instance_t *instance);
 void update_player(instance_t *instance);
 void update_game(instance_t *instance);
 void update_start_menu(instance_t *instance);
+void update_pause_menu(instance_t *instance);
 void update_enemy(instance_t *instance);
 void update_tutorial(instance_t *instance);
 void update_settings(instance_t *instance);
@@ -216,6 +233,7 @@ void update_volume(instance_t *instance);
 
 void manage_game_events(instance_t *instance, sfEvent event);
 void manage_start_menu_events(instance_t *instance, sfEvent event);
+void manage_pause_menu_events(instance_t *instance, sfEvent event);
 void manage_tutorial_events(instance_t *instance, sfEvent event);
 void manage_settings_events(instance_t *instance, sfEvent event);
 void manage_key_pressed(instance_t *instance, sfEvent event);

@@ -15,6 +15,7 @@ static void (*const events_functions[]) (instance_t *, sfEvent) = {
     [IN_START_MENU] = &manage_start_menu_events,
     [IN_TUTORIAL] = &manage_tutorial_events,
     [IN_SETTINGS] = &manage_settings_events,
+    [IN_PAUSE_MENU] = &manage_pause_menu_events,
 };
 
 static void (*const update_functions[]) (instance_t *) = {
@@ -22,6 +23,7 @@ static void (*const update_functions[]) (instance_t *) = {
     [IN_START_MENU] = &update_start_menu,
     [IN_TUTORIAL] = &update_tutorial,
     [IN_SETTINGS] = &update_settings,
+    [IN_PAUSE_MENU] = &update_pause_menu,
 };
 
 static void (*const render_functions[]) (instance_t *) = {
@@ -29,6 +31,7 @@ static void (*const render_functions[]) (instance_t *) = {
     [IN_START_MENU] = &render_start_menu,
     [IN_TUTORIAL] = &render_tutorial,
     [IN_SETTINGS] = &render_settings,
+    [IN_PAUSE_MENU] = &render_pause_menu,
 };
 
 void resize_event(instance_t *instance)

@@ -14,7 +14,7 @@ static void mouse_moved_evt(window_params *window_stats, menu_t *start_menu)
     sfVector2f pos_mouse = sfRenderWindow_mapPixelToCoords(window_stats->window,
         pos_mouse_pix, NULL);
 
-    for (int i = 0; i < SMB_COUNT; i++) {
+    for (int i = 0; i < SMB_BUTTON_COUNT; i++) {
         if (sfFloatRect_contains(&start_menu->buttons[i].rect, pos_mouse.x,
             pos_mouse.y)) {
             start_menu->buttons[i].button_state = HOVER;
@@ -26,7 +26,7 @@ static void mouse_moved_evt(window_params *window_stats, menu_t *start_menu)
 
 static void mouse_released_evt(instance_t *instance, menu_t *start_menu)
 {
-    for (int i = 0; i < SMB_COUNT; i++) {
+    for (int i = 0; i < SMB_BUTTON_COUNT; i++) {
         if (start_menu->buttons[i].button_state == PRESSED)
             start_menu->buttons[i].button_func(instance);
     }
