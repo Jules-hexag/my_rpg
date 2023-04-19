@@ -15,5 +15,5 @@ int main(int argc, char **argv, char **envp)
         return 84;
     }
 
-    return rpg(argc, (char const *const *) argv[1]);
+    return rpg(argc, (char const *const *) argv);
 }
