@@ -9,7 +9,7 @@
 #include <SFML/System/Vector2.h>
 #include "rpg.h"
 
-static void (*buttons_func[5])(instance_t *instance) = {
+static void (*buttons_func[5])(void *instance) = {
     &play_game,
     &resume_game,
     &tutorial,

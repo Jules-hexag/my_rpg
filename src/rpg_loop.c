@@ -6,8 +6,8 @@
 */
 
 #include <SFML/Graphics/Color.h>
-#include <SFML/Graphics/Sprite.h>
 #include <SFML/Graphics/RenderWindow.h>
+#include <SFML/Graphics/View.h>
 #include "rpg.h"
 
 static void (*const events_functions[]) (instance_t *, sfEvent) = {
@@ -33,7 +33,7 @@ static void (*const render_functions[]) (instance_t *) = {
 
 void resize_event(instance_t *instance)
 {
-    window_params_t *window_params = &instance->window_params;
+    window_params *window_params = &instance->window_params;
     sfVector2u new_size = sfRenderWindow_getSize(window_params->window);
     sfView *view = sfView_create();
     sfView_setSize(view, (sfVector2f) {(float) new_size.x,

@@ -9,14 +9,14 @@
 
 void attack_zombies(instance_t *instance)
 {
-    player_t *player = &instance->player;
-    if (player->time[TIME_ATTACK] > 0 || !sfKeyboard_isKeyPressed(sfKeySpace))
+    player *player = &instance->player;
+    if (player->clocks[TIME_ATTACK] > 0 || !sfKeyboard_isKeyPressed(sfKeySpace))
         return;
-    for (int i = 0; i < ENEMY_COUNT; i++) {
-        enemy_t *zombie = &instance->enemies[i];
-        if (zombie->state == DEAD || zombie->etp[ETP_DIST] > 64)
+    for (int i = 0; i < instance->enemy_count[instance->current_map]; i++) {
+        enemy_t *zombie = &instance->enemy[instance->current_map][i];
+        if (zombie->is_dead || zombie->etp[ETP_DIST] > 64)
             continue;
         zombie->health.current -= player->stats[STAT_STRENGTH];
     }
-    player->time[TIME_ATTACK] = player->stats[STAT_ATTACK_SPEED];
+    player->clocks[TIME_ATTACK] = player->stats[STAT_ATTACK_SPEED];
 }

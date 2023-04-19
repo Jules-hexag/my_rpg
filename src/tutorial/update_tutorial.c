@@ -10,5 +10,6 @@
 void update_tutorial(instance_t *instance)
 {
     update_player(instance);
+    update_enemy(instance);
     update_bars(instance);
 }

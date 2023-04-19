@@ -15,34 +15,35 @@
 #include <math.h>
 #include "rpg.h"
 
-void update_sprite(player_t *player)
+void update_sprite(player *player)
 {
     enum SPRITE_DIR dir = (((int) (player->stats[STAT_ANGLE] * 180 / M_PI)
         + 360) % 360) / 45;
     if (!sfKeyboard_isKeyPressed(sfKeyD) && dir == 0)
         dir = 2;
     sfSprite_setTextureRect(player->sprite,
-        (sfIntRect) {player->sprite_nb * 16 * player->walk, dir * 32, 16, 32});
+        (sfIntRect) {player->sprite_frame * 16 * player->is_walking, dir * 32,
+            16, 32});
 }
 
-void update_times(player_t *player)
+void update_times(player *player)
 {
     float dtime = sfTime_asSeconds(sfClock_getElapsedTime(player->clock));
-    player->time[TIME_REGEN] += dtime;
-    if (player->time[TIME_REGEN] > player->stats[STAT_REGEN_TIME]
+    player->clocks[TIME_REGEN] += dtime;
+    if (player->clocks[TIME_REGEN] > player->stats[STAT_REGEN_TIME]
         && player->health.current < player->health.max)
         player->health.current += player->stats[STAT_REGEN] * dtime;
-    player->time[TIME_MANA] -= dtime / 60;
-    if (player->time[TIME_MANA] < 0)
-        player->time[TIME_MANA] = 0;
-    player->mana.current = player->time[TIME_MANA];
-    player->time[TIME_ATTACK] -= dtime;
-    if (player->time[TIME_ATTACK] < 0)
-        player->time[TIME_ATTACK] = 0;
-    player->time[TIME_SPRITE] += dtime;
-    if (player->time[TIME_SPRITE] > 0.1f) {
-        player->time[TIME_SPRITE] = 0;
-        player->sprite_nb = (player->sprite_nb + 1) % 6;
+    player->clocks[TIME_MANA] -= dtime / 60;
+    if (player->clocks[TIME_MANA] < 0)
+        player->clocks[TIME_MANA] = 0;
+    player->mana.current = player->clocks[TIME_MANA];
+    player->clocks[TIME_ATTACK] -= dtime;
+    if (player->clocks[TIME_ATTACK] < 0)
+        player->clocks[TIME_ATTACK] = 0;
+    player->clocks[TIME_SPRITE] += dtime;
+    if (player->clocks[TIME_SPRITE] > 0.1f) {
+        player->clocks[TIME_SPRITE] = 0;
+        player->sprite_frame = (player->sprite_frame + 1) % 6;
     }
 }
 
@@ -62,13 +63,13 @@ static void get_keys(sfVector2f *d_pos, sfVector2i map_size, sfVector2f p_pos,
         *walk = true;
 }
 
-static void move_player(player_t *player, sfVector2i map_size)
+static void move_player(player *player, sfVector2i map_size)
 {
     sfVector2f *player_pos = &player->map_pos;
     float dtime = sfTime_asSeconds(sfClock_getElapsedTime(player->clock));
     float speed = player->stats[STAT_SPEED] * dtime;
     sfVector2f d_pos = {0, 0};
-    get_keys(&d_pos, map_size, *player_pos, &player->walk);
+    get_keys(&d_pos, map_size, *player_pos, &player->is_walking);
     player->stats[STAT_ANGLE] = atan2f(d_pos.y, d_pos.x);
     float dist = sqrtf(powf(d_pos.x, 2) + powf(d_pos.y, 2));
     if (dist == 0)
@@ -76,16 +77,16 @@ static void move_player(player_t *player, sfVector2i map_size)
     sfVector2f move = {d_pos.x / dist * speed, d_pos.y / dist * speed};
     player_pos->x += move.x;
     player_pos->y += move.y;
-    player->bbox = (sfFloatRect) {player_pos->x - 32, player_pos->y - 32,
+    player->hitbox = (sfFloatRect) {player_pos->x - 32, player_pos->y - 32,
         64, 64};
 }
 
 void update_player(instance_t *instance)
 {
-    player_t *player = &instance->player;
+    player *player = &instance->player;
     float dtime = sfTime_asSeconds(sfClock_getElapsedTime(player->clock));
     update_times(player);
-    if (player->time[TIME_REGEN] > player->stats[STAT_REGEN_TIME]
+    if (player->clocks[TIME_REGEN] > player->stats[STAT_REGEN_TIME]
         && player->health.current < player->health.max)
         player->health.current += player->stats[STAT_REGEN] * dtime;
 

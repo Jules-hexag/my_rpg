@@ -14,7 +14,7 @@
 #include <SFML/System/Clock.h>
 #include <SFML/System/Vector2.h>
 
-static void create_player_sprite(instance_t *instance, player_t *player)
+static void create_player_sprite(instance_t *instance, player *player)
 {
     sfSprite *p_sprite = sfSprite_create();
     sfIntRect rect = {0, 0, 16, 32};
@@ -28,7 +28,7 @@ static void create_player_sprite(instance_t *instance, player_t *player)
     player->sprite = p_sprite;
 }
 
-void init_stats(player_t *player)
+void init_stats(player *player)
 {
     player->stats[STAT_STRENGTH] = 50;
     player->stats[STAT_ATTACK_SPEED] = 0.5f;
@@ -38,18 +38,18 @@ void init_stats(player_t *player)
     player->stats[STAT_REGEN_TIME] = 3;
 }
 
-player_t init_player(instance_t *instance)
+player init_player(instance_t *instance)
 {
-    player_t player = {0};
+    player player = {0};
     player.map_pos = (sfVector2f) {48, 48};
     player.health = (barector) {8, 8};
     player.mana = (barector) {1, 1};
     player.state = STRAIGHT;
-    player.bbox = (sfFloatRect) {player.map_pos.x - 32, player.map_pos.y - 32,
+    player.hitbox = (sfFloatRect) {player.map_pos.x - 32, player.map_pos.y - 32,
         64, 64};
     player.clock = sfClock_create();
-    player.time[TIME_REGEN] = 0;
-    player.time[TIME_MANA] = player.mana.max;
+    player.clocks[TIME_REGEN] = 0;
+    player.clocks[TIME_MANA] = player.mana.max;
     init_stats(&player);
     create_player_sprite(instance, &player);
     return player;

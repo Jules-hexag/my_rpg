@@ -9,9 +9,9 @@
 #include <SFML/Graphics/Texture.h>
 #include "rpg.h"
 
-static window_params_t init_window_params(void)
+static window_params init_window_params(void)
 {
-    window_params_t window_params = {0};
+    window_params window_params = {0};
 
     window_params.window = init_window();
     window_params.size = (sfVector2u) {800, 800};
@@ -58,13 +58,12 @@ instance_t init_instance(void)
     instance.menu_state = IN_START_MENU;
     instance.window_params = init_window_params();
     if (init_textures(&instance))
-        return instance;
+        return (instance_t) {0};
     instance.map[MAP_GAME] = init_map("res/maps/map1", &instance);
     instance.map[MAP_TUTORIAL] = init_map("res/maps/map1", &instance);
     instance.menus[START_MENU] = init_start_menu();
     instance.menus[SETTINGS] = init_settings();
-    instance.player = init_player(&instance);
-    init_enemies(&instance);
+    init_game(&instance);
     init_bars(&instance);
     instance.volume = init_volume();
     return instance;
