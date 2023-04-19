@@ -29,6 +29,7 @@ SRC			=	src/main.c \
 				src/map/init_map.c \
 				src/map/render_map.c \
 				src/map/vertex_operations.c \
+				src/player/attack_zombies.c \
 				src/player/init_player.c \
 				src/player/render_player.c \
 				src/player/update_player.c \
@@ -71,7 +72,7 @@ RM			=	rm -rvf
 
 CPPFLAGS	=	-I./include -MMD -MP
 
-CFLAGS		=	-Wall -Wextra -std=c2x
+CFLAGS		=	-Wall -Wextra -std=gnu2x
 
 CFLAGS_DEBUG	=	-I./include -ggdb3
 

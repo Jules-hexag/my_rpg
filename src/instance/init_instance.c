@@ -22,7 +22,7 @@ static window_params_t init_window_params(void)
 static int init_textures(instance_t *instance)
 {
     if ((instance->texture[TEXTURE_PLAYER] = sfTexture_createFromFile(
-        "res/player.png", NULL)) == NULL)
+        "res/player_sprite.png", NULL)) == NULL)
         return 1;
     if ((instance->texture[TEXTURE_TILESET] = sfTexture_createFromFile(
         "res/tileset.png", NULL)) == NULL)

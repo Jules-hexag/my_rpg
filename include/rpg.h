@@ -155,6 +155,7 @@ enum time_values {
     TIME_REGEN,
     TIME_MANA,
     TIME_ATTACK,
+    TIME_SPRITE,
 
     TIME_COUNT
 };
@@ -179,6 +180,8 @@ typedef struct {
     sfFloatRect bbox;
     sfVector2f pos;
     enum player_state state;
+    bool walk;
+    unsigned sprite_nb;
     barector health;
     barector mana;
     int nb_mana_pills;
@@ -220,6 +223,17 @@ enum menus {
     MENU_COUNT
 };
 
+enum SPRITE_DIR {
+    SP_E,
+    SP_SE,
+    SP_S,
+    SP_SW,
+    SP_W,
+    SP_NW,
+    SP_N,
+    SP_NE,
+};
+
 struct instance_s {
     enum game_state menu_state;
     sfTexture *texture[TEXTURE_COUNT];
@@ -247,6 +261,7 @@ int enemy_pos(void *enemy);
 int enemy_value(void *enemy);
 int my_strncmp(char const *s1, char const *s2, int n);
 sfSprite *gen_sprite_shape(char *texture_path, sfVector2f pos);
+void attack_zombies(instance_t *instance);
 
 /*  BUTTONS FUNCTIONS   (start menu)    */
 void play_game(instance_t *instance);
