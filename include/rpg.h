@@ -115,8 +115,8 @@ enum game_state {
 enum menus {
     START_MENU,
     SETTINGS,
-    INVENTORY,
     PAUSE,
+    INVENTORY,
 
     MENU_COUNT
 };

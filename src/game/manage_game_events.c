@@ -11,7 +11,7 @@ void manage_key_pressed(instance_t *instance, sfEvent event)
 {
     switch (event.key.code) {
         case sfKeyEscape:
-            instance->menu_state = IN_PAUSE_MENU;
+            instance->menu_state = (instance->menu_state == IN_GAME) ? IN_PAUSE_MENU : IN_GAME;
             break;
         default:
             break;

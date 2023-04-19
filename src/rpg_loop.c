@@ -8,6 +8,7 @@
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics/View.h>
+#include <stdio.h>
 #include "rpg.h"
 
 static void (*const events_functions[]) (instance_t *, sfEvent) = {

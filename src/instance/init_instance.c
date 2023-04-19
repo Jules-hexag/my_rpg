@@ -61,8 +61,8 @@ instance_t init_instance(void)
     instance.map[MAP_GAME] = init_map("res/maps/map1", &instance);
     instance.map[MAP_TUTORIAL] = init_map("res/maps/map1", &instance);
     instance.menus[START_MENU] = init_start_menu();
-    instance.menus[PAUSE] = init_pause_menu();
     instance.menus[SETTINGS] = init_settings();
+    instance.menus[PAUSE] = init_pause_menu();
     init_game(&instance);
     init_bars(&instance);
     instance.volume = init_volume();

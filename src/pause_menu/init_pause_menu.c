@@ -40,6 +40,6 @@ menu_t init_pause_menu(void)
         buttons[pmb_init].button_func = buttons_func[pmb_init];
     }
 
-    static menu_t menu = {.buttons = buttons};
+    menu_t menu = {.buttons = buttons};
     return menu;
 }

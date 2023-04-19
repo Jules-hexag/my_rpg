@@ -8,6 +8,7 @@
 #include <SFML/Graphics/RectangleShape.h>
 #include <SFML/Graphics/Sprite.h>
 #include <SFML/Graphics/Text.h>
+#include <unistd.h>
 #include "rpg.h"
 
 static void update_pm_button_size(menu_button_t *button,
@@ -55,11 +56,11 @@ void update_pause_menu(instance_t *instance)
     menu_t *menu = &instance->menus[PAUSE];
     window_params_t window_params = instance->window_params;
     for (int i = 0; i < PMB_BUTTON_COUNT; i++) {
-        update_pm_button_size(&menu[PAUSE].buttons[i], &window_params);
-        update_pm_button_pos(&menu[PAUSE].buttons[i], &window_params, i);
-        menu[PAUSE].buttons[i].rect = sfRectangleShape_getGlobalBounds(
-            menu[PAUSE].buttons[i].button);
-        update_button_color(&menu[PAUSE].buttons[i]);
-        update_pm_button_text(&menu[PAUSE].buttons[i], &window_params);
+        update_pm_button_size(&menu->buttons[i], &window_params);
+        update_pm_button_pos(&menu->buttons[i], &window_params, i);
+        menu->buttons[i].rect = sfRectangleShape_getGlobalBounds(
+            menu->buttons[i].button);
+        update_button_color(&menu->buttons[i]);
+        update_pm_button_text(&menu->buttons[i], &window_params);
     }
 }
