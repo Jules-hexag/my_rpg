@@ -60,7 +60,7 @@ static void update_sm_button_text(menu_button_t *button,
 
 void update_button_color(menu_button_t *button)
 {
-    if (button->button_state == HOVER && sfMouse_isButtonPressed(sfMouseLeft))
+    if (button->button_state != NONE && sfMouse_isButtonPressed(sfMouseLeft))
         button->button_state = PRESSED;
     sfRectangleShape_setFillColor(button->button,
         smb_colors[button->button_state]);

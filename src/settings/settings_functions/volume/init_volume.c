@@ -7,8 +7,20 @@
 
 #include <SFML/Audio/Types.h>
 #include <SFML/Graphics/RectangleShape.h>
+#include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics/Types.h>
+#include <SFML/System/Vector2.h>
 #include "rpg.h"
+
+void change_volume(instance_t *instance)
+{
+    sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(
+        instance->window_params.window);
+    sfRectangleShape *rectangle = instance->volume.current_volume.button;
+    sfVector2f rect_pos = sfRectangleShape_getPosition(rectangle);
+    rect_pos.x = pos_mouse.x;
+    sfRectangleShape_setPosition(rectangle, rect_pos);
+}
 
 sfMusic *init_music(void)
 {
@@ -25,6 +37,7 @@ menu_button_t init_volume_button(void)
     .button = rectangle,
     .button_state = NONE,
     .text = init_text(text),
+    .button_func = change_volume,
     };
 
     return button;

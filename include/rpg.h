@@ -92,6 +92,7 @@ typedef struct {
     sfMusic *music;
     sfRectangleShape *volume_bg;
     menu_button_t current_volume;
+    float volume;
 } volume_t;
 typedef struct map_s {
     sfVector2i size;
@@ -252,6 +253,8 @@ int enemy_value(void *enemy);
 int my_strncmp(char const *s1, char const *s2, int n);
 sfSprite *gen_sprite_shape(char *texture_path, sfVector2f pos);
 char *my_itoa(unsigned int nbr);
+char *my_strcat(char *dest, const char *src);
+void change_volume(instance_t *instance);
 
 /*  BUTTONS FUNCTIONS   (start menu)    */
 void play_game(instance_t *instance);

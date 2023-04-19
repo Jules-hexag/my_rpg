@@ -27,6 +27,7 @@ static volume_t init_volume(void)
     volume.current_volume = init_volume_button();
     volume.volume_bg = init_volume_bg();
     volume.music = init_music();
+    volume.volume = 1;
 
     return volume;
 }

@@ -54,6 +54,7 @@ SRC			=	src/main.c \
 				src/utils/my_strncmp.c \
 				src/window/init_window.c \
 				src/my_itoa.c \
+				src/my_strcat.c \
 
 TESTS_SRC	=	bonus/tests.c \
 
@@ -71,7 +72,8 @@ TESTS		=	unit_tests
 
 ## LDFLAGS = 	-L./lib
 
-LDLIBS		=	-lcriterion -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -lm
+LDLIBS		=	-lcriterion -lcsfml-graphics -lcsfml-window -lcsfml-system \
+				-lcsfml-audio -lm
 ## -lmy
 
 CC			=	gcc
