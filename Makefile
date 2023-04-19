@@ -21,6 +21,7 @@ SRC			=	src/main.c \
 				src/game/manage_game_events.c \
 				src/game/render_game.c \
 				src/game/update_game.c \
+				src/game/init_game.c \
 				src/instance/destroy_instance.c \
 				src/instance/init_instance.c \
 				src/instance/update_instance.c \
@@ -49,7 +50,6 @@ SRC			=	src/main.c \
 				src/tutorial/manage_tutorial_events.c \
 				src/tutorial/render_tutorial.c \
 				src/tutorial/update_tutorial.c \
-				src/utils/free_arrays.c \
 				src/utils/gen_shapes.c \
 				src/utils/init_text.c \
 				src/utils/my_strncmp.c \
