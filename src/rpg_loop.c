@@ -59,6 +59,8 @@ static void manage_rpg_events(instance_t *instance)
 
 static void update_rpg(instance_t *instance)
 {
+    if (!sfRenderWindow_hasFocus(instance->window_params.window))
+        return;
     update_instance(instance);
     update_functions[instance->menu_state](instance);
 }

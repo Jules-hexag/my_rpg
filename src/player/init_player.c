@@ -30,7 +30,8 @@ static void create_player_sprite(instance_t *instance, player_t *player)
 
 void init_stats(player_t *player)
 {
-    player->stats[STAT_STRENGTH] = 1;
+    player->stats[STAT_STRENGTH] = 50;
+    player->stats[STAT_ATTACK_SPEED] = 0.5f;
     player->stats[STAT_DEFENSE] = 1;
     player->stats[STAT_SPEED] = 240;
     player->stats[STAT_REGEN] = 0.5f;
@@ -48,7 +49,7 @@ player_t init_player(instance_t *instance)
         64, 64};
     player.clock = sfClock_create();
     player.time[TIME_REGEN] = 0;
-    player.time[MANA_TIME] = player.mana.max;
+    player.time[TIME_MANA] = player.mana.max;
     init_stats(&player);
     create_player_sprite(instance, &player);
     return player;
