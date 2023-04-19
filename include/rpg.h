@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "menu.h"
+#include <SFML/Audio.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Types.h>
 #include <SFML/System/Vector2.h>
@@ -65,6 +65,14 @@ enum start_menu_button {
     SMB_COUNT
 };
 
+enum settings_items {
+    STT_WINDOWED,
+    STT_FULLSCREEN,
+    STT_BACK,
+
+    STT_BUTTON_COUNT,
+};
+
 typedef struct instance_s instance_t;
 
 typedef struct {
@@ -81,6 +89,12 @@ typedef struct {
     menu_button_t *buttons;
 } menu_t;
 
+typedef struct {
+    sfMusic *music;
+    sfRectangleShape *volume_bg;
+    menu_button_t current_volume;
+    float volume;
+} volume_t;
 typedef struct map_s {
     sfVector2i size;
     sfTexture *tileset;
@@ -217,6 +231,7 @@ typedef struct {
 
 enum menus {
     START_MENU,
+    SETTINGS,
     INVENTORY,
     PAUSE,
 
@@ -248,6 +263,7 @@ struct instance_s {
     player_t player;
     speeches_t speeches;
     bars_t bars[B_COUNT];
+    volume_t volume;
 };
 
 /* sort all this in different appropriate files */
@@ -262,6 +278,9 @@ int enemy_value(void *enemy);
 int my_strncmp(char const *s1, char const *s2, int n);
 sfSprite *gen_sprite_shape(char *texture_path, sfVector2f pos);
 void attack_zombies(instance_t *instance);
+char *my_itoa(unsigned int nbr);
+char *my_strcat(char *dest, const char *src);
+void change_volume(instance_t *instance);
 
 /*  BUTTONS FUNCTIONS   (start menu)    */
 void play_game(instance_t *instance);
@@ -270,15 +289,24 @@ void tutorial(instance_t *instance);
 void settings(instance_t *instance);
 void quit_game(instance_t *instance);
 
+/*  BUTTONS FUNCTIONS   (settings)    */
+void set_windowed(instance_t *instance);
+void set_fullscreen(instance_t *instance);
+void settings_back(instance_t *instance);
+
 map_t init_map(char *struct_path, instance_t *instance);
 player_t init_player(instance_t *instance);
 instance_t init_instance(void);
 void gen_array_vertex(map_t *map);
 sfRenderWindow *init_window(void);
-menu_t init_start_menu(window_params_t *window_params);
+menu_t init_start_menu(void);
+menu_t init_settings(void);
 void init_bars(instance_t *instance);
 void init_enemies(instance_t *instance);
 sfText *init_text(char *str_text);
+menu_button_t init_volume_button(void);
+sfRectangleShape *init_volume_bg(void);
+sfMusic *init_music(void);
 
 void render_game_map(instance_t *instance);
 void render_tutorial_map(instance_t *instance);
@@ -289,6 +317,8 @@ void render_bars(instance_t *instances);
 void render_front_enemy(instance_t *instance);
 void render_back_enemy(instance_t *instance);
 void render_tutorial(instance_t *instance);
+void render_settings(instance_t *instance);
+void render_volume(instance_t *instance);
 
 void update_instance(instance_t *instance);
 void update_bars(instance_t *instance);
@@ -297,10 +327,14 @@ void update_game(instance_t *instance);
 void update_start_menu(instance_t *instance);
 void update_enemy(instance_t *instance);
 void update_tutorial(instance_t *instance);
+void update_settings(instance_t *instance);
+void update_button_color(menu_button_t *button);
+void update_volume(instance_t *instance);
 
 void manage_game_events(instance_t *instance, sfEvent event);
 void manage_start_menu_events(instance_t *instance, sfEvent event);
 void manage_tutorial_events(instance_t *instance, sfEvent event);
+void manage_settings_events(instance_t *instance, sfEvent event);
 void manage_key_pressed(instance_t *instance, sfEvent event);
 
 void player_move(sfEvent event, instance_t *instance);

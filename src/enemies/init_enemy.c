@@ -6,6 +6,7 @@
 */
 
 #include <SFML/Graphics/Sprite.h>
+#include <SFML/Graphics/RectangleShape.h>
 #include "binary_heap.h"
 #include "rpg.h"
 

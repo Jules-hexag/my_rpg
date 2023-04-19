@@ -9,7 +9,7 @@ on:
 env:
   MIRROR_URL: git@github.com:EpitechPromo2027/B-MUL-200-BDX-2-1-myrpg-antoine1.maurel.git
   EXECUTABLES: my_rpg
-  ALLOWED_FUNCTIONS: malloc free memset rand srand getline stat open fopen read fread close fclose write fwrite opendir readdir closedir
+  ALLOWED_FUNCTIONS: malloc free memset rand srand getline stat open fopen read fread close fclose write fwrite opendir readdir closedir powf sqrtf pow
 
 jobs:
   check_coding_style:
