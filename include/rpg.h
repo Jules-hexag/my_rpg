@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "menu.h"
+#include <SFML/Audio.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Types.h>
 #include <SFML/System/Vector2.h>
@@ -88,6 +88,11 @@ typedef struct {
     menu_button_t *buttons;
 } menu_t;
 
+typedef struct {
+    sfMusic *music;
+    sfRectangleShape *volume_bg;
+    menu_button_t current_volume;
+} volume_t;
 typedef struct map_s {
     sfVector2i size;
     sfTexture *tileset;
@@ -232,6 +237,7 @@ struct instance_s {
     player_t player;
     speeches_t speeches;
     bars_t bars[B_COUNT];
+    volume_t volume;
 };
 
 /* sort all this in different appropriate files */
@@ -245,6 +251,7 @@ int enemy_pos(void *enemy);
 int enemy_value(void *enemy);
 int my_strncmp(char const *s1, char const *s2, int n);
 sfSprite *gen_sprite_shape(char *texture_path, sfVector2f pos);
+char *my_itoa(unsigned int nbr);
 
 /*  BUTTONS FUNCTIONS   (start menu)    */
 void play_game(instance_t *instance);
@@ -263,11 +270,14 @@ player_t init_player(instance_t *instance);
 instance_t init_instance(void);
 void gen_array_vertex(map_t *map);
 sfRenderWindow *init_window(void);
-menu_t init_start_menu(window_params_t *window_params);
-menu_t init_settings(window_params_t *window_params);
+menu_t init_start_menu(void);
+menu_t init_settings(void);
 void init_bars(instance_t *instance);
 void init_enemies(instance_t *instance);
 sfText *init_text(char *str_text);
+menu_button_t init_volume_button(void);
+sfRectangleShape *init_volume_bg(void);
+sfMusic *init_music(void);
 
 void render_game_map(instance_t *instance);
 void render_tutorial_map(instance_t *instance);
@@ -279,6 +289,7 @@ void render_front_enemy(instance_t *instance);
 void render_back_enemy(instance_t *instance);
 void render_tutorial(instance_t *instance);
 void render_settings(instance_t *instance);
+void render_volume(instance_t *instance);
 
 void update_instance(instance_t *instance);
 void update_bars(instance_t *instance);
@@ -289,6 +300,7 @@ void update_enemy(instance_t *instance);
 void update_tutorial(instance_t *instance);
 void update_settings(instance_t *instance);
 void update_button_color(menu_button_t *button);
+void update_volume(instance_t *instance);
 
 void manage_game_events(instance_t *instance, sfEvent event);
 void manage_start_menu_events(instance_t *instance, sfEvent event);

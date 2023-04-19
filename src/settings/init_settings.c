@@ -14,7 +14,7 @@ static void (*buttons_func[3])(instance_t *instance) = {
     &settings_back,
 };
 
-static menu_button_t init_stt_button(window_params_t *window_params, int nb)
+static menu_button_t init_stt_button(int nb)
 {
     char *text[3] = {"Windowed", "Full Screen", "Back"};
     sfRectangleShape *rectangle = sfRectangleShape_create();
@@ -25,18 +25,16 @@ static menu_button_t init_stt_button(window_params_t *window_params, int nb)
     .button_state = NONE,
     .text = init_text(text[nb]),
     };
-    window_params->menu_background = gen_sprite_shape("res/start_menu.jpg",
-        (sfVector2f) {0, 0});
 
     return button;
 }
 
-menu_t init_settings(window_params_t *window_params)
+menu_t init_settings(void)
 {
     static menu_button_t buttons[STT_BUTTON_COUNT];
 
     for (int stt_init = 0; stt_init < STT_BUTTON_COUNT; stt_init++) {
-        buttons[stt_init] = init_stt_button(window_params, stt_init);
+        buttons[stt_init] = init_stt_button(stt_init);
         buttons[stt_init].button_func = buttons_func[stt_init];
     }
     static menu_t menu = {.buttons = buttons};

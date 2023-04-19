@@ -19,4 +19,5 @@ void render_settings(instance_t *instance)
         instance->menus[SETTINGS].buttons[stt_rect].button, NULL);
     for (int stt_text = 0; stt_text < STT_BUTTON_COUNT; stt_text++)
         sfRenderWindow_drawText(window, buttons[stt_text].text, NULL);
+    render_volume(instance);
 }

@@ -36,6 +36,9 @@ SRC			=	src/main.c \
 				src/settings/manage_settings_events.c \
 				src/settings/render_settings.c \
 				src/settings/settings_functions/buttons_funcs.c \
+				src/settings/settings_functions/volume/init_volume.c \
+				src/settings/settings_functions/volume/render_volume.c \
+				src/settings/settings_functions/volume/update_volume.c \
 				src/settings/update_settings.c \
 				src/start_menu/start_menu_funcs/buttons_funcs.c \
 				src/start_menu/init_start_menu.c \
@@ -50,6 +53,7 @@ SRC			=	src/main.c \
 				src/utils/init_text.c \
 				src/utils/my_strncmp.c \
 				src/window/init_window.c \
+				src/my_itoa.c \
 
 TESTS_SRC	=	bonus/tests.c \
 
@@ -67,7 +71,7 @@ TESTS		=	unit_tests
 
 ## LDFLAGS = 	-L./lib
 
-LDLIBS		=	-lcriterion -lcsfml-graphics -lcsfml-window -lcsfml-system -lm
+LDLIBS		=	-lcriterion -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -lm
 ## -lmy
 
 CC			=	gcc

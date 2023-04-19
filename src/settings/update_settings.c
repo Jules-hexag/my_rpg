@@ -66,5 +66,6 @@ void update_settings(instance_t *instance)
             menu->buttons[i].button);
         update_button_color(&menu->buttons[i]);
         update_stt_button_text(&menu->buttons[i], &instance->window_params);
+        update_volume(instance);
     }
 }
