@@ -17,7 +17,7 @@ enemy_t create_enemy(sfVector2f pos, instance_t *instance)
     enemy.pos = pos;
     enemy.bbox = (sfFloatRect) {pos.x - 32, pos.y - 32, 64, 64};
     enemy.health = (barector) {100, 100};
-    enemy.sprite_clock = sfClock_create();
+    enemy.clock = sfClock_create();
     enemy.sprite = sfSprite_create();
     sfSprite_setTexture(enemy.sprite, instance->texture[TEXTURE_ENEMY], sfTrue);
     sfSprite_setPosition(enemy.sprite, pos);
@@ -28,7 +28,7 @@ enemy_t create_enemy(sfVector2f pos, instance_t *instance)
 
 int enemy_value(void *enemy)
 {
-    return ((enemy_t *) enemy)->player_dist;
+    return ((enemy_t *) enemy)->etp[ETP_DIST];
 }
 
 int enemy_pos(void *enemy)
@@ -38,6 +38,7 @@ int enemy_pos(void *enemy)
 
 void init_enemies(instance_t *instance)
 {
+    instance->dead_enemies = 0;
     instance->enemies[0] = create_enemy((sfVector2f) {1, 5}, instance);
     instance->enemies[1] = create_enemy((sfVector2f) {4, 5}, instance);
     instance->enemies[2] = create_enemy((sfVector2f) {5, 2}, instance);

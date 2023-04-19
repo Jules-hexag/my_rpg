@@ -26,6 +26,7 @@
 
 #define PLAYER_SPEED 4
 #define ENEMY_SPEED 180
+#define ENEMY_VIEW 248
 
 #define ENEMY_COUNT 3
 
@@ -147,11 +148,17 @@ typedef struct {
     // void (*func)(struct instance_s *);
 } npc_t;
 
+enum etp_stats {
+    ETP_DIST,
+    ETP_ANGLE,
+    ETP_COUNT
+};
+
 typedef struct {
-    sfClock *sprite_clock;
+    sfClock *clock;
     sfSprite *sprite;
     enum enemy_state {ALIVE, DEAD} state;
-    float player_dist;
+    float etp[ETP_COUNT];
     sfVector2f pos;
     barector health;
     sfFloatRect bbox;
@@ -160,7 +167,9 @@ typedef struct {
 
 enum time_values {
     TIME_REGEN,
-    MANA_TIME,
+    TIME_MANA,
+    TIME_ATTACK,
+    TIME_SPRITE,
 
     TIME_COUNT
 };
@@ -169,8 +178,10 @@ enum stats_value {
     STAT_DEFENSE,
     STAT_SPEED,
     STAT_STRENGTH,
+    STAT_ATTACK_SPEED,
     STAT_REGEN,
     STAT_REGEN_TIME,
+    STAT_ANGLE,
     STAT_COUNT
 };
 
@@ -183,6 +194,8 @@ typedef struct {
     sfFloatRect bbox;
     sfVector2f pos;
     enum player_state state;
+    bool walk;
+    unsigned sprite_nb;
     barector health;
     barector mana;
     int nb_mana_pills;
@@ -225,6 +238,17 @@ enum menus {
     MENU_COUNT
 };
 
+enum SPRITE_DIR {
+    SP_E,
+    SP_SE,
+    SP_S,
+    SP_SW,
+    SP_W,
+    SP_NW,
+    SP_N,
+    SP_NE,
+};
+
 struct instance_s {
     enum game_state menu_state;
     sfTexture *texture[TEXTURE_COUNT];
@@ -232,6 +256,7 @@ struct instance_s {
     map_t map[MAP_COUNTER];
     window_params_t window_params;
     npc_t npc[2];
+    unsigned dead_enemies;
     enemy_t enemies[ENEMY_COUNT];
     binary_heap *enemy_heap;
     menu_t menus[MENU_COUNT];
@@ -252,6 +277,7 @@ int enemy_pos(void *enemy);
 int enemy_value(void *enemy);
 int my_strncmp(char const *s1, char const *s2, int n);
 sfSprite *gen_sprite_shape(char *texture_path, sfVector2f pos);
+void attack_zombies(instance_t *instance);
 char *my_itoa(unsigned int nbr);
 char *my_strcat(char *dest, const char *src);
 void change_volume(instance_t *instance);

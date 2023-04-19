@@ -21,6 +21,8 @@ void render_front_enemy(instance_t *instance)
     sfRenderWindow *window = instance->window_params.window;
     for (int i = instance->enemy_behind; i < ENEMY_COUNT; ++i) {
         enemy_t *enemy = bh_pop(instance->enemy_heap);
+        if (enemy == NULL)
+            continue;
         sfRenderWindow_drawSprite(window, enemy->sprite, NULL);
     }
 }
