@@ -23,6 +23,8 @@ void render_front_enemy(instance_t *instance)
         i < instance->enemy_count[instance->current_map]
         - instance->dead_enemies; ++i) {
         enemy_t *enemy = bh_pop(instance->enemy_heap);
+        if (enemy == NULL)
+            continue;
         sfRenderWindow_drawSprite(window, enemy->sprite, NULL);
     }
 }
