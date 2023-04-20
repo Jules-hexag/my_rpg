@@ -11,6 +11,7 @@ SRC			=	src/main.c \
 				src/bars/init_bars.c \
 				src/bars/render_bars.c \
 				src/bars/update_bars.c \
+				src/bars/callback_bars.c \
 				src/binary_heap/binary_heap.c \
 				src/binary_heap/binary_heap2.c \
 				src/enemies/init_enemy.c \
@@ -62,6 +63,9 @@ SRC			=	src/main.c \
 				src/window/init_window.c \
 				src/my_itoa.c \
 				src/my_strcat.c \
+				src/npc/init_npc.c \
+				src/npc/render_npc.c \
+				src/npc/update_npc.c \
 
 TESTS_SRC	=	bonus/tests.c \
 

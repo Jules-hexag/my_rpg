@@ -33,6 +33,9 @@ static int init_textures(instance_t *instance)
     if ((instance->texture[TEXTURE_ENEMY] = sfTexture_createFromFile(
         "res/zombie.png", NULL)) == NULL)
         return 1;
+    if ((instance->texture[TEXTURE_NPC] = sfTexture_createFromFile(
+        "res/npc.png", NULL)) == NULL)
+        return 1;
     return 0;
 }
 
@@ -70,5 +73,6 @@ instance_t init_instance(void)
     instance.sounds[0] = sfMusic_createFromFile("res/music/button.wav");
     instance.sounds[1] = sfMusic_createFromFile("res/music/dead.wav");
     instance.sounds[2] = sfMusic_createFromFile("res/music/zombies.wav");
+    sfMusic_setLoop(instance.sounds[2], sfTrue);
     return instance;
 }
