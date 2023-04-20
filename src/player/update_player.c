@@ -98,6 +98,9 @@ void update_player(instance_t *instance)
     sfView_setCenter(view,instance->player.map_pos);
     sfRenderWindow_setView(instance->window_params.window, view);
     sfSprite *sprite = instance->player.sprite;
+    player->exp = instance->dead_enemies * 5 + 1;
+    player->level = (int) logb(player->exp);
+    update_player_stats(instance);
     sfSprite_setPosition(sprite, instance->player.map_pos);
     sfClock_restart(player->clock);
 }

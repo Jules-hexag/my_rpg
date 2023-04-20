@@ -16,5 +16,6 @@ void update_npc(instance_t *instance)
     if (instance->npc.etp_distance <= 64 && sfKeyboard_isKeyPressed(sfKeyE)) {
         sfMusic_stop(instance->npc.music);
         sfMusic_play(instance->npc.music);
+        instance->talked_to_npc = true;
     }
 }

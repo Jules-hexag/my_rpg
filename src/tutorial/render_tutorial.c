@@ -14,4 +14,5 @@ void render_tutorial(instance_t *instance)
     render_player(instance);
     render_front_enemy(instance);
     render_bars(instance);
+    render_top_text(instance);
 }

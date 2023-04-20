@@ -9,6 +9,7 @@
 
 void update_game(instance_t *instance)
 {
+    update_top_text(instance);
     update_player(instance);
     update_npc(instance);
     update_enemy(instance);

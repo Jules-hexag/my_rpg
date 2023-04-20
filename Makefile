@@ -41,6 +41,7 @@ SRC			=	src/main.c \
 				src/player/init_player.c \
 				src/player/render_player.c \
 				src/player/update_player.c \
+				src/player/update_player_stats.c \
 				src/settings/init_settings.c \
 				src/settings/manage_settings_events.c \
 				src/settings/render_settings.c \
@@ -66,6 +67,9 @@ SRC			=	src/main.c \
 				src/npc/init_npc.c \
 				src/npc/render_npc.c \
 				src/npc/update_npc.c \
+				src/top_text/init_top_text.c \
+				src/top_text/render_top_text.c \
+				src/top_text/update_top_text.c \
 
 TESTS_SRC	=	bonus/tests.c \
 
@@ -83,7 +87,7 @@ TESTS		=	unit_tests
 
 ## LDFLAGS = 	-L./lib
 
-LDLIBS		=	-lcriterion -lcsfml-graphics -lcsfml-window -lcsfml-system \
+LDLIBS		=	-lcsfml-graphics -lcsfml-window -lcsfml-system \
 				-lcsfml-audio -lm
 ## -lmy
 
