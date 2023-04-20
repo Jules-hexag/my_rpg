@@ -11,6 +11,12 @@
 #include <unistd.h>
 #include "rpg.h"
 
+static void (*info_player[3])(instance_t *instance) = {
+    &update_info_player_rect_size,
+    &update_info_player_rect_pos,
+    &update_text_info_player,
+};
+
 static void update_pm_button_size(menu_button_t *button,
     window_params *params)
 {
@@ -63,4 +69,6 @@ void update_pause_menu(instance_t *instance)
         update_button_color(&menu->buttons[i]);
         update_pm_button_text(&menu->buttons[i], &window_params);
     }
+    for (int i = 0; i < 3; i++)
+        info_player[i](instance);
 }

@@ -254,6 +254,9 @@ void update_settings(instance_t *instance);
 void update_button_color(menu_button_t *button);
 void update_volume(instance_t *instance);
 void update_npc(instance_t *instance);
+void update_info_player_rect_pos(instance_t *instance);
+void update_info_player_rect_size(instance_t *instance);
+void update_text_info_player(instance_t *instance);
 void update_top_text(instance_t *instance);
 void update_player_stats(instance_t *instance);
 
