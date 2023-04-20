@@ -11,7 +11,7 @@
 
 static void (*buttons_func[5])(void *instance) = {
     &play_game,
-    &resume_game,
+    &load_game,
     &tutorial,
     &settings,
     &quit_game,

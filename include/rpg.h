@@ -138,6 +138,12 @@ enum SPRITE_DIR {
     SP_NE,
 };
 
+typedef struct {
+    player player;
+    enemy_t enemy[MAX_ENEMIES];
+    unsigned dead_enemies;
+}save;
+
 typedef struct instance_s {
     binary_heap *enemy_heap;
     enum game_state previous_state;
@@ -174,6 +180,7 @@ char *my_itoa(unsigned int nbr);
 char *my_strcat(char *dest, const char *src);
 void change_volume(void *ptr);
 void pause_to_settings(void *instance);
+void reset_clocks(instance_t *instance);
 
 /*  BUTTONS FUNCTIONS   (start menu)    */
 void play_game(void *instance);
@@ -207,6 +214,8 @@ menu_button_t init_volume_button(void);
 sfRectangleShape *init_volume_bg(void);
 void init_game(instance_t *instance);
 sfMusic *init_music(void);
+void create_player_sprite(instance_t *instance, player *player);
+void create_enemy_sprite(instance_t *instance, enemy_t *enemy);
 
 void render_game_map(instance_t *instance);
 void render_tutorial_map(instance_t *instance);
@@ -240,7 +249,6 @@ void manage_tutorial_events(instance_t *instance, sfEvent event);
 void manage_settings_events(instance_t *instance, sfEvent event);
 void manage_key_pressed(instance_t *instance, sfEvent event);
 
-void player_move(sfEvent event, instance_t *instance);
 
 void destroy_map(map_t *map);
 void destroy_instance(instance_t *instance);

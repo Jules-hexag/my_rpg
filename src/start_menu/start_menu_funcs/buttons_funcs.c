@@ -12,9 +12,7 @@ void play_game(void *ptr)
 {
     instance_t *instance = (instance_t *) ptr;
     instance->current_map = MAP_GAME;
-    for (unsigned int i = 0; i < instance->enemy_count[MAP_GAME]; i++)
-        sfClock_restart(instance->enemy[MAP_GAME][i].clock);
-    sfClock_restart(instance->player.clock);
+    reset_clocks(instance);
     instance->previous_state = IN_START_MENU;
     instance->menu_state = IN_GAME;
 }

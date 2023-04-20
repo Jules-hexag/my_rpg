@@ -22,6 +22,7 @@ SRC			=	src/main.c \
 				src/game/render_game.c \
 				src/game/update_game.c \
 				src/game/init_game.c \
+				src/game/reset_clocks.c \
 				src/instance/destroy_instance.c \
 				src/instance/init_instance.c \
 				src/instance/update_instance.c \
@@ -88,7 +89,7 @@ RM			=	rm -rvf
 
 CPPFLAGS	=	-I./include -MMD -MP
 
-CFLAGS		=	-Wall -Wextra -std=gnu2x
+CFLAGS		=	-Wall -Wextra
 
 CFLAGS_DEBUG	=	-I./include -ggdb3
 
