@@ -12,103 +12,32 @@
 #include <SFML/System/Types.h>
 #include <SFML/System/Vector2.h>
 #include <stdint.h>
-
-#define FILE_MAP_WIDTH 80
-#define FILE_MAP_HEIGHT 80
-
-#define IMG_SIZE 10
-
-#define RPG_SUCCESS 0
-#define RPG_FAILURE 84
-
-#define PLAYER_WIDTH 16
-#define PLAYER_HEIGHT 32
-
-#define PLAYER_SPEED 4
-#define ENEMY_SPEED 180
-#define ENEMY_VIEW 248
-
-#define ENEMY_COUNT 3
-
 #include <stdbool.h>
 #include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics/View.h>
 #include <SFML/System/Clock.h>
 #include "binary_heap.h"
+#include "map.h"
+#include "player.h"
+#include "enemy.h"
+#include "npc.h"
+#include "menu.h"
+#include "bars.h"
+#include "window_params.h"
+
+
+//CAN’T HAVE STRUCT TOO LARGE > 8000 bytes
+#define MAX_ENEMIES 60
+#define RPG_SUCCESS 0
+
+#define ENEMY_SPEED 180
+#define ENEMY_VIEW 500
+
+
 
 struct queue {
-    void *queue[ENEMY_COUNT];
+    void *queue[MAX_ENEMIES];
     int last;
-    int head;
-};
-
-enum texture_type {
-    TEXTURE_PLAYER,
-    TEXTURE_NPC,
-    TEXTURE_TILESET,
-    TEXTURE_ENEMY,
-    TEXTURE_COUNT
-};
-
-enum button_state_e {
-    NONE,
-    HOVER,
-    PRESSED,
-};
-
-enum start_menu_button {
-    SMB_PLAY,
-    SMB_RESUME,
-    SMB_TUTORIAL,
-    SMB_SETTINGS,
-    SMB_QUIT,
-    SMB_COUNT
-};
-
-enum settings_items {
-    STT_WINDOWED,
-    STT_FULLSCREEN,
-    STT_BACK,
-
-    STT_BUTTON_COUNT,
-};
-
-typedef struct instance_s instance_t;
-
-typedef struct {
-    sfRectangleShape *button;
-    sfFloatRect rect;
-    sfVector2f origin;
-    sfVector2f size;
-    enum button_state_e button_state;
-    sfText *text;
-    void (*button_func) (instance_t *instance);
-} menu_button_t;
-
-typedef struct {
-    menu_button_t *buttons;
-} menu_t;
-
-typedef struct {
-    sfMusic *music;
-    sfRectangleShape *volume_bg;
-    menu_button_t current_volume;
-    float volume;
-} volume_t;
-typedef struct map_s {
-    sfVector2i size;
-    sfTexture *tileset;
-    sfVertexArray *array;
-    sfRenderTexture *render;
-    sfSprite *sprite;
-    uint8_t **map;
-} map_t;
-
-enum map_e {
-    MAP_TUTORIAL,
-    MAP_GAME,
-
-    MAP_COUNTER,
 };
 
 enum tile_type {
@@ -123,83 +52,23 @@ enum tile_type {
     TILE_COUNTER
 };
 
-enum player_state {
-    STRAIGHT,
-    DRUGGED,
+enum start_menu_button {
+    SMB_PLAY,
+    SMB_RESUME,
+    SMB_TUTORIAL,
+    SMB_SETTINGS,
+    SMB_QUIT,
+
+    SMB_COUNT
 };
 
-typedef struct {
-    sfRenderWindow *window;
-    sfView *view;
-    sfVector2u size;
-    sfSprite *menu_background;
-} window_params_t;
+enum settings_items {
+    STT_WINDOWED,
+    STT_FULLSCREEN,
+    STT_BACK,
 
-
-typedef struct {
-    float current;
-    float max;
-} barector;
-
-typedef struct {
-    sfClock *npc_clock;
-    sfSprite *sprite;
-    sfVector2f pos;
-    // void (*func)(struct instance_s *);
-} npc_t;
-
-enum etp_stats {
-    ETP_DIST,
-    ETP_ANGLE,
-    ETP_COUNT
+    STT_BUTTON_COUNT,
 };
-
-typedef struct {
-    sfClock *clock;
-    sfSprite *sprite;
-    enum enemy_state {ALIVE, DEAD} state;
-    float etp[ETP_COUNT];
-    sfVector2f pos;
-    barector health;
-    sfFloatRect bbox;
-    sfRectangleShape *bbox_shape;
-} enemy_t;
-
-enum time_values {
-    TIME_REGEN,
-    TIME_MANA,
-    TIME_ATTACK,
-    TIME_SPRITE,
-
-    TIME_COUNT
-};
-
-enum stats_value {
-    STAT_DEFENSE,
-    STAT_SPEED,
-    STAT_STRENGTH,
-    STAT_ATTACK_SPEED,
-    STAT_REGEN,
-    STAT_REGEN_TIME,
-    STAT_ANGLE,
-    STAT_COUNT
-};
-
-typedef struct {
-    sfClock *clock;
-    sfSprite *sprite;
-    float time[TIME_COUNT];
-    float stats[STAT_COUNT];
-    sfVector2f map_pos;
-    sfFloatRect bbox;
-    sfVector2f pos;
-    enum player_state state;
-    bool walk;
-    unsigned sprite_nb;
-    barector health;
-    barector mana;
-    int nb_mana_pills;
-} player_t;
 
 typedef struct {
     sfSprite *background;
@@ -207,6 +76,22 @@ typedef struct {
     char *Title;
     char *Text;
 } speeches_t;
+
+
+enum texture_type {
+    TEXTURE_PLAYER,
+    TEXTURE_NPC,
+    TEXTURE_TILESET,
+    TEXTURE_ENEMY,
+    TEXTURE_COUNT
+};
+
+enum map_e {
+    MAP_GAME,
+    MAP_TUTORIAL,
+
+    MAP_COUNTER,
+};
 
 enum game_state {
     IN_GAME,
@@ -218,17 +103,6 @@ enum game_state {
     IN_SPEECH,
 };
 
-enum bars {
-    B_HEALTH,
-    B_MANA,
-    B_COUNT
-};
-
-typedef struct {
-    sfSprite *background;
-    sfSprite *current;
-} bars_t;
-
 enum menus {
     START_MENU,
     SETTINGS,
@@ -236,6 +110,12 @@ enum menus {
     PAUSE,
 
     MENU_COUNT
+};
+
+enum bars {
+    B_HEALTH,
+    B_MANA,
+    B_COUNT
 };
 
 enum SPRITE_DIR {
@@ -249,22 +129,24 @@ enum SPRITE_DIR {
     SP_NE,
 };
 
-struct instance_s {
-    enum game_state menu_state;
-    sfTexture *texture[TEXTURE_COUNT];
-    int enemy_behind;
-    map_t map[MAP_COUNTER];
-    window_params_t window_params;
-    npc_t npc[2];
-    unsigned dead_enemies;
-    enemy_t enemies[ENEMY_COUNT];
+typedef struct instance_s {
     binary_heap *enemy_heap;
-    menu_t menus[MENU_COUNT];
-    player_t player;
-    speeches_t speeches;
+    sfTexture *texture[TEXTURE_COUNT];
+    map_t map[MAP_COUNTER];
+    enemy_t enemy[MAP_COUNTER][MAX_ENEMIES];
+    npc npc[2];
     bars_t bars[B_COUNT];
+    menu_t menus[MENU_COUNT];
+    unsigned enemy_count[MAP_COUNTER];
+    window_params window_params;
+    unsigned dead_enemies;
+    unsigned enemy_behind;
+    enum game_state menu_state;
+    enum map_e current_map;
+    player player;
     volume_t volume;
-};
+} instance_t;
+
 
 /* sort all this in different appropriate files */
 
@@ -283,11 +165,11 @@ char *my_strcat(char *dest, const char *src);
 void change_volume(instance_t *instance);
 
 /*  BUTTONS FUNCTIONS   (start menu)    */
-void play_game(instance_t *instance);
-void resume_game(instance_t *instance);
-void tutorial(instance_t *instance);
-void settings(instance_t *instance);
-void quit_game(instance_t *instance);
+void play_game(void *instance);
+void resume_game(void *instance);
+void tutorial(void *instance);
+void settings(void *instance);
+void quit_game(void *instance);
 
 /*  BUTTONS FUNCTIONS   (settings)    */
 void set_windowed(instance_t *instance);
@@ -295,7 +177,7 @@ void set_fullscreen(instance_t *instance);
 void settings_back(instance_t *instance);
 
 map_t init_map(char *struct_path, instance_t *instance);
-player_t init_player(instance_t *instance);
+player init_player(instance_t *instance);
 instance_t init_instance(void);
 void gen_array_vertex(map_t *map);
 sfRenderWindow *init_window(void);
@@ -306,6 +188,7 @@ void init_enemies(instance_t *instance);
 sfText *init_text(char *str_text);
 menu_button_t init_volume_button(void);
 sfRectangleShape *init_volume_bg(void);
+void init_game(instance_t *instance);
 sfMusic *init_music(void);
 
 void render_game_map(instance_t *instance);

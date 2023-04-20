@@ -5,30 +5,38 @@
 ** buttons_funcs
 */
 
+#include <SFML/Graphics/RenderWindow.h>
 #include "rpg.h"
 
-void play_game(instance_t *instance)
+void play_game(void *truc)
 {
+    instance_t *instance = (instance_t *) truc;
+    instance->current_map = MAP_GAME;
+    for (int i = 0; i < instance->enemy_count[MAP_GAME]; i++)
+        sfClock_restart(instance->enemy[MAP_GAME][i].clock);
+    sfClock_restart(instance->player.clock);
     instance->menu_state = IN_GAME;
 }
 
-void resume_game(instance_t *instance)
+void resume_game(void *instance)
 {
-    sfRenderWindow_close(instance->window_params.window);
+    sfRenderWindow_close(((instance_t *) instance)->window_params.window);
 }
 
-void tutorial(instance_t *instance)
+void tutorial(void *truc)
 {
+    instance_t *instance = (instance_t *) truc;
+    instance->current_map = MAP_TUTORIAL;
     instance->menu_state = IN_TUTORIAL;
 }
 
-void settings(instance_t *instance)
+void settings(void *instance)
 {
-    instance->menu_state = IN_SETTINGS;
+    ((instance_t *) instance)->menu_state = IN_SETTINGS;
 }
 
 // instance->menu_state = IN_SETTINGS;
-void quit_game(instance_t *instance)
+void quit_game(void *instance)
 {
-    sfRenderWindow_close(instance->window_params.window);
+    sfRenderWindow_close(((instance_t *) instance)->window_params.window);
 }

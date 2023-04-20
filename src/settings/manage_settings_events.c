@@ -5,10 +5,10 @@
 ** manage_settings_events
 */
 
-#include "rpg.h"
-#include <SFML/Graphics/RectangleShape.h>
 #include <SFML/System/Vector2.h>
-#include <stdio.h>
+#include <SFML/Graphics/RenderWindow.h>
+#include <SFML/Graphics/RectangleShape.h>
+#include "rpg.h"
 
 static void manage_volume_button(menu_button_t *volume_current,
     sfVector2f pos_mouse)
@@ -28,7 +28,7 @@ static void manage_volume_button(menu_button_t *volume_current,
     }
 }
 
-static void mouse_moved_evt(window_params_t *window_stats,
+static void mouse_moved_evt(window_params *window_stats,
     menu_t *settings_menu, menu_button_t *volume_current)
 {
     sfVector2i pos_mouse_pix = sfMouse_getPositionRenderWindow(
@@ -57,7 +57,7 @@ static void mouse_released_evt(instance_t *instance, menu_t *start_menu)
 
 void manage_settings_events(instance_t *instance, sfEvent event)
 {
-    window_params_t *window_stats = &instance->window_params;
+    window_params *window_stats = &instance->window_params;
     menu_t *settings = &instance->menus[SETTINGS];
     menu_button_t *volume_current = &instance->volume.current_volume;
     switch (event.type) {

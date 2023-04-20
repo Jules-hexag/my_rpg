@@ -52,7 +52,7 @@ void update_bars(instance_t *instance)
 {
     sfRenderWindow *window = instance->window_params.window;
     sfView const *view = sfRenderWindow_getView(window);
-    player_t *player = &instance->player;
+    player *player = &instance->player;
     sfSprite *health_bg = instance->bars[B_HEALTH].background;
     sfSprite *health_current = instance->bars[B_HEALTH].current;
     sfSprite *mana_bg = instance->bars[B_MANA].background;

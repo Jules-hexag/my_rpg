@@ -5,6 +5,7 @@
 ** update_instance.c
 */
 
+#include <SFML/Graphics/RenderWindow.h>
 #include "rpg.h"
 
 void update_instance(instance_t *instance)

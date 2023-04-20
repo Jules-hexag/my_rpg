@@ -10,7 +10,7 @@
 
 void render_settings(instance_t *instance)
 {
-    window_params_t win_obj = instance->window_params;
+    window_params win_obj = instance->window_params;
     sfRenderWindow *window = instance->window_params.window;
     menu_button_t *buttons = instance->menus[SETTINGS].buttons;
     sfRenderWindow_drawSprite(window, win_obj.menu_background, NULL);

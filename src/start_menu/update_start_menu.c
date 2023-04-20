@@ -20,7 +20,7 @@ static const sfColor smb_colors[3] = {
 };
 
 static void update_sm_button_size(menu_button_t *button,
-    window_params_t *params)
+    window_params *params)
 {
     sfVector2u const win_size = params->size;
     sfVector2f size = {win_size.x / 3, win_size.y / 10};
@@ -28,7 +28,7 @@ static void update_sm_button_size(menu_button_t *button,
     sfRectangleShape_setSize(button->button, size);
 }
 
-static void update_sm_button_pos(menu_button_t *button, window_params_t *params,
+static void update_sm_button_pos(menu_button_t *button, window_params *params,
     int nb)
 {
     sfVector2u const win_size = params->size;
@@ -42,7 +42,7 @@ static void update_sm_button_pos(menu_button_t *button, window_params_t *params,
 }
 
 static void update_sm_button_text(menu_button_t *button,
-    window_params_t *params)
+    window_params *params)
 {
     sfVector2f pos = sfRectangleShape_getPosition(button[0].button);
     pos.x = pos.x + button->size.x / 4;
