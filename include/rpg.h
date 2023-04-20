@@ -8,11 +8,15 @@
 #pragma once
 
 #include <SFML/Audio.h>
+#include <SFML/Graphics.h>
+#include <SFML/System.h>
+#include <SFML/Window.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Types.h>
 #include <SFML/System/Vector2.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics/View.h>
 #include <SFML/System/Clock.h>
@@ -24,6 +28,9 @@
 #include "menu.h"
 #include "bars.h"
 #include "window_params.h"
+#include "prototypes.h"
+#include "global.h"
+#include "linked_list.h"
 
 
 //CAN’T HAVE STRUCT TOO LARGE > 8000 bytes
