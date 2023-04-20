@@ -58,7 +58,7 @@ static void manage_rpg_events(instance_t *instance)
                 resize_event(instance);
                 break;
             default:
-                events_functions[instance->menu_state](instance, event);
+                events_functions[instance->rpg_state](instance, event);
                 break;
         }
     }
@@ -69,7 +69,7 @@ static void update_rpg(instance_t *instance)
     if (!sfRenderWindow_hasFocus(instance->window_params.window))
         return;
     update_instance(instance);
-    update_functions[instance->menu_state](instance);
+    update_functions[instance->rpg_state](instance);
 }
 
 static void render_rpg(instance_t *instance)
@@ -78,7 +78,7 @@ static void render_rpg(instance_t *instance)
         return;
     sfRenderWindow *window = instance->window_params.window;
     sfRenderWindow_clear(window, sfBlack);
-    render_functions[instance->menu_state](instance);
+    render_functions[instance->rpg_state](instance);
     sfRenderWindow_display(window);
 }
 

@@ -14,7 +14,7 @@ void play_game(void *ptr)
     instance->current_map = MAP_GAME;
     reset_clocks(instance);
     instance->previous_state = IN_START_MENU;
-    instance->menu_state = IN_GAME;
+    instance->rpg_state = IN_GAME;
 }
 
 void resume_game(void *ptr)
@@ -27,14 +27,14 @@ void tutorial(void *ptr)
     instance_t *instance = (instance_t *) ptr;
     instance->current_map = MAP_TUTORIAL;
     instance->previous_state = IN_START_MENU;
-    instance->menu_state = IN_TUTORIAL;
+    instance->rpg_state = IN_TUTORIAL;
 }
 
 void settings(void *ptr)
 {
     instance_t *instance = (instance_t *) ptr;
     instance->previous_state = IN_START_MENU;
-    instance->menu_state = IN_SETTINGS;
+    instance->rpg_state = IN_SETTINGS;
 }
 
 void quit_game(void *instance)
