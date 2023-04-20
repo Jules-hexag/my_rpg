@@ -172,8 +172,8 @@ sfSprite *gen_sprite_shape(char *texture_path, sfVector2f pos);
 void attack_zombies(instance_t *instance);
 char *my_itoa(unsigned int nbr);
 char *my_strcat(char *dest, const char *src);
-void change_volume(instance_t *instance);
-void pause_to_settings(instance_t *instance);
+void change_volume(void *ptr);
+void pause_to_settings(void *instance);
 
 /*  BUTTONS FUNCTIONS   (start menu)    */
 void play_game(void *instance);
@@ -182,15 +182,15 @@ void tutorial(void *instance);
 void settings(void *instance);
 void quit_game(void *instance);
 /*  BUTTONS FUNCTIONS   (start menu & pause menu)    */
-void depause_game(instance_t *instance);
-void save_game(instance_t *instance);
-void load_game(instance_t *instance);
+void depause_game(void *instance);
+void save_game(void *instance);
+void load_game(void *instance);
 
 
 /*  BUTTONS FUNCTIONS   (settings)    */
-void set_windowed(instance_t *instance);
-void set_fullscreen(instance_t *instance);
-void settings_back(instance_t *instance);
+void set_windowed(void *instance);
+void set_fullscreen(void *instance);
+void settings_back(void *instance);
 
 map_t init_map(char *struct_path, instance_t *instance);
 player init_player(instance_t *instance);

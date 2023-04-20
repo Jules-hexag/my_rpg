@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-static void mouse_moved_evt(window_params_t *window_stats, menu_t *pause_menu)
+static void mouse_moved_evt(window_params *window_stats, menu_t *pause_menu)
 {
     sfVector2i pos_mouse_pix = sfMouse_getPositionRenderWindow(
         window_stats->window);
@@ -34,7 +34,7 @@ static void mouse_released_evt(instance_t *instance, menu_t *pause_menu)
 
 void manage_pause_menu_events(instance_t *instance, sfEvent event)
 {
-    window_params_t *window_stats = &instance->window_params;
+    window_params *window_stats = &instance->window_params;
     menu_t *pause_menu = &instance->menus[PAUSE];
     manage_game_events(instance, event);
     switch (event.type) {

@@ -12,7 +12,7 @@
 #include "rpg.h"
 
 static void update_pm_button_size(menu_button_t *button,
-    window_params_t *params)
+    window_params *params)
 {
     sfVector2u const win_size = params->size;
     sfVector2f size = {win_size.x / 3, win_size.y / 10};
@@ -20,7 +20,7 @@ static void update_pm_button_size(menu_button_t *button,
     sfRectangleShape_setSize(button->button, size);
 }
 
-static void update_pm_button_pos(menu_button_t *button, window_params_t *params,
+static void update_pm_button_pos(menu_button_t *button, window_params *params,
     int nb)
 {
     sfVector2u const win_size = params->size;
@@ -35,7 +35,7 @@ static void update_pm_button_pos(menu_button_t *button, window_params_t *params,
 }
 
 static void update_pm_button_text(menu_button_t *button,
-    window_params_t *params)
+    window_params *params)
 {
     sfVector2f pos = sfRectangleShape_getPosition(button[0].button);
     pos.x = pos.x + button->size.x / 4;
@@ -54,7 +54,7 @@ static void update_pm_button_text(menu_button_t *button,
 void update_pause_menu(instance_t *instance)
 {
     menu_t *menu = &instance->menus[PAUSE];
-    window_params_t window_params = instance->window_params;
+    window_params window_params = instance->window_params;
     for (int i = 0; i < PMB_BUTTON_COUNT; i++) {
         update_pm_button_size(&menu->buttons[i], &window_params);
         update_pm_button_pos(&menu->buttons[i], &window_params, i);

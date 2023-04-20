@@ -8,7 +8,7 @@
 #include <SFML/Graphics/RectangleShape.h>
 #include "rpg.h"
 
-static void (*buttons_func[3])(instance_t *instance) = {
+static void (*buttons_func[3])(void *instance) = {
     &set_windowed,
     &set_fullscreen,
     &settings_back,

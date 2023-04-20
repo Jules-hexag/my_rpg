@@ -14,8 +14,9 @@ void init_game(instance_t *instance)
     init_enemies(instance);
 }
 
-void load_game(instance_t *instance)
+void load_game(void *ptr)
 {
+    instance_t *instance = (instance_t *) ptr;
     FILE *save = fopen("save/save.txt", "r");
     fread(instance, sizeof(instance_t), 1, save);
     fclose(save);

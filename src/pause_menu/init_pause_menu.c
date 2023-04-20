@@ -8,7 +8,7 @@
 #include <SFML/Graphics/RectangleShape.h>
 #include "rpg.h"
 
-static void (*buttons_func[5])(instance_t *instance) = {
+static void (*buttons_func[5])(void *instance) = {
     &depause_game,
     &save_game,
     &load_game,
