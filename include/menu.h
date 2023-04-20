@@ -10,6 +10,7 @@
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Vector2.h>
 #include <SFML/Graphics/Rect.h>
+#include <SFML/Audio.h>
 
 enum button_state_e {
     NONE,

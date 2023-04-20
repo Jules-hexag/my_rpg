@@ -5,6 +5,8 @@
 ** buttons_funcs
 */
 
+#include <SFML/Audio/Music.h>
+#include <SFML/Audio/Types.h>
 #include <SFML/Graphics/RenderWindow.h>
 #include "rpg.h"
 
@@ -15,11 +17,13 @@ void play_game(void *ptr)
     reset_clocks(instance);
     instance->previous_state = IN_START_MENU;
     instance->rpg_state = IN_GAME;
+    sfMusic_play(instance->volume.music);
 }
 
 void resume_game(void *ptr)
 {
     sfRenderWindow_close(((instance_t *) ptr)->window_params.window);
+    instance->rpg_state = IN_GAME;
 }
 
 void tutorial(void *ptr)
@@ -28,6 +32,7 @@ void tutorial(void *ptr)
     instance->current_map = MAP_TUTORIAL;
     instance->previous_state = IN_START_MENU;
     instance->rpg_state = IN_TUTORIAL;
+    sfMusic_play(instance->volume.music);
 }
 
 void settings(void *ptr)

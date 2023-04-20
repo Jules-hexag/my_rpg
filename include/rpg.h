@@ -33,8 +33,6 @@
 #define ENEMY_SPEED 180
 #define ENEMY_VIEW 500
 
-
-
 struct queue {
     void *queue[MAX_ENEMIES];
     int last;
@@ -148,6 +146,7 @@ typedef struct instance_s {
     binary_heap *enemy_heap;
     enum rpg_state previous_state;
     sfTexture *texture[TEXTURE_COUNT];
+    sfMusic *sounds[3];
     map_t map[MAP_COUNTER];
     enemy_t enemy[MAP_COUNTER][MAX_ENEMIES];
     npc npc[2];
@@ -184,7 +183,6 @@ void reset_clocks(instance_t *instance);
 
 /*  BUTTONS FUNCTIONS   (start menu)    */
 void play_game(void *instance);
-void resume_game(void *instance);
 void tutorial(void *instance);
 void settings(void *instance);
 void quit_game(void *instance);

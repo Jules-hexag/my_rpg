@@ -5,6 +5,7 @@
 ** init_volume
 */
 
+#include <SFML/Audio/Music.h>
 #include <SFML/Audio/Types.h>
 #include <SFML/Graphics/RectangleShape.h>
 #include <SFML/Graphics/RenderWindow.h>
@@ -25,7 +26,9 @@ void change_volume(void *ptr)
 
 sfMusic *init_music(void)
 {
-    return NULL;
+    sfMusic *music = sfMusic_createFromFile("res/music/garage.wav");
+    sfMusic_setLoop(music, sfTrue);
+    return music;
 }
 
 menu_button_t init_volume_button(void)

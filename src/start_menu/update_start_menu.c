@@ -5,7 +5,9 @@
 ** update_start_menu.c
 */
 
+#include "menu.h"
 #include "rpg.h"
+#include <SFML/Audio/Music.h>
 #include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics/RectangleShape.h>
 #include <SFML/Graphics/Sprite.h>
