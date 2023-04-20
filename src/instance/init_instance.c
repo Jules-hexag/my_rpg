@@ -54,7 +54,7 @@ static volume_t init_volume(void)
 instance_t init_instance(void)
 {
     instance_t instance = {0};
-    instance.menu_state = IN_START_MENU;
+    instance.rpg_state = IN_START_MENU;
     instance.window_params = init_window_params();
     if (init_textures(&instance))
         return (instance_t) {0};

@@ -102,7 +102,7 @@ enum map_e {
     MAP_COUNTER,
 };
 
-enum game_state {
+enum rpg_state {
     IN_GAME,
     IN_START_MENU,
     IN_SETTINGS,
@@ -146,7 +146,7 @@ typedef struct {
 
 typedef struct instance_s {
     binary_heap *enemy_heap;
-    enum game_state previous_state;
+    enum rpg_state previous_state;
     sfTexture *texture[TEXTURE_COUNT];
     map_t map[MAP_COUNTER];
     enemy_t enemy[MAP_COUNTER][MAX_ENEMIES];
@@ -157,7 +157,7 @@ typedef struct instance_s {
     window_params window_params;
     unsigned dead_enemies;
     unsigned enemy_behind;
-    enum game_state menu_state;
+    enum rpg_state rpg_state;
     enum map_e current_map;
     player player;
     volume_t volume;

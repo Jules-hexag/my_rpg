@@ -28,6 +28,6 @@ void set_fullscreen(void *ptr)
 void settings_back(void *ptr)
 {
     instance_t *instance = (instance_t *) ptr;
-    instance->menu_state = instance->previous_state;
+    instance->rpg_state = instance->previous_state;
     instance->previous_state = IN_SETTINGS;
 }

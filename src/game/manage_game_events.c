@@ -11,10 +11,10 @@ void manage_key_pressed(instance_t *instance, sfEvent event)
 {
     switch (event.key.code) {
         case sfKeyEscape:
-            instance->previous_state = (instance->menu_state == IN_GAME) ?
+            instance->previous_state = (instance->rpg_state == IN_GAME) ?
                 IN_GAME : IN_PAUSE_MENU;
-            instance->menu_state = (instance->menu_state == IN_GAME) ?
-                IN_PAUSE_MENU : IN_GAME;
+            instance->rpg_state = (instance->rpg_state == IN_GAME) ?
+                                  IN_PAUSE_MENU : IN_GAME;
             break;
         default:
             break;
