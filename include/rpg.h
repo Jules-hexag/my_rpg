@@ -204,7 +204,7 @@ instance_t init_instance(void);
 void gen_array_vertex(map_t *map);
 sfRenderWindow *init_window(void);
 menu_t init_start_menu(void);
-menu_t init_pause_menu(void);
+menu_t init_pause_menu();
 menu_t init_settings(void);
 void init_bars(instance_t *instance);
 void init_enemies(instance_t *instance);
@@ -244,6 +244,9 @@ void update_settings(instance_t *instance);
 void update_button_color(menu_button_t *button);
 void update_volume(instance_t *instance);
 void update_npc(instance_t *instance);
+void update_info_player_rect_pos(instance_t *instance);
+void update_info_player_rect_size(instance_t *instance);
+void update_text_info_player(instance_t *instance);
 
 void manage_game_events(instance_t *instance, sfEvent event);
 void manage_start_menu_events(instance_t *instance, sfEvent event);

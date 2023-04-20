@@ -66,10 +66,10 @@ instance_t init_instance(void)
     instance.map[MAP_TUTORIAL] = init_map("res/maps/map_tuto", &instance);
     instance.menus[START_MENU] = init_start_menu();
     instance.menus[SETTINGS] = init_settings();
-    instance.menus[PAUSE] = init_pause_menu();
     init_game(&instance);
     init_bars(&instance);
     instance.volume = init_volume();
+    instance.menus[PAUSE] = init_pause_menu();
     instance.sounds[0] = sfMusic_createFromFile("res/music/button.wav");
     instance.sounds[1] = sfMusic_createFromFile("res/music/dead.wav");
     instance.sounds[2] = sfMusic_createFromFile("res/music/zombies.wav");

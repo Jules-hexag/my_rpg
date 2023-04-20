@@ -36,6 +36,7 @@ SRC			=	src/main.c \
 				src/pause_menu/init_pause_menu.c \
 				src/pause_menu/manage_pause_menu_events.c \
 				src/pause_menu/render_pause_menu.c \
+				src/pause_menu/update_info_player.c \
 				src/pause_menu/update_pause_menu.c \
 				src/player/attack_zombies.c \
 				src/player/init_player.c \
