@@ -95,5 +95,6 @@ void update_volume(instance_t *instance)
     sfVector2f cdsmouse = sfRenderWindow_mapPixelToCoords(window,
         pos_mouse_pix, NULL);
     update_volume_selector(instance, cdsmouse, pos_mouse_pix);
+    sfMusic_setVolume(instance->volume.music, instance->volume.volume * 100);
     update_text(instance);
 }

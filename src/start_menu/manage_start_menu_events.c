@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include <SFML/Audio/Music.h>
 
 static void mouse_moved_evt(window_params *window_stats, menu_t *start_menu)
 {
@@ -26,10 +27,12 @@ static void mouse_moved_evt(window_params *window_stats, menu_t *start_menu)
 
 static void mouse_released_evt(instance_t *instance, menu_t *start_menu)
 {
+    sfMusic_stop(instance->sounds[0]);
     for (int i = 0; i < SMB_BUTTON_COUNT; i++) {
         if (start_menu->buttons[i].button_state == PRESSED)
             start_menu->buttons[i].button_func(instance);
     }
+    sfMusic_play(instance->sounds[0]);
 }
 
 void manage_start_menu_events(instance_t *instance, sfEvent event)

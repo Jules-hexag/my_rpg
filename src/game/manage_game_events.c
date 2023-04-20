@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include <SFML/Audio/Music.h>
 
 void manage_key_pressed(instance_t *instance, sfEvent event)
 {
@@ -15,6 +16,8 @@ void manage_key_pressed(instance_t *instance, sfEvent event)
                 IN_GAME : IN_PAUSE_MENU;
             instance->rpg_state = (instance->rpg_state == IN_GAME) ?
                 IN_PAUSE_MENU : IN_GAME;
+            instance->previous_state == IN_GAME ? sfMusic_pause(
+                instance->volume.music) : 0;
             break;
         default:
             break;

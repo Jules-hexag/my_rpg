@@ -5,6 +5,7 @@
 ** objects
 */
 
+#include <SFML/Audio/Music.h>
 #include <SFML/System/Vector2.h>
 #include <SFML/Graphics/Texture.h>
 #include "rpg.h"
@@ -66,5 +67,8 @@ instance_t init_instance(void)
     init_game(&instance);
     init_bars(&instance);
     instance.volume = init_volume();
+    instance.sounds[0] = sfMusic_createFromFile("res/music/button.wav");
+    instance.sounds[1] = sfMusic_createFromFile("res/music/dead.wav");
+    instance.sounds[2] = sfMusic_createFromFile("res/music/zombies.wav");
     return instance;
 }
