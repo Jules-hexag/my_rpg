@@ -212,7 +212,7 @@ instance_t init_instance(void);
 void gen_array_vertex(map_t *map);
 sfRenderWindow *init_window(void);
 menu_t init_start_menu(void);
-menu_t init_pause_menu();
+menu_t init_pause_menu(void);
 menu_t init_settings(void);
 void init_bars(instance_t *instance);
 void init_enemies(instance_t *instance);
