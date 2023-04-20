@@ -27,7 +27,7 @@
 
 
 //CAN’T HAVE STRUCT TOO LARGE > 8000 bytes
-#define MAX_ENEMIES 60
+#define MAX_ENEMIES 50
 #define RPG_SUCCESS 0
 
 #define ENEMY_SPEED 180
