@@ -28,10 +28,9 @@
 #include "menu.h"
 #include "bars.h"
 #include "window_params.h"
-#include "prototypes.h"
 #include "global.h"
 #include "linked_list.h"
-
+#include "struct.h"
 
 //CAN’T HAVE STRUCT TOO LARGE > 8000 bytes
 #define MAX_ENEMIES 50
@@ -159,6 +158,14 @@ typedef struct instance_s {
     unsigned dead_enemies;
     unsigned enemy_behind;
     enum game_state menu_state;
+    sfRenderWindow *window;
+    bool raining;
+    linked_list_t *particles;
+    linked_list_t *rain;
+    sfClock *particle_clock;
+    sfClock *clock;
+    sfFloatRect view_rect;
+    sfVector2f view_pos;
     enum map_e current_map;
     player player;
     volume_t volume;
@@ -198,6 +205,16 @@ void load_game(void *instance);
 void set_windowed(void *instance);
 void set_fullscreen(void *instance);
 void settings_back(void *instance);
+
+/*  RAIN SECTION   (particle)    */
+int create_rain_particle(instance_t *instance);
+int update_rain_particle(instance_t *instance);
+int draw_rain_particle(instance_t *instance);
+int rain_gestion(instance_t *instance);
+int destroy_rain_particles(instance_t *instance);
+int destroy_all_rain_particles(instance_t *instance);
+int destroy_all(instance_t *instance);
+int destroy_game(instance_t *instance);
 
 map_t init_map(char *struct_path, instance_t *instance);
 player init_player(instance_t *instance);

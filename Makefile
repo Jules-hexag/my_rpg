@@ -30,6 +30,8 @@ SRC			=	src/main.c \
 				src/map/init_map.c \
 				src/map/render_map.c \
 				src/map/vertex_operations.c \
+				src/particle/create_rain.c \
+				src/particle/display_rain.c \
 				src/pause_menu/pause_menu_funcs/buttons_funcs.c \
 				src/pause_menu/init_pause_menu.c \
 				src/pause_menu/manage_pause_menu_events.c \

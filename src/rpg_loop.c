@@ -62,6 +62,8 @@ static void manage_rpg_events(instance_t *instance)
                 break;
         }
     }
+    if (draw_rain_particle(instance) != 0)
+    return 84;
 }
 
 static void update_rpg(instance_t *instance)
