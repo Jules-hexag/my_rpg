@@ -46,6 +46,8 @@ typedef struct player {
     sfFloatRect hitbox;
     sfVector2f map_pos;
     sfVector2f pos;
+    int level;
+    int exp;
     uint8_t sprite_frame;
     bool is_walking;
     enum player_state state;
