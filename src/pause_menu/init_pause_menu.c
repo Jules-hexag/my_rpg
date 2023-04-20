@@ -5,8 +5,11 @@
 ** init_pause_menu
 */
 
+#include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/RectangleShape.h>
+#include <SFML/Graphics/Text.h>
 #include <SFML/Graphics/Types.h>
+#include <unistd.h>
 #include "menu.h"
 #include "rpg.h"
 
@@ -18,11 +21,6 @@ static void (*buttons_func[6])(void *instance) = {
     &quit_game,
     NULL,
 };
-
-static void init_text_info_player(menu_button_t button)
-{
-
-}
 
 static menu_button_t init_pm_button(int nb)
 {
@@ -46,8 +44,8 @@ menu_t init_pause_menu(void)
     for (int pmb_init = 0; pmb_init < PMB_BUTTON_COUNT + 1; pmb_init++) {
         buttons[pmb_init] = init_pm_button(pmb_init);
         buttons[pmb_init].button_func = buttons_func[pmb_init];
-        pmb_init == PMB_BUTTON_COUNT ? init_text_info_player(buttons[pmb_init]) : 0;
     }
+    buttons[PMB_BUTTON_COUNT].text = init_text("char *str_text");
 
     menu_t menu = {.buttons = buttons};
     return menu;

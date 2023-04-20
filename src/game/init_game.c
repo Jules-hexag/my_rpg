@@ -15,7 +15,7 @@ void save_game(void *ptr)
     save save = {.player = instance->player,
         .dead_enemies = instance->dead_enemies,
         .talked_to_npc = instance->talked_to_npc};
-    for (int i = 0; i < instance->enemy_count[MAP_GAME]; i++)
+    for (unsigned int i = 0; i < instance->enemy_count[MAP_GAME]; i++)
         save.enemy[i] = instance->enemy[MAP_GAME][i];
     fwrite(&save, sizeof(save), 1, save_file);
     fclose(save_file);
@@ -31,7 +31,7 @@ void init_game(instance_t *instance)
 
 void load_enemies(instance_t *instance, save save)
 {
-    for (int i = 0; i < instance->enemy_count[MAP_GAME]; i++) {
+    for (unsigned int i = 0; i < instance->enemy_count[MAP_GAME]; i++) {
         sfClock *clock = instance->enemy[MAP_GAME][i].clock;
         sfSprite *sprite = instance->enemy[MAP_GAME][i].sprite;
         instance->enemy[MAP_GAME][i] = save.enemy[i];

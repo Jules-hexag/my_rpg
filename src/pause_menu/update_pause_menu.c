@@ -69,6 +69,6 @@ void update_pause_menu(instance_t *instance)
         update_button_color(&menu->buttons[i]);
         update_pm_button_text(&menu->buttons[i], &window_params);
     }
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 3; i++)
         info_player[i](instance);
 }

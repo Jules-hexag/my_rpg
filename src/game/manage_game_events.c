@@ -20,6 +20,10 @@ void manage_key_pressed(instance_t *instance, sfEvent event)
                 instance->volume.music) : 0;
             instance->previous_state == IN_GAME ? sfMusic_pause(
                 instance->sounds[2]) : 0;
+            instance->previous_state == IN_PAUSE_MENU ? sfMusic_play(
+                instance->volume.music) : 0;
+            instance->previous_state == IN_PAUSE_MENU ?
+                reset_clocks(instance) : 0;
             break;
         default:
             break;

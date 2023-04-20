@@ -19,6 +19,8 @@ sfText *init_text(char *str_text)
         "res/tragicastle/Tragicastle.otf");
     sfText_setFont(text, font);
     sfText_setString(text, str_text);
+    sfText_setOutlineThickness(text, 1);
+    sfText_setOutlineColor(text, sfBlack);
     sfText_setColor(text, sfWhite);
     return text;
 }
