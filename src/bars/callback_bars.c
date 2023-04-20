@@ -13,7 +13,7 @@ void callback_bars(instance_t *instance)
     static bool play = 0;
     if (instance->player.health.current < 0) {
         init_game(instance);
-        instance->rpg_state =IN_START_MENU;
+        instance->rpg_state = IN_START_MENU;
         sfMusic_stop(instance->sounds[1]);
         sfMusic_stop(instance->volume.music);
         sfMusic_play(instance->sounds[1]);
