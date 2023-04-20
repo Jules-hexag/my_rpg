@@ -2,24 +2,16 @@
 ** EPITECH PROJECT, 2023
 ** my_rpg
 ** File description:
-** update_start_menu.c
+** update_pause_menu
 */
 
-#include "rpg.h"
-#include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics/RectangleShape.h>
 #include <SFML/Graphics/Sprite.h>
 #include <SFML/Graphics/Text.h>
-#include <SFML/Graphics/Types.h>
-#include <SFML/System/Vector2.h>
+#include <unistd.h>
+#include "rpg.h"
 
-static const sfColor smb_colors[3] = {
-    [NONE] = {107, 107, 107, 200},
-    [HOVER] = {107, 0, 40, 200},
-    [PRESSED] = {66, 1, 9, 200},
-};
-
-static void update_sm_button_size(menu_button_t *button,
+static void update_pm_button_size(menu_button_t *button,
     window_params *params)
 {
     sfVector2u const win_size = params->size;
@@ -28,13 +20,13 @@ static void update_sm_button_size(menu_button_t *button,
     sfRectangleShape_setSize(button->button, size);
 }
 
-static void update_sm_button_pos(menu_button_t *button, window_params *params,
+static void update_pm_button_pos(menu_button_t *button, window_params *params,
     int nb)
 {
     sfVector2u const win_size = params->size;
     sfVector2f const button_size = button->size;
-    const int di = (win_size.y - (SMB_BUTTON_COUNT) * button_size.y) /
-        (SMB_BUTTON_COUNT + 1);
+    const int di = (win_size.y - (PMB_BUTTON_COUNT) * button_size.y) /
+        (PMB_BUTTON_COUNT + 1);
     sfVector2i posi = {win_size.x / 2 - button_size.x / 2,
         di + nb * (di + button_size.y)};
     sfVector2f pos = sfRenderWindow_mapPixelToCoords(params->window, posi,
@@ -42,7 +34,7 @@ static void update_sm_button_pos(menu_button_t *button, window_params *params,
     sfRectangleShape_setPosition(button->button, pos);
 }
 
-static void update_sm_button_text(menu_button_t *button,
+static void update_pm_button_text(menu_button_t *button,
     window_params *params)
 {
     sfVector2f pos = sfRectangleShape_getPosition(button[0].button);
@@ -59,23 +51,16 @@ static void update_sm_button_text(menu_button_t *button,
     sfText_setPosition(button->text, (sfVector2f) {pos.x, pos.y});
 }
 
-void update_button_color(menu_button_t *button)
+void update_pause_menu(instance_t *instance)
 {
-    if (button->button_state != NONE && sfMouse_isButtonPressed(sfMouseLeft))
-        button->button_state = PRESSED;
-    sfRectangleShape_setFillColor(button->button,
-        smb_colors[button->button_state]);
-}
-
-void update_start_menu(instance_t *instance)
-{
-    menu_t *menu = &instance->menus[START_MENU];
-    for (int i = 0; i < SMB_BUTTON_COUNT; i++) {
-        update_sm_button_size(&menu->buttons[i], &instance->window_params);
-        update_sm_button_pos(&menu->buttons[i], &instance->window_params, i);
+    menu_t *menu = &instance->menus[PAUSE];
+    window_params window_params = instance->window_params;
+    for (int i = 0; i < PMB_BUTTON_COUNT; i++) {
+        update_pm_button_size(&menu->buttons[i], &window_params);
+        update_pm_button_pos(&menu->buttons[i], &window_params, i);
         menu->buttons[i].rect = sfRectangleShape_getGlobalBounds(
             menu->buttons[i].button);
         update_button_color(&menu->buttons[i]);
-        update_sm_button_text(&menu->buttons[i], &instance->window_params);
+        update_pm_button_text(&menu->buttons[i], &window_params);
     }
 }

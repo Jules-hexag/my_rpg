@@ -27,7 +27,7 @@
 
 
 //CAN’T HAVE STRUCT TOO LARGE > 8000 bytes
-#define MAX_ENEMIES 60
+#define MAX_ENEMIES 50
 #define RPG_SUCCESS 0
 
 #define ENEMY_SPEED 180
@@ -58,8 +58,7 @@ enum start_menu_button {
     SMB_TUTORIAL,
     SMB_SETTINGS,
     SMB_QUIT,
-
-    SMB_COUNT
+    SMB_BUTTON_COUNT
 };
 
 enum settings_items {
@@ -68,6 +67,16 @@ enum settings_items {
     STT_BACK,
 
     STT_BUTTON_COUNT,
+};
+
+enum pause_items {
+    PMB_RESUME,
+    PMB_SAVE,
+    PMB_LOAD,
+    PMB_SETTINGS,
+    PMB_QUIT,
+
+    PMB_BUTTON_COUNT,
 };
 
 typedef struct {
@@ -106,8 +115,8 @@ enum game_state {
 enum menus {
     START_MENU,
     SETTINGS,
-    INVENTORY,
     PAUSE,
+    INVENTORY,
 
     MENU_COUNT
 };
@@ -131,6 +140,7 @@ enum SPRITE_DIR {
 
 typedef struct instance_s {
     binary_heap *enemy_heap;
+    enum game_state previous_state;
     sfTexture *texture[TEXTURE_COUNT];
     map_t map[MAP_COUNTER];
     enemy_t enemy[MAP_COUNTER][MAX_ENEMIES];
@@ -162,7 +172,8 @@ sfSprite *gen_sprite_shape(char *texture_path, sfVector2f pos);
 void attack_zombies(instance_t *instance);
 char *my_itoa(unsigned int nbr);
 char *my_strcat(char *dest, const char *src);
-void change_volume(instance_t *instance);
+void change_volume(void *ptr);
+void pause_to_settings(void *instance);
 
 /*  BUTTONS FUNCTIONS   (start menu)    */
 void play_game(void *instance);
@@ -170,11 +181,16 @@ void resume_game(void *instance);
 void tutorial(void *instance);
 void settings(void *instance);
 void quit_game(void *instance);
+/*  BUTTONS FUNCTIONS   (start menu & pause menu)    */
+void depause_game(void *instance);
+void save_game(void *instance);
+void load_game(void *instance);
+
 
 /*  BUTTONS FUNCTIONS   (settings)    */
-void set_windowed(instance_t *instance);
-void set_fullscreen(instance_t *instance);
-void settings_back(instance_t *instance);
+void set_windowed(void *instance);
+void set_fullscreen(void *instance);
+void settings_back(void *instance);
 
 map_t init_map(char *struct_path, instance_t *instance);
 player init_player(instance_t *instance);
@@ -182,6 +198,7 @@ instance_t init_instance(void);
 void gen_array_vertex(map_t *map);
 sfRenderWindow *init_window(void);
 menu_t init_start_menu(void);
+menu_t init_pause_menu(void);
 menu_t init_settings(void);
 void init_bars(instance_t *instance);
 void init_enemies(instance_t *instance);
@@ -195,6 +212,7 @@ void render_game_map(instance_t *instance);
 void render_tutorial_map(instance_t *instance);
 void render_game(instance_t *instance);
 void render_start_menu(instance_t *instance);
+void render_pause_menu(instance_t *instance);
 void render_player(instance_t *instances);
 void render_bars(instance_t *instances);
 void render_front_enemy(instance_t *instance);
@@ -208,6 +226,7 @@ void update_bars(instance_t *instance);
 void update_player(instance_t *instance);
 void update_game(instance_t *instance);
 void update_start_menu(instance_t *instance);
+void update_pause_menu(instance_t *instance);
 void update_enemy(instance_t *instance);
 void update_tutorial(instance_t *instance);
 void update_settings(instance_t *instance);
@@ -216,6 +235,7 @@ void update_volume(instance_t *instance);
 
 void manage_game_events(instance_t *instance, sfEvent event);
 void manage_start_menu_events(instance_t *instance, sfEvent event);
+void manage_pause_menu_events(instance_t *instance, sfEvent event);
 void manage_tutorial_events(instance_t *instance, sfEvent event);
 void manage_settings_events(instance_t *instance, sfEvent event);
 void manage_key_pressed(instance_t *instance, sfEvent event);

@@ -54,7 +54,7 @@ void init_enemies(instance_t *instance)
     instance->dead_enemies = 0;
     instance->enemy_behind = 0;
     instance->enemy_count[MAP_GAME] = 9;
-    for (int i = 0; i < instance->enemy_count[MAP_GAME]; ++i)
+    for (unsigned int i = 0; i < instance->enemy_count[MAP_GAME]; ++i)
         instance->enemy[MAP_GAME][i] = create_enemy(zombie_game[i], instance);
     instance->enemy_count[MAP_TUTORIAL] = 1;
     instance->enemy[MAP_TUTORIAL][0] = create_enemy((sfVector2f) {10, 2},

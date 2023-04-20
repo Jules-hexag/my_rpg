@@ -65,26 +65,26 @@ static void update_enemy_pos(enemy_t *enemy, struct queue *queue)
         64, 64};
 }
 
-void update_enemy(instance_t *instance)
+void update_enemy(instance_t *inst)
 {
     struct queue queue = {0};
-    instance->enemy_behind = 0;
+    inst->enemy_behind = 0;
     enemy_t *enemy;
-    instance->enemy_heap->value = &enemy_value;
-    for (int i = 0; i < instance->enemy_count[instance->current_map]; ++i) {
-        if (instance->enemy[instance->current_map][i].health.current <= 0
-            && !instance->enemy[instance->current_map][i].is_dead) {
-            instance->enemy[instance->current_map][i].is_dead = true;
-            instance->dead_enemies++;
+    inst->enemy_heap->value = &enemy_value;
+    for (unsigned int i = 0; i < inst->enemy_count[inst->current_map]; ++i) {
+        if (inst->enemy[inst->current_map][i].health.current <= 0
+            && !inst->enemy[inst->current_map][i].is_dead) {
+            inst->enemy[inst->current_map][i].is_dead = true;
+            inst->dead_enemies++;
         }
-        update_etp(instance, &instance->enemy[instance->current_map][i]);
+        update_etp(inst, &inst->enemy[inst->current_map][i]);
     }
-    while ((enemy = bh_pop(instance->enemy_heap)))
+    while ((enemy = bh_pop(inst->enemy_heap)))
         update_enemy_pos(enemy, &queue);
-    instance->enemy_heap->value = &enemy_pos;
-    for (int i = 0; i < instance->enemy_count[instance->current_map]; ++i) {
-        damage_player(instance, &instance->enemy[instance->current_map][i]);
-        sfClock_restart(instance->enemy[instance->current_map][i].clock);
-        update_layer(instance, &instance->enemy[instance->current_map][i]);
+    inst->enemy_heap->value = &enemy_pos;
+    for (unsigned int i = 0; i < inst->enemy_count[inst->current_map]; ++i) {
+        damage_player(inst, &inst->enemy[inst->current_map][i]);
+        sfClock_restart(inst->enemy[inst->current_map][i].clock);
+        update_layer(inst, &inst->enemy[inst->current_map][i]);
     }
 }

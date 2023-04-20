@@ -12,8 +12,9 @@
 #include <SFML/System/Vector2.h>
 #include "rpg.h"
 
-void change_volume(instance_t *instance)
+void change_volume(void *ptr)
 {
+    instance_t *instance = (instance_t *) ptr;
     sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(
         instance->window_params.window);
     sfRectangleShape *rectangle = instance->volume.current_volume.button;
