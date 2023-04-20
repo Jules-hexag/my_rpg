@@ -6,7 +6,6 @@
 */
 
 #include <SFML/Graphics/Sprite.h>
-#include <SFML/Graphics/RectangleShape.h>
 #include "binary_heap.h"
 #include "rpg.h"
 
@@ -19,13 +18,14 @@ sfVector2f const zombie_game[9] = {
     (sfVector2f) {12, 3},
     (sfVector2f) {10, 4},
     (sfVector2f) {11, 4},
-    (sfVector2f) {12, 4}
-};
+    (sfVector2f) {12, 4}};
+
 void create_enemy_sprite(instance_t *instance, enemy_t *enemy)
 {
     enemy->clock = sfClock_create();
     enemy->sprite = sfSprite_create();
-    sfSprite_setTexture(enemy->sprite, instance->texture[TEXTURE_ENEMY], sfTrue);
+    sfSprite_setTexture(enemy->sprite,
+        instance->texture[TEXTURE_ENEMY], sfTrue);
     sfSprite_setPosition(enemy->sprite, enemy->pos);
     sfSprite_setScale(enemy->sprite, (sfVector2f) {4, 4});
     sfSprite_setOrigin(enemy->sprite, (sfVector2f) {8, 24});

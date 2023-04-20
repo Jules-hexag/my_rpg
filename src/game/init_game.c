@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include "rpg.h"
 
-
 void save_game(void *ptr)
 {
     instance_t *instance = (instance_t *) ptr;
@@ -21,7 +20,6 @@ void save_game(void *ptr)
     fclose(save_file);
     depause_game(ptr);
 }
-
 
 void init_game(instance_t *instance)
 {

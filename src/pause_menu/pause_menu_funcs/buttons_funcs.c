@@ -17,7 +17,6 @@ void depause_game(void *ptr)
     instance->menu_state = IN_GAME;
 }
 
-
 void pause_to_settings(void *ptr)
 {
     instance_t *instance = (instance_t *) ptr;
