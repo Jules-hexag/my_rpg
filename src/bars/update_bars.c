@@ -57,8 +57,9 @@ void update_bars(instance_t *instance)
     sfSprite *health_current = instance->bars[B_HEALTH].current;
     sfSprite *mana_bg = instance->bars[B_MANA].background;
     sfSprite *mana_current = instance->bars[B_MANA].current;
+    callback_bars(instance);
     if (player->health.current < 0)
-        player->health.current = 0;
+        player->mana.current = 0;
     if (player->health.current > player->health.max)
         player->health.current = player->health.max;
     if (player->mana.current < 0)

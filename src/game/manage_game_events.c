@@ -18,6 +18,8 @@ void manage_key_pressed(instance_t *instance, sfEvent event)
                 IN_PAUSE_MENU : IN_GAME;
             instance->previous_state == IN_GAME ? sfMusic_pause(
                 instance->volume.music) : 0;
+            instance->previous_state == IN_GAME ? sfMusic_pause(
+                instance->sounds[2]) : 0;
             break;
         default:
             break;

@@ -22,6 +22,7 @@ void play_game(void *ptr)
 
 void resume_game(void *ptr)
 {
+    instance_t *instance = (instance_t *) ptr;
     sfRenderWindow_close(((instance_t *) ptr)->window_params.window);
     instance->rpg_state = IN_GAME;
 }

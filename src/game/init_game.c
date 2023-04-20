@@ -25,6 +25,7 @@ void init_game(instance_t *instance)
 {
     instance->player = init_player(instance);
     init_enemies(instance);
+    instance->npc = init_npc(instance,(sfVector2f) {2 * 64, 2 * 64});
 }
 
 void load_game(void *ptr)

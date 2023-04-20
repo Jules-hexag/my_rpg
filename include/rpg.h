@@ -149,7 +149,7 @@ typedef struct instance_s {
     sfMusic *sounds[3];
     map_t map[MAP_COUNTER];
     enemy_t enemy[MAP_COUNTER][MAX_ENEMIES];
-    npc npc[2];
+    npc npc;
     bars_t bars[B_COUNT];
     menu_t menus[MENU_COUNT];
     unsigned enemy_count[MAP_COUNTER];
@@ -180,6 +180,7 @@ char *my_strcat(char *dest, const char *src);
 void change_volume(void *ptr);
 void pause_to_settings(void *instance);
 void reset_clocks(instance_t *instance);
+void callback_bars(instance_t *instance);
 
 /*  BUTTONS FUNCTIONS   (start menu)    */
 void play_game(void *instance);
@@ -212,6 +213,7 @@ menu_button_t init_volume_button(void);
 sfRectangleShape *init_volume_bg(void);
 void init_game(instance_t *instance);
 sfMusic *init_music(void);
+npc init_npc(instance_t *instance, sfVector2f pos);
 void create_player_sprite(instance_t *instance, player *player);
 void create_enemy_sprite(instance_t *instance, enemy_t *enemy);
 
@@ -227,6 +229,8 @@ void render_back_enemy(instance_t *instance);
 void render_tutorial(instance_t *instance);
 void render_settings(instance_t *instance);
 void render_volume(instance_t *instance);
+void render_back_npc(instance_t *instance);
+void render_front_npc(instance_t *instance);
 
 void update_instance(instance_t *instance);
 void update_bars(instance_t *instance);
@@ -239,6 +243,7 @@ void update_tutorial(instance_t *instance);
 void update_settings(instance_t *instance);
 void update_button_color(menu_button_t *button);
 void update_volume(instance_t *instance);
+void update_npc(instance_t *instance);
 
 void manage_game_events(instance_t *instance, sfEvent event);
 void manage_start_menu_events(instance_t *instance, sfEvent event);
@@ -246,7 +251,6 @@ void manage_pause_menu_events(instance_t *instance, sfEvent event);
 void manage_tutorial_events(instance_t *instance, sfEvent event);
 void manage_settings_events(instance_t *instance, sfEvent event);
 void manage_key_pressed(instance_t *instance, sfEvent event);
-
 
 void destroy_map(map_t *map);
 void destroy_instance(instance_t *instance);

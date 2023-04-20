@@ -15,5 +15,8 @@ typedef struct npc {
     sfClock *npc_clock;
     sfSprite *sprite;
     sfVector2f pos;
+    float etp_distance;
+    sfMusic *music;
+    sfText *text;
     // void (*func)(struct instance_s *);
 } npc;
