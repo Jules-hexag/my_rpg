@@ -14,7 +14,7 @@ void manage_key_pressed(instance_t *instance, sfEvent event)
             instance->previous_state = (instance->rpg_state == IN_GAME) ?
                 IN_GAME : IN_PAUSE_MENU;
             instance->rpg_state = (instance->rpg_state == IN_GAME) ?
-                                  IN_PAUSE_MENU : IN_GAME;
+                IN_PAUSE_MENU : IN_GAME;
             break;
         default:
             break;
