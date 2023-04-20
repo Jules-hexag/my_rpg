@@ -62,8 +62,8 @@ instance_t init_instance(void)
     instance.window_params = init_window_params();
     if (init_textures(&instance))
         return (instance_t) {0};
-    instance.map[MAP_GAME] = init_map("res/maps/map1", &instance);
-    instance.map[MAP_TUTORIAL] = init_map("res/maps/map1", &instance);
+    instance.map[MAP_GAME] = init_map("res/maps/map", &instance);
+    instance.map[MAP_TUTORIAL] = init_map("res/maps/map_tuto", &instance);
     instance.menus[START_MENU] = init_start_menu();
     instance.menus[SETTINGS] = init_settings();
     instance.menus[PAUSE] = init_pause_menu();
