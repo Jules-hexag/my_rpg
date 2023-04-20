@@ -11,7 +11,7 @@
 
 static window_params init_window_params(void)
 {
-    window_params window_params = {0};
+    window_params window_params;
 
     window_params.window = init_window();
     window_params.size = (sfVector2u) {800, 800};
@@ -37,7 +37,7 @@ static int init_textures(instance_t *instance)
 
 static volume_t init_volume(void)
 {
-    volume_t volume = {0};
+    volume_t volume;
     volume.current_volume = init_volume_button();
     volume.volume_bg = init_volume_bg();
     volume.music = init_music();
@@ -54,7 +54,6 @@ static volume_t init_volume(void)
 instance_t init_instance(void)
 {
     instance_t instance = {0};
-
     instance.menu_state = IN_START_MENU;
     instance.window_params = init_window_params();
     if (init_textures(&instance))

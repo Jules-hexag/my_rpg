@@ -25,7 +25,9 @@
 #include "bars.h"
 #include "window_params.h"
 
-#define MAX_ENEMIES 100
+
+//CAN’T HAVE STRUCT TOO LARGE > 8000 bytes
+#define MAX_ENEMIES 60
 #define RPG_SUCCESS 0
 
 #define ENEMY_SPEED 180
@@ -128,21 +130,20 @@ enum SPRITE_DIR {
 };
 
 typedef struct instance_s {
+    binary_heap *enemy_heap;
     sfTexture *texture[TEXTURE_COUNT];
     map_t map[MAP_COUNTER];
     enemy_t enemy[MAP_COUNTER][MAX_ENEMIES];
+    npc npc[2];
+    bars_t bars[B_COUNT];
+    menu_t menus[MENU_COUNT];
     unsigned enemy_count[MAP_COUNTER];
     window_params window_params;
-    npc npc[2];
     unsigned dead_enemies;
     unsigned enemy_behind;
     enum game_state menu_state;
     enum map_e current_map;
-    binary_heap *enemy_heap;
-    menu_t menus[MENU_COUNT];
     player player;
-//    speeches_t speeches;
-    bars_t bars[B_COUNT];
     volume_t volume;
 } instance_t;
 
