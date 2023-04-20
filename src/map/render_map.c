@@ -6,6 +6,8 @@
 */
 
 #include <SFML/Graphics/RenderTexture.h>
+#include <SFML/Graphics/Sprite.h>
+#include <SFML/Graphics/Texture.h>
 #include "rpg.h"
 
 void render_tutorial_map(instance_t *instance)
