@@ -140,7 +140,13 @@ typedef struct {
     player player;
     enemy_t enemy[MAX_ENEMIES];
     unsigned dead_enemies;
-}save;
+    bool talked_to_npc;
+} save;
+
+typedef struct {
+    char text[256];
+    sfText *text_sprite;
+} top_text;
 
 typedef struct instance_s {
     binary_heap *enemy_heap;
@@ -150,9 +156,11 @@ typedef struct instance_s {
     map_t map[MAP_COUNTER];
     enemy_t enemy[MAP_COUNTER][MAX_ENEMIES];
     npc npc;
+    bool talked_to_npc;
     bars_t bars[B_COUNT];
     menu_t menus[MENU_COUNT];
     unsigned enemy_count[MAP_COUNTER];
+    top_text text;
     window_params window_params;
     unsigned dead_enemies;
     unsigned enemy_behind;
@@ -213,6 +221,7 @@ menu_button_t init_volume_button(void);
 sfRectangleShape *init_volume_bg(void);
 void init_game(instance_t *instance);
 sfMusic *init_music(void);
+top_text init_top_text(void);
 npc init_npc(instance_t *instance, sfVector2f pos);
 void create_player_sprite(instance_t *instance, player *player);
 void create_enemy_sprite(instance_t *instance, enemy_t *enemy);
@@ -231,6 +240,7 @@ void render_settings(instance_t *instance);
 void render_volume(instance_t *instance);
 void render_back_npc(instance_t *instance);
 void render_front_npc(instance_t *instance);
+void render_top_text(instance_t *instance);
 
 void update_instance(instance_t *instance);
 void update_bars(instance_t *instance);
@@ -247,6 +257,8 @@ void update_npc(instance_t *instance);
 void update_info_player_rect_pos(instance_t *instance);
 void update_info_player_rect_size(instance_t *instance);
 void update_text_info_player(instance_t *instance);
+void update_top_text(instance_t *instance);
+void update_player_stats(instance_t *instance);
 
 void manage_game_events(instance_t *instance, sfEvent event);
 void manage_start_menu_events(instance_t *instance, sfEvent event);

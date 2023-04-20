@@ -68,6 +68,7 @@ instance_t init_instance(void)
     instance.menus[SETTINGS] = init_settings();
     init_game(&instance);
     init_bars(&instance);
+    instance.text = init_top_text();
     instance.volume = init_volume();
     instance.menus[PAUSE] = init_pause_menu();
     instance.sounds[0] = sfMusic_createFromFile("res/music/button.wav");

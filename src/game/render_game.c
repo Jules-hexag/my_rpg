@@ -16,4 +16,5 @@ void render_game(instance_t *instance)
     render_front_npc(instance);
     render_front_enemy(instance);
     render_bars(instance);
+    render_top_text(instance);
 }
