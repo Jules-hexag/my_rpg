@@ -6,7 +6,6 @@
 */
 
 #include <SFML/Graphics/Sprite.h>
-#include <SFML/Graphics/RectangleShape.h>
 #include "binary_heap.h"
 #include "rpg.h"
 
@@ -19,8 +18,18 @@ sfVector2f const zombie_game[9] = {
     (sfVector2f) {12, 3},
     (sfVector2f) {10, 4},
     (sfVector2f) {11, 4},
-    (sfVector2f) {12, 4}
-};
+    (sfVector2f) {12, 4}};
+
+void create_enemy_sprite(instance_t *instance, enemy_t *enemy)
+{
+    enemy->clock = sfClock_create();
+    enemy->sprite = sfSprite_create();
+    sfSprite_setTexture(enemy->sprite,
+        instance->texture[TEXTURE_ENEMY], sfTrue);
+    sfSprite_setPosition(enemy->sprite, enemy->pos);
+    sfSprite_setScale(enemy->sprite, (sfVector2f) {4, 4});
+    sfSprite_setOrigin(enemy->sprite, (sfVector2f) {8, 24});
+}
 
 enemy_t create_enemy(sfVector2f pos, instance_t *instance)
 {
@@ -29,13 +38,8 @@ enemy_t create_enemy(sfVector2f pos, instance_t *instance)
     enemy.pos = pos;
     enemy.hitbox = (sfFloatRect) {pos.x - 32, pos.y - 32, 64, 64};
     enemy.health = (barector) {100, 100};
-    enemy.clock = sfClock_create();
-    enemy.sprite = sfSprite_create();
     enemy.is_dead = false;
-    sfSprite_setTexture(enemy.sprite, instance->texture[TEXTURE_ENEMY], sfTrue);
-    sfSprite_setPosition(enemy.sprite, pos);
-    sfSprite_setScale(enemy.sprite, (sfVector2f) {4, 4});
-    sfSprite_setOrigin(enemy.sprite, (sfVector2f) {8, 24});
+    create_enemy_sprite(instance, &enemy);
     return enemy;
 }
 

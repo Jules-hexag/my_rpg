@@ -14,7 +14,7 @@
 #include <SFML/System/Clock.h>
 #include <SFML/System/Vector2.h>
 
-static void create_player_sprite(instance_t *instance, player *player)
+void create_player_sprite(instance_t *instance, player *player)
 {
     sfSprite *p_sprite = sfSprite_create();
     sfIntRect rect = {0, 0, 16, 32};
